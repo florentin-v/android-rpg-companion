@@ -5,8 +5,8 @@ afterEvaluate {
         androidVariant 'debug'
         properties {
             property "sonar.projectName", "android-rpg-companion"
-            property "sonar.projectKey", "florentinv_android-rpg-companion"
-            property "sonar.organization", "florentinv"
+            property "sonar.projectKey", "florentin-v_android-rpg-companion"
+            property "sonar.organization", "florentin-v"
             property "sonar.host.url", "https://sonarcloud.io"
             property "sonar.sources", "src/main"
             property "sonar.tests", "src/test, src/androidTest"
