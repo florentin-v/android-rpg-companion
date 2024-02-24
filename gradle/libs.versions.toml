@@ -5,7 +5,7 @@ android-min-sdk = "24"
 android-target-sdk = "34"
 # Libraries versions
 androidxComposeBom = "2024.02.01"
-androidxLifecycle = "2.6.2"
+androidxLifecycle = "2.7.0"
 androidxNavigation = "2.7.2"
 converterGson = "2.9.0"
 googleApiServicesDocs = "v1-rev20230929-2.0.0"
