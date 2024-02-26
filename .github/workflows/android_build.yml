@@ -32,6 +32,9 @@ jobs:
       - name: "Run Ktlint Format"
         run: ./gradlew ktlintFormat
 
+      - name: "Run Detekt"
+        run: ./gradlew detekt
+
       - name: "Build, Test, Generate Coverage Report, and run Sonar"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

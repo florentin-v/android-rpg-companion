@@ -3,6 +3,7 @@
 apply(from = "${project.rootDir}/gradle/ktlint.gradle")
 apply(from = "${project.rootDir}/gradle/sonarqube.gradle")
 apply(from = "${project.rootDir}/gradle/kover.gradle")
+apply(from = "${project.rootDir}/gradle/detekt.gradle")
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -18,9 +19,11 @@ plugins {
 buildscript {
     dependencies {
         classpath(libs.jetbrains.kotlinx.kover)
+        classpath(libs.detekt.gradlePlugin)
     }
 }
 
 allprojects {
     apply(plugin = "kover")
+    apply(from = "${project.rootDir}/gradle/detekt_shared.gradle")
 }

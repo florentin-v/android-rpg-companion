@@ -1,0 +1,6 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+dependencies {
+    detektPlugins(libs.detekt.formatting.get())
+    detektPlugins(libs.detekt.rules.compose.get())
+}
