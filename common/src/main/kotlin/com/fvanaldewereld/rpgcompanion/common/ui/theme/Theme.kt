@@ -38,7 +38,6 @@ private val LightColorsPalette = lightColorScheme(
     scrim = md_theme_light_scrim,
 )
 
-
 private val DarkColorsPalette = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
@@ -74,7 +73,7 @@ private val DarkColorsPalette = darkColorScheme(
 @Composable
 fun RpgCompanionTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit,
+    content: @Composable () -> Unit,
 ) {
     val colors = if (!useDarkTheme) {
         LightColorsPalette
