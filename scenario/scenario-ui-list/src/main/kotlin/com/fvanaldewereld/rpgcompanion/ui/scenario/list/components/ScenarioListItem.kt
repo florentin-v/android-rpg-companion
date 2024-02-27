@@ -50,10 +50,17 @@ internal fun ScenarioListItem(
                     Text("$scenarioId", style = TextStyle(color = bubbleLabelColor))
                 }
             },
-            headlineContent = { Text("${scenario.title?.value}") },
+            headlineContent = { Text("${scenario.title?.title}") },
             trailingContent = {
                 IconButton(onClick = { deleteScenario(scenarioId) }) {
-                    Icon(imageVector = Icons.Default.Delete, contentDescription = stringResource(R.string.scenarioList_success_deleteButton_contentDescription, scenarioId), tint = deleteButtonColor)
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = stringResource(
+                            R.string.scenarioList_success_deleteButton_contentDescription,
+                            scenarioId,
+                        ),
+                        tint = deleteButtonColor,
+                    )
                 }
             },
             modifier = modifier.clickable { goToScenarioDetail(scenarioId) },
@@ -64,7 +71,7 @@ internal fun ScenarioListItem(
                     modifier = Modifier.fillMaxWidth(),
                     maxItemsInEachRow = 3,
                 ) {
-                    scenario.information?.genres?.forEach { genre ->
+                    scenario.information?.genres?.genres?.forEach { genre ->
                         ScenarioListItemChips(genre)
                     }
                 }

@@ -47,5 +47,4 @@ class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
             // THEN
             assertEquals(scenario, ScenarioModelMockFactory.scenarioModelWithoutId)
         }
-
 }

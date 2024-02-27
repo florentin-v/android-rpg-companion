@@ -8,6 +8,6 @@ import java.net.URL
 class GetScenarioByUrlUseCase {
     private val googleDocsRepository: GoogleDocsRepository by GlobalContext.get().inject()
 
-    suspend operator fun invoke(documentUrl: URL): ScenarioModel = googleDocsRepository.getScenarioByGdocsUrl(documentUrl)
-
+    suspend operator fun invoke(documentUrl: URL): ScenarioModel =
+        googleDocsRepository.getScenarioByGdocsUrl(documentUrl = documentUrl)
 }

@@ -40,7 +40,7 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock getGoogleDocsById and ScenarioModelMapper WHEN executing getScenarioByGdocsUrl of GoogleDocsRepository THEN return Document`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockGoogleDocsDataSource.getGoogleDocsById(GoogleDocsMockFactory.googleDocsDocumentId))
+            Mockito.`when`(mockGoogleDocsDataSource.getGoogleDocsById(GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID))
                 .thenReturn(ScenarioDtoMockFactory.scenarioDto)
             Mockito.`when`(mockScenarioModelMapper.to(ScenarioDtoMockFactory.scenarioDto))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithoutId)
@@ -51,5 +51,4 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
             // THEN
             Assertions.assertEquals(scenarioModel, ScenarioModelMockFactory.scenarioModelWithoutId)
         }
-
 }

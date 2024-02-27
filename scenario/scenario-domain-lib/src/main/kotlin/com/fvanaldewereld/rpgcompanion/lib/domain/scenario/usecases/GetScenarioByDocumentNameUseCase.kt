@@ -7,6 +7,6 @@ import org.koin.core.context.GlobalContext
 class GetScenarioByDocumentNameUseCase {
     private val dbScenarioRepository: DbScenarioRepository by GlobalContext.get().inject()
 
-    suspend operator fun invoke(id: Long): ScenarioModel = dbScenarioRepository.getScenarioById(id = id)
-
+    suspend operator fun invoke(id: Long): ScenarioModel =
+        dbScenarioRepository.getScenarioById(id = id)
 }

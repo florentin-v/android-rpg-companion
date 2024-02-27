@@ -11,7 +11,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 // Extension function for NavGraphBuilder to create an animated Composable with specified transitions
-internal fun NavGraphBuilder.animatedComposable(route: String, content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit) {
+internal fun NavGraphBuilder.animatedComposable(
+    route: String,
+    content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
+) {
     composable(
         route = route,
         // Set the enter and exit transitions
@@ -24,32 +27,32 @@ internal fun NavGraphBuilder.animatedComposable(route: String, content: @Composa
     )
 }
 
-private const val animationDuration = 700
+private const val ANIMATION_DURATION = 700
 
 private val enterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
     slideIntoContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Left,
-        animationSpec = tween(animationDuration),
+        animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
 private val exitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Left,
-        animationSpec = tween(animationDuration),
+        animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
 private val popEnterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition? = {
     slideIntoContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Right,
-        animationSpec = tween(animationDuration),
+        animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
 private val popExitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Right,
-        animationSpec = tween(animationDuration),
+        animationSpec = tween(ANIMATION_DURATION),
     )
 }

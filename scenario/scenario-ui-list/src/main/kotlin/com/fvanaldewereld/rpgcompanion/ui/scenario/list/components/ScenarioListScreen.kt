@@ -54,7 +54,7 @@ fun ScenarioListScreen(
                 is ScenarioListUiState.Loading -> ScenarioListLoading()
                 is ScenarioListUiState.NoResult -> ScenarioListNoResult()
                 is ScenarioListUiState.Success -> ScenarioListSuccess(
-                    scenarios = uiState.scenarios,
+                    scenarioListModel = uiState.scenarioListModel,
                     goToScenarioDetail = goToScenarioDetail,
                     updateDeletingScenario = { scenarioModel ->
                         openDialog = true
@@ -97,4 +97,3 @@ fun ScenarioListScreen(
         )
     }
 }
-

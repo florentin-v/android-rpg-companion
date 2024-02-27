@@ -55,7 +55,7 @@ internal class ScenarioMapperImpl : ScenarioMapper {
             SummaryModel(text = DescriptionModel(summary))
         },
         title = from.scenarioBase.title?.let { title ->
-            TitleModel(value = title)
+            TitleModel(title = title)
         },
     )
 
@@ -72,7 +72,7 @@ internal class ScenarioMapperImpl : ScenarioMapper {
                     informationMapper.from(to = information)
                 },
                 summary = to.summary?.text?.paragraphs,
-                title = to.title?.value,
+                title = to.title?.title,
             )
         } ?: ScenarioBase(
             author = to.author?.name,
@@ -81,7 +81,7 @@ internal class ScenarioMapperImpl : ScenarioMapper {
                 informationMapper.from(to = information)
             },
             summary = to.summary?.text?.paragraphs,
-            title = to.title?.value,
+            title = to.title?.title,
         )
 
         return Scenario(
@@ -91,5 +91,4 @@ internal class ScenarioMapperImpl : ScenarioMapper {
             scenarioBase = scenarioBase,
         )
     }
-
 }

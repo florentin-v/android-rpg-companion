@@ -9,5 +9,9 @@ interface CharactersModelMapper : ModelMapper<CharactersDto?, CharactersModel>
 internal class CharactersModelMapperImpl : CharactersModelMapper {
     private val characterModelMapper: CharacterModelMapper by GlobalContext.get().inject()
 
-    override fun to(from: CharactersDto?)= CharactersModel(characters = from?.characters?.map { characterEntity -> characterModelMapper.to(characterEntity) })
+    override fun to(from: CharactersDto?) = CharactersModel(
+        characters = from?.characters?.map { characterEntity ->
+            characterModelMapper.to(characterEntity)
+        },
+    )
 }

@@ -25,13 +25,23 @@ fun ScenarioItemDeletingDialog(
     AlertDialog(
         modifier = modifier,
         icon = {
-            Icon(Icons.Default.Warning, contentDescription = stringResource(R.string.scenarioList_success_dialog_warningIcon_contentDescription))
+            Icon(
+                imageVector = Icons.Default.Warning,
+                contentDescription = stringResource(
+                    id = R.string.scenarioList_success_dialog_warningIcon_contentDescription,
+                ),
+            )
         },
         title = {
             Text(text = stringResource(R.string.scenarioList_success_dialog_title))
         },
         text = {
-            Text(text = stringResource(R.string.scenarioList_success_dialog_description, scenario?.title?.value.orEmpty()))
+            Text(
+                text = stringResource(
+                    R.string.scenarioList_success_dialog_description,
+                    scenario?.title?.title.orEmpty(),
+                ),
+            )
         },
         onDismissRequest = {
             onCancel()

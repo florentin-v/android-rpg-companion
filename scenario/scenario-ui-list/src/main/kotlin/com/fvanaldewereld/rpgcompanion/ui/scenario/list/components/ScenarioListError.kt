@@ -16,7 +16,6 @@ fun ScenarioListError(
     errorMessage: String,
     modifier: Modifier = Modifier,
 ) {
-
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
@@ -31,5 +30,4 @@ private fun ScenarioListErrorPreview() {
     RpgCompanionTheme {
         ScenarioListError(errorMessage = "An error has occured !")
     }
-    
 }

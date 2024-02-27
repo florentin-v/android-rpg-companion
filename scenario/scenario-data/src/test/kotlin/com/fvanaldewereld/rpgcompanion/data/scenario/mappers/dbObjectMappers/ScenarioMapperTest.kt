@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import org.koin.test.inject
 import org.mockito.Mockito
 
-class ScenarioMapperTest: BasicKoinTest() {
+class ScenarioMapperTest : BasicKoinTest() {
 
     private val mockChapterMapper by inject<ChapterMapper>()
     private val mockCharacterMapper by inject<CharacterMapper>()
@@ -110,27 +110,27 @@ class ScenarioMapperTest: BasicKoinTest() {
         }
 
     @Test
-    fun `WHEN map empty Scenario THEN return empty ScenarioModel`() =
-        runBlocking {
-            // GIVEN
+    fun `WHEN map empty Scenario THEN return empty ScenarioModel`() = runBlocking {
+        // GIVEN
 
-            // WHEN
-            val scenarioModel = scenarioMapper.to(ScenarioDbObjectMockFactory.emptyScenario)
+        // WHEN
+        val scenarioModel = scenarioMapper.to(ScenarioDbObjectMockFactory.emptyScenario)
 
-            // THEN
-            Assertions.assertEquals(scenarioModel, ScenarioModelMockFactory.emptyScenarioModelWithId)
-        }
+        // THEN
+        Assertions.assertEquals(
+            scenarioModel,
+            ScenarioModelMockFactory.emptyScenarioModelWithId,
+        )
+    }
 
     @Test
-    fun `WHEN map empty ScenarioModel THEN return empty Scenario`() =
-        runBlocking {
-            // GIVEN
+    fun `WHEN map empty ScenarioModel THEN return empty Scenario`() = runBlocking {
+        // GIVEN
 
-            // WHEN
-            val scenarioModel = scenarioMapper.from(ScenarioModelMockFactory.emptyScenarioModelWithId)
+        // WHEN
+        val scenarioModel = scenarioMapper.from(ScenarioModelMockFactory.emptyScenarioModelWithId)
 
-            // THEN
-            Assertions.assertEquals(scenarioModel, ScenarioDbObjectMockFactory.emptyScenario)
-        }
-
+        // THEN
+        Assertions.assertEquals(scenarioModel, ScenarioDbObjectMockFactory.emptyScenario)
+    }
 }

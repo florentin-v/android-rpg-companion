@@ -14,8 +14,8 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ScenarioElementDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.SummaryDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TextType
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TitleDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.extensions.getText
 import com.google.api.services.docs.v1.model.Document
-import com.google.api.services.docs.v1.model.StructuralElement
 
 private const val TITLE = "TITLE"
 private const val AUTHOR = "AUTHOR"
@@ -57,7 +57,7 @@ internal class ScenarioDtoMapperImpl : ScenarioDtoMapper {
     override fun to(from: Document): ScenarioDto {
         from.body.content.forEach { structuralElement ->
             val namedStyleType = structuralElement?.paragraph?.paragraphStyle?.namedStyleType
-            val paragraphText = getTextFromStructuralElement(structuralElement)
+            val paragraphText = structuralElement.getText()
             if (paragraphText.isNotBlank()) {
                 when (namedStyleType) {
                     TextType.TITLE.name -> {
@@ -101,11 +101,37 @@ internal class ScenarioDtoMapperImpl : ScenarioDtoMapper {
     private fun setupScenarioElements() {
         scenarioElements[TITLE] = title?.let { TitleDto(value = it) }
         scenarioElements[AUTHOR] = author?.let { AuthorDto(name = it) }
-        scenarioElements[INFORMATION] = InformationDto(nbPlayers = nbPlayers, genres = genres, themes = themes)
-        scenarioElements[SUMMARY] = if (summaryDescriptionParagraphs.isNotEmpty()) SummaryDto(text = DescriptionDto(summaryDescriptionParagraphs)) else null
-        scenarioElements[CHARACTERS] = if (characters.isNotEmpty()) CharactersDto(characters = characters) else null
-        scenarioElements[PLACES] = if (places.isNotEmpty()) PlacesDto(places = places) else null
-        scenarioElements[CHAPTERS] = if (chapters.isNotEmpty()) ChaptersDto(chapters = chapters) else null
+        scenarioElements[INFORMATION] = InformationDto(
+            nbPlayers = nbPlayers,
+            genres = genres,
+            themes = themes,
+        )
+        scenarioElements[SUMMARY] = if (summaryDescriptionParagraphs.isNotEmpty()) {
+            SummaryDto(
+                text = DescriptionDto(summaryDescriptionParagraphs),
+            )
+        } else {
+            null
+        }
+        scenarioElements[CHARACTERS] = if (characters.isNotEmpty()) {
+            CharactersDto(characters = characters)
+        } else {
+            null
+        }
+        scenarioElements[PLACES] = if (places.isNotEmpty()) {
+            PlacesDto(
+                places = places,
+            )
+        } else {
+            null
+        }
+        scenarioElements[CHAPTERS] = if (chapters.isNotEmpty()) {
+            ChaptersDto(
+                chapters = chapters,
+            )
+        } else {
+            null
+        }
     }
 
     private fun updateLastScenarioSubElementDescription(paragraphText: String) {
@@ -254,13 +280,5 @@ internal class ScenarioDtoMapperImpl : ScenarioDtoMapper {
             GENRES -> genres = values.split("/").map { it.trim() }
             THEMES -> themes = values.split("/").map { it.trim() }
         }
-    }
-
-    private fun getTextFromStructuralElement(structuralElement: StructuralElement): String {
-        var text = ""
-        structuralElement.paragraph?.elements?.forEach { element ->
-            element?.textRun?.content?.let { elementText -> text += elementText }
-        }
-        return text.replace("\n", "").trim()
     }
 }

@@ -17,11 +17,14 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 
 @Composable
-fun SplashScreen(onAnimationFinished: () -> Unit) {
+fun SplashScreen(
+    modifier: Modifier = Modifier,
+    onAnimationFinished: () -> Unit = {}
+) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.Asset("animation_ln0885pz.json"))
     val progress by animateLottieCompositionAsState(composition)
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surface),
         horizontalAlignment = Alignment.CenterHorizontally,

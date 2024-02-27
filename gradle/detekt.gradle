@@ -1,0 +1,35 @@
+apply from: './gradle/detekt_shared.gradle'
+
+detekt {
+    buildUponDefaultConfig = true // preconfigure defaults
+    allRules = false // activate all available (even unstable) rules.
+    config.setFrom("$projectDir/config/detekt/detekt.yml")
+    // point to your custom config defining rules to run, overwriting default behavior
+    baseline = file("$projectDir/config/detekt/baseline.xml")
+    // a way of suppressing issues before introducing detekt
+}
+
+tasks.named("detekt").configure {
+    reports {
+        // Enable/Disable XML report (default: true)
+        xml.required.set(true)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+        // Enable/Disable HTML report (default: true)
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+        // Enable/Disable TXT report (default: true)
+        txt.required.set(true)
+        txt.outputLocation.set(file("build/reports/detekt.txt"))
+        // Enable/Disable SARIF report (default: false)
+        sarif.required.set(true)
+        sarif.outputLocation.set(file("build/reports/detekt.sarif"))
+        // Enable/Disable MD report (default: false)
+        md.required.set(true)
+        md.outputLocation.set(file("build/reports/detekt.md"))
+    }
+}
+
+dependencies {
+    detektPlugins(libs.detekt.formatting.get())
+    detektPlugins(libs.detekt.rules.compose.get())
+}

@@ -20,9 +20,11 @@ internal fun ScenarioListNoResult(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text = stringResource(R.string.scenarioList_noResult_text), textAlign = TextAlign.Center)
+        Text(
+            text = stringResource(R.string.scenarioList_noResult_text),
+            textAlign = TextAlign.Center,
+        )
     }
-
 }
 
 @Preview(showBackground = true)

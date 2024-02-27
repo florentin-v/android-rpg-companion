@@ -11,13 +11,30 @@ class LocalDbScenarioRepositoryImpl : DbScenarioRepository {
     private val scenarioDao: ScenarioDao by GlobalContext.get().inject()
     private val scenarioMapperImpl: ScenarioMapper by GlobalContext.get().inject()
 
-    override suspend fun addScenario(scenarioModel: ScenarioModel): Long = scenarioDao.insertScenario(scenarioMapperImpl.from(scenarioModel))
+    override suspend fun addScenario(scenarioModel: ScenarioModel): Long =
+        scenarioDao.insertScenario(
+            scenario = scenarioMapperImpl.from(scenarioModel),
+        )
 
-    override suspend fun getAllScenarios(): List<ScenarioModel> = scenarioDao.getAllScenarios().map { scenarioMapperImpl.to(it) }
+    override suspend fun getAllScenarios(): List<ScenarioModel> =
+        scenarioDao.getAllScenarios().map {
+            scenarioMapperImpl.to(from = it)
+        }
 
-    override suspend fun getScenarioByDocumentName(documentName: String): ScenarioModel = scenarioMapperImpl.to(scenarioDao.getScenarioByDocumentName(documentName))
+    override suspend fun getScenarioByDocumentName(documentName: String): ScenarioModel =
+        scenarioMapperImpl.to(
+            from = scenarioDao.getScenarioByDocumentName(
+                documentName = documentName,
+            ),
+        )
 
-    override suspend fun getScenarioById(id: Long): ScenarioModel = scenarioMapperImpl.to(scenarioDao.getScenarioById(id))
+    override suspend fun getScenarioById(id: Long): ScenarioModel =
+        scenarioMapperImpl.to(
+            from = scenarioDao.getScenarioById(id = id),
+        )
 
-    override suspend fun deleteById(id: Long): Long = scenarioDao.deleteScenario(scenarioDao.getScenarioById(id))
+    override suspend fun deleteById(id: Long): Long =
+        scenarioDao.deleteScenario(
+            scenario = scenarioDao.getScenarioById(id = id),
+        )
 }

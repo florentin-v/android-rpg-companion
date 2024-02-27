@@ -46,10 +46,12 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
                 .thenReturn(ScenarioDbObjectMockFactory.SCENARIO_ID)
 
             // WHEN
-            val result = localDbScenarioRepository.addScenario(ScenarioModelMockFactory.scenarioModelWithoutId)
+            val result =
+                localDbScenarioRepository.addScenario(ScenarioModelMockFactory.scenarioModelWithoutId)
 
             // THEN
-            Mockito.verify(mockScenarioDao, times(1)).insertScenario(ScenarioDbObjectMockFactory.scenario)
+            Mockito.verify(mockScenarioDao, times(1))
+                .insertScenario(ScenarioDbObjectMockFactory.scenario)
             Assertions.assertEquals(result, ScenarioModelMockFactory.SCENARIO_ID)
         }
 
@@ -76,14 +78,19 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
             // GIVEN
             Mockito.`when`(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithId)
-            Mockito.`when`(mockScenarioDao.getScenarioByDocumentName(ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME))
-                .thenReturn(ScenarioDbObjectMockFactory.scenario)
+            Mockito.`when`(
+                mockScenarioDao.getScenarioByDocumentName(
+                    documentName = ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME,
+                ),
+            ).thenReturn(ScenarioDbObjectMockFactory.scenario)
 
             // WHEN
-            val result = localDbScenarioRepository.getScenarioByDocumentName(ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME)
+            val result =
+                localDbScenarioRepository.getScenarioByDocumentName(ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME)
 
             // THEN
-            Mockito.verify(mockScenarioDao, times(1)).getScenarioByDocumentName(ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME)
+            Mockito.verify(mockScenarioDao, times(1))
+                .getScenarioByDocumentName(ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME)
             Assertions.assertEquals(result, ScenarioModelMockFactory.scenarioModelWithId)
         }
 
@@ -97,10 +104,12 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
                 .thenReturn(ScenarioDbObjectMockFactory.scenario)
 
             // WHEN
-            val result = localDbScenarioRepository.getScenarioById(ScenarioModelMockFactory.SCENARIO_ID)
+            val result =
+                localDbScenarioRepository.getScenarioById(ScenarioModelMockFactory.SCENARIO_ID)
 
             // THEN
-            Mockito.verify(mockScenarioDao, times(1)).getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID)
+            Mockito.verify(mockScenarioDao, times(1))
+                .getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID)
             Assertions.assertEquals(result, ScenarioModelMockFactory.scenarioModelWithId)
         }
 
@@ -117,9 +126,10 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
             val result = localDbScenarioRepository.deleteById(ScenarioModelMockFactory.SCENARIO_ID)
 
             // THEN
-            Mockito.verify(mockScenarioDao, times(1)).getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID)
-            Mockito.verify(mockScenarioDao, times(1)).deleteScenario(ScenarioDbObjectMockFactory.scenario)
+            Mockito.verify(mockScenarioDao, times(1))
+                .getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID)
+            Mockito.verify(mockScenarioDao, times(1))
+                .deleteScenario(ScenarioDbObjectMockFactory.scenario)
             Assertions.assertEquals(result, ScenarioModelMockFactory.SCENARIO_ID)
         }
-
 }

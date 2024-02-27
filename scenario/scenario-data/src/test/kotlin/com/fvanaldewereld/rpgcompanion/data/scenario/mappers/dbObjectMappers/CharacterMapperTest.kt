@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class CharacterMapperTest{
+class CharacterMapperTest {
 
     private lateinit var characterMapper: CharacterMapper
 

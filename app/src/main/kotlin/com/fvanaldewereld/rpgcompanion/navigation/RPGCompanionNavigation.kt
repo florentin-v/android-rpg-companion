@@ -47,7 +47,11 @@ internal fun RPGCompanionNavigation() {
             ScenarioListScreen(
                 viewModel = koinViewModel(),
                 onBackButtonPressed = ::navigateBack,
-                goToScenarioDetail = { scenarioId -> navigateTo(NavigationRoute.ScenarioDetail.createRoute(scenarioId = scenarioId)) },
+                goToScenarioDetail = { scenarioId ->
+                    navigateTo(
+                        NavigationRoute.ScenarioDetail.createRoute(scenarioId = scenarioId),
+                    )
+                },
             )
         }
 
@@ -59,4 +63,3 @@ internal fun RPGCompanionNavigation() {
         }
     }
 }
-

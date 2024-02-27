@@ -14,6 +14,6 @@ class UrlExtensionTest {
         val documentId = GoogleDocsMockFactory.googleDocsUrl.extractGoogleDocumentId()
 
         // THEN
-        Assertions.assertEquals(documentId, GoogleDocsMockFactory.googleDocsDocumentId)
+        Assertions.assertEquals(documentId, GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID)
     }
 }

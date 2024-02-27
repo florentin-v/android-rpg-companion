@@ -8,5 +8,6 @@ class AddScenarioUseCase {
 
     private val localDbScenarioRepository: DbScenarioRepository by GlobalContext.get().inject()
 
-    suspend operator fun invoke(scenarioModel: ScenarioModel): Long = localDbScenarioRepository.addScenario(scenarioModel)
+    suspend operator fun invoke(scenarioModel: ScenarioModel): Long =
+        localDbScenarioRepository.addScenario(scenarioModel = scenarioModel)
 }

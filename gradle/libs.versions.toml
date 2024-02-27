@@ -26,12 +26,14 @@ room = "2.6.1"
 # Plugins versions
 androidGradlePlugin = "8.2.2"
 androidLibraryPlugin = "8.2.2"
+detekt = "1.23.5"
+detektCompose = "0.3.11"
 jetbrainsKotlinPlugin = "1.9.22"
+ksp = "1.9.22-1.0.17"
 ktlintPlugin = "12.1.0"
+material3Android = "1.3.0-alpha01"
 moduleDependencyGraphPlugin = "0.12"
 sonarqubePlugin = "4.3.1.3277"
-material3Android = "1.3.0-alpha01"
-ksp = "1.9.22-1.0.17"
 
 
 [libraries]
@@ -45,13 +47,17 @@ androidx-compose-ui-tooling-tooling = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+detekt-rules-libraries = { group = "io.gitlab.arturbosch.detekt", name = "detekt-rules-libraries", version.ref = "detekt" }
+detekt-rules-compose = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "detektCompose" }
 google-api-services-docs = { module = "com.google.apis:google-api-services-docs", version.ref = "googleApiServicesDocs" }
 google-auth-library-oauth2-http = { module = "com.google.auth:google-auth-library-oauth2-http", version.ref = "googleAuthLibraryOauth2Http" }
 jetbrains-kotlinx-kover = { group = "org.jetbrains.kotlinx", name = "kover", version.ref = "kotlinxKover" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinAndroid" }
-koin-junit5 = { group = "io.insert-koin", name = "koin-test-junit5", version.ref = "koinTest" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinAndroidxCompose" }
-
+koin-junit5 = { group = "io.insert-koin", name = "koin-test-junit5", version.ref = "koinTest" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieCompose" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
@@ -60,12 +66,11 @@ okhttp3-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp
 retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 retrofit2-kotlin-coroutines-adapter = { module = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter", version.ref = "retrofit2KotlinCoroutinesAdapter" }
 retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 
 [bundles]
@@ -77,7 +82,7 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidLibraryPlugin" }
 jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "jetbrainsKotlinPlugin" }
 jlleitschuh-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintPlugin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 module-dependency-graph = { id = "com.savvasdalkitsis.module-dependency-graph", version.ref = "moduleDependencyGraphPlugin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinPlugin" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqubePlugin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
