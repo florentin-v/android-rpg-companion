@@ -21,7 +21,10 @@ class GoogleDocsService(private val context: Context) {
         if (docs == null) {
             docs = initDocsBuilder()
         }
-        return docs!!
+        return docs
+            ?: throw GoogleDocsServiceException(
+                message = "An error as occured in GoogleDocsService. Docs should be not null.",
+            )
     }
 
     private fun initDocsBuilder(): Docs {
