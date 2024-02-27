@@ -24,5 +24,4 @@ interface PlaceDao {
 
     @Delete
     fun delete(place: Place)
-
 }

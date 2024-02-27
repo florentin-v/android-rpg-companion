@@ -44,7 +44,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.repositories.LocalDbScenari
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.GoogleDocsDataSource
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.GoogleDocsDataSourceImpl
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.service.GoogleDocsService
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.AppDatabase
+import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.ScenarioDatabase
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.ChapterDao
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.CharacterDao
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.PlaceDao
@@ -80,7 +80,6 @@ val SCENARIO_DATA_MODULE = module {
     single<InformationMapper> { InformationMapperImpl() }
     single<PlaceMapper> { PlaceMapperImpl() }
 
-
     // Sources
     factory<GoogleDocsService> {
         GoogleDocsService(
@@ -88,18 +87,18 @@ val SCENARIO_DATA_MODULE = module {
         )
     }
     factory<GoogleDocsDataSource> { GoogleDocsDataSourceImpl() }
-    single<AppDatabase> {
+    single<ScenarioDatabase> {
         Room.databaseBuilder(
             androidContext(),
-            AppDatabase::class.java,
+            ScenarioDatabase::class.java,
             "scenario-database",
         ).build()
     }
-    single<ScenarioBaseDao> { get<AppDatabase>().scenarioBaseDao() }
+    single<ScenarioBaseDao> { get<ScenarioDatabase>().scenarioBaseDao() }
     single<ScenarioDao> { ScenarioDaoImpl() }
-    single<ChapterDao> { get<AppDatabase>().chapterDao() }
-    single<CharacterDao> { get<AppDatabase>().characterDao() }
-    single<PlaceDao> { get<AppDatabase>().placeDao() }
+    single<ChapterDao> { get<ScenarioDatabase>().chapterDao() }
+    single<CharacterDao> { get<ScenarioDatabase>().characterDao() }
+    single<PlaceDao> { get<ScenarioDatabase>().placeDao() }
 
 // Repositories
     factory<GoogleDocsRepository> { GoogleDocsRepositoryImpl() }

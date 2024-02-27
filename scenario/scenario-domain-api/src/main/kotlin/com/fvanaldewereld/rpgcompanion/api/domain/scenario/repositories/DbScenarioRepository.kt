@@ -12,5 +12,5 @@ interface DbScenarioRepository {
 
     suspend fun getScenarioById(id: Long): ScenarioModel
 
-    suspend fun deleteById(id: Long) : Long
+    suspend fun deleteById(id: Long): Long
 }

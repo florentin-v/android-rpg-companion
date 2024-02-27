@@ -23,7 +23,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
     exportSchema = false,
 )
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class ScenarioDatabase : RoomDatabase() {
     abstract fun scenarioBaseDao(): ScenarioBaseDao
     abstract fun chapterDao(): ChapterDao
     abstract fun characterDao(): CharacterDao

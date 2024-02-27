@@ -2,4 +2,4 @@ package com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.enti
 
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.LocalDbObject
 
-interface LocalDbEntity: LocalDbObject
+interface LocalDbEntity : LocalDbObject

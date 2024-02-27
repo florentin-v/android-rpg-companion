@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class PlaceMapperTest{
+class PlaceMapperTest {
 
     private lateinit var placeMapper: PlaceMapper
 

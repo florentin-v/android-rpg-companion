@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TitleModel(
-    val value: String? = "",
+    val title: String? = "",
 ) : Parcelable, ScenarioElementModel

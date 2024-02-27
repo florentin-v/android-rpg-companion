@@ -42,7 +42,8 @@ class ScenarioDetailViewModel(
                 // TODO Catch SQLiteException
                 kotlin.runCatching { getScenarioByDocumentNameUseCase(scenarioId.toLong()) }
                     .onSuccess { scenarioModel ->
-                        savedStateHandle[SCENARIO_UI_STATE_KEY] = ScenarioDetailUiState.Success(scenario = scenarioModel)
+                        savedStateHandle[SCENARIO_UI_STATE_KEY] =
+                            ScenarioDetailUiState.Success(scenario = scenarioModel)
                     }
             }
         }

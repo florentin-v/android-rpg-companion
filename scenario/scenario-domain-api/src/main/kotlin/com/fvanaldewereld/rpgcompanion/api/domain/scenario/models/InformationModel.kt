@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class InformationModel(
-    val genres: List<String>? = emptyList(),
+    val genres: GenresModel? = GenresModel(),
     val nbPlayers: Int? = 1,
-    val themes: List<String>? = emptyList(),
+    val themes: ThemesModel? = ThemesModel(),
 ) : Parcelable, ScenarioElementModel

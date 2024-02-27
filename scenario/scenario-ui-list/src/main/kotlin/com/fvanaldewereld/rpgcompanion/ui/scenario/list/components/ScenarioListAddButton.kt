@@ -20,7 +20,8 @@ internal fun ScenarioListAddButton(onClick: () -> Unit, modifier: Modifier = Mod
         modifier = modifier.clip(RoundedCornerShape(50)),
     ) {
         Icon(
-            Icons.Filled.Add, stringResource(R.string.scenarioList_addButton_contentDescription),
+            imageVector = Icons.Filled.Add,
+            contentDescription = stringResource(R.string.scenarioList_addButton_contentDescription),
         )
     }
 }
@@ -31,5 +32,4 @@ private fun ScenarioListAddButtonPreview() {
     RpgCompanionTheme {
         ScenarioListAddButton(onClick = {})
     }
-
 }

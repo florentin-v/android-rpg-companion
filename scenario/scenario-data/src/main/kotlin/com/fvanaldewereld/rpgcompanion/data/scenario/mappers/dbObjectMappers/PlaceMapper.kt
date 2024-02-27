@@ -17,7 +17,6 @@ internal class PlaceMapperImpl : PlaceMapper {
 
     override fun from(to: PlaceModel) = Place(
         name = to.name,
-        description = to.description?.paragraphs
+        description = to.description?.paragraphs,
     )
-
 }

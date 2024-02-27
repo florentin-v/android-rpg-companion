@@ -26,5 +26,4 @@ interface ScenarioBaseDao {
 
     @Delete
     fun deleteScenarioBase(scenarioBase: ScenarioBase)
-
 }

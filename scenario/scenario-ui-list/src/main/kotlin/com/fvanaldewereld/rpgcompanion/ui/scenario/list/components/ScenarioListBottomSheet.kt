@@ -29,7 +29,7 @@ import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.R
 
-//https://docs.google.com/document/d/1YMuTjXvyU_sZFOu8PlvX1DNlJ7t1h7ne4yQvDSWHE54/edit?usp=sharing
+// https://docs.google.com/document/d/1YMuTjXvyU_sZFOu8PlvX1DNlJ7t1h7ne4yQvDSWHE54/edit?usp=sharing
 @SuppressLint("UnrememberedMutableState")
 @Composable
 internal fun ScenarioListBottomSheet(
@@ -53,7 +53,10 @@ internal fun ScenarioListBottomSheet(
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(stringResource(R.string.scenarioList_success_bottomSheet_title), style = Typography.titleMedium)
+        Text(
+            text = stringResource(R.string.scenarioList_success_bottomSheet_title),
+            style = Typography.titleMedium,
+        )
         TextField(
             value = inputURL,
             onValueChange = { inputURL = it },

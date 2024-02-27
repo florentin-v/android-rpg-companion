@@ -3,6 +3,7 @@ package com.fvanaldewereld.rpgcompanion.ui.scenario.list
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioListModel
 import com.fvanaldewereld.rpgcompanion.common.dispatchers.KDispatchers
 import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.AddScenarioUseCase
 import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.DeleteScenarioUseCase
@@ -57,7 +58,6 @@ class ScenarioListViewModel(
                         }
                     }
                 }
-
             }
         }
     }
@@ -80,7 +80,11 @@ class ScenarioListViewModel(
                 kotlin.runCatching { getScenarioListUseCase() }
                     .onSuccess { scenarios ->
                         savedStateHandle[SCENARIO_LIST_UI_STATE_KEY] = if (scenarios.isNotEmpty()) {
-                            ScenarioListUiState.Success(scenarios = scenarios)
+                            ScenarioListUiState.Success(
+                                scenarioListModel = ScenarioListModel(
+                                    scenarioModels = scenarios,
+                                ),
+                            )
                         } else {
                             ScenarioListUiState.NoResult
                         }

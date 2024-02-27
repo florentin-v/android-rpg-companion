@@ -13,7 +13,6 @@ interface ScenarioDao {
     fun getScenarioByDocumentName(documentName: String): Scenario
 
     fun getScenarioById(id: Long): Scenario
-
 }
 
 class ScenarioDaoImpl : ScenarioDao {
@@ -64,15 +63,16 @@ class ScenarioDaoImpl : ScenarioDao {
             )
         }
 
-    override fun getScenarioByDocumentName(documentName: String): Scenario = scenarioBaseDao.getScenarioBaseByDocumentName(documentName = documentName)
-        .let { scenarioBase ->
-            Scenario(
-                scenarioBase = scenarioBase,
-                chapters = chapterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                characters = characterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                places = placeDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-            )
-        }
+    override fun getScenarioByDocumentName(documentName: String): Scenario =
+        scenarioBaseDao.getScenarioBaseByDocumentName(documentName = documentName)
+            .let { scenarioBase ->
+                Scenario(
+                    scenarioBase = scenarioBase,
+                    chapters = chapterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                    characters = characterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                    places = placeDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                )
+            }
 
     override fun getScenarioById(id: Long): Scenario = scenarioBaseDao.getScenarioBaseById(id)
         .let { scenarioBase ->

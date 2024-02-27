@@ -19,5 +19,4 @@ internal class ChapterMapperImpl : ChapterMapper {
         name = to.name,
         description = to.description?.paragraphs
     )
-
 }

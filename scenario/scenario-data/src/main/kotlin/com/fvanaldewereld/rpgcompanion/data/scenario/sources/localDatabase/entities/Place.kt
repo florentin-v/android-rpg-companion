@@ -9,4 +9,4 @@ data class Place(
     var scenarioId: Long? = null,
     val name: String? = null,
     val description: List<String>? = null,
-): LocalDbEntity
+) : LocalDbEntity
