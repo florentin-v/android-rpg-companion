@@ -1,4 +1,5 @@
 apply plugin: "kotlin-android"
+apply plugin: libs.plugins.kover.get().pluginId
 
 android {
 

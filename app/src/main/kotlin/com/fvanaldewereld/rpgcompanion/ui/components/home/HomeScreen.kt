@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.home.ui.components
+package com.fvanaldewereld.rpgcompanion.ui.components.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -3,8 +3,8 @@ package com.fvanaldewereld.rpgcompanion.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.fvanaldewereld.rpgcompanion.home.ui.components.HomeScreen
-import com.fvanaldewereld.rpgcompanion.splashScreen.feature.ui.components.SplashScreen
+import com.fvanaldewereld.rpgcompanion.ui.components.home.HomeScreen
+import com.fvanaldewereld.rpgcompanion.ui.components.splashScreen.SplashScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
 import org.koin.androidx.compose.koinViewModel

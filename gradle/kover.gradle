@@ -1,23 +1,32 @@
-apply plugin: 'kover'
+apply plugin: libs.plugins.kover.get().pluginId
 
-koverMerged {
-    enable()
-    // filters for all report types of all build variants
+dependencies {
+    kover(project(":common"))
+    kover(project(":common-test"))
+    kover(project(":scenario:scenario-data"))
+    kover(project(":scenario:scenario-domain-api"))
+    kover(project(":scenario:scenario-domain-lib"))
+    kover(project(":scenario:scenario-ui-detail"))
+    kover(project(":scenario:scenario-ui-list"))
+}
+
+koverReport {
     filters {
-        classes {
-            excludes.addAll(
-                    "*Fragment",
-                    "*Fragment\$*",
-                    "*Activity",
-                    "*Activity\$*",
+        includes {
+            classes("com.fvanaldewereld.rpgcompanion.*")
+        }
+        excludes {
+            classes(
+                    "*Fragment*",
+                    "*Activity*",
                     "*.databinding.*",
                     "*.BuildConfig",
-                    ",**/di/**/*",
-                    "com.fvanaldewereld.rpgcompanion.ui.theme.**.*",
-                    "com.fvanaldewereld.rpgcompanion.ui.component.**.*",
+                    "*.di.*",
+                    "*.ui.*.theme.*",
+                    "*.ui.theme.*",
+                    "*.ui.*.components.*",
+                    "*.ui.components.*",
             )
-
-            includes.addAll("com.fvanaldewereld.rpgcompanion.**.*")
         }
     }
 }
