@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.splashScreen.feature.ui.components
+package com.fvanaldewereld.rpgcompanion.ui.components.splashScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

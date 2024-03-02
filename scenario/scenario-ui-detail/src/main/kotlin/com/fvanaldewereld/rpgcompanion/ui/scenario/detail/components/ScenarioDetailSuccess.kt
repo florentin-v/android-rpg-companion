@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
-import com.fvanaldewereld.rpgcompanion.common.ui.component.RpgCompanionTopAppBar
+import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionTopAppBar
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 

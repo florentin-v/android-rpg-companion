@@ -8,21 +8,21 @@ afterEvaluate {
             property "sonar.projectKey", "florentin-v_android-rpg-companion"
             property "sonar.organization", "florentin-v"
             property "sonar.host.url", "https://sonarcloud.io"
-            property "sonar.sources", "src/main"
-            property "sonar.tests", "src/test, src/androidTest"
-            property "sonar.test.inclusions", "**/androidTest"
-            property "sonar.java.coveragePlugin", "jacoco"
-            property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/kover/merged/xml/report.xml"
+            property "sonar.sources", "**/main"
+            property "sonar.tests", "**/test, **/androidTest"
+            property "sonar.test.inclusions", "**/test, **/androidTest"
+            property "sonar.java.coveragePlugin", "kover"
+            property "sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/*.xml"
+            property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/reportDebug.xml"
             // Please add exclusions here to exclude classes from sonarqube coverage reports
-            // The exclusions in the kover.gradle file only exclude classes from coverage computation but they still appear on the sonarqube interface
             property "sonar.coverage.exclusions",
                     "**/*Fragment*" +
                             ",**/*Activity*" +
                             ",**/di/**/*" +
-                            ",**/com/fvanaldewereld/rpgcompanion/ui/component/**/*" +
-                            ",**/com/fvanaldewereld/rpgcompanion/ui/theme/**/*"
+                            ",**/ui/components/**/*" +
+                            ",**/ui/**/components/**/*" +
+                            ",**/ui/theme/**/*" +
+                            ",**/ui/**/theme/**/*"
         }
     }
 }
-
-project.tasks.sonar.dependsOn "koverMergedXmlReport"
