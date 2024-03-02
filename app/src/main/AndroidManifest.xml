@@ -23,9 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.feature.ui.activity.HomeActivity" />
-        <activity android:name=".scenarioList.feature.ui.ScenarioListActivity" />
-        <activity android:name=".scenarioDetail.feature.ui.ScenarioDetailActivity" />
     </application>
 
 </manifest>

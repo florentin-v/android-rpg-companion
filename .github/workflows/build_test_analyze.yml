@@ -1,6 +1,11 @@
-name: Build, Test and Analyze PR
+name: Build, Test and Analyze
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 
 jobs:
   assemble:
@@ -40,6 +45,9 @@ jobs:
       - name: "Run Detekt"
         run: ./gradlew detektDebug
 
+      - name: "Run Lint "
+        run: ./gradlew lintDebug
+
   unit_tests:
     permissions: write-all
     name: "Unit tests & Kover & Sonar"
@@ -61,15 +69,6 @@ jobs:
 
       - name: "Generate Kover report"
         run: ./gradlew koverXmlReportDebug
-
-      - name: "Add coverage report to PR"
-        uses: mi-kas/kover-report@v1
-        with:
-          path: |
-            ${{ github.workspace }}/app/build/reports/kover/reportDebug.xml
-          title: Code Coverage
-          update-comment: true
-          coverage-counter-type: LINE
 
       - name: "Sonar"
         env:
