@@ -8,11 +8,11 @@ afterEvaluate {
             property "sonar.projectKey", "florentin-v_android-rpg-companion"
             property "sonar.organization", "florentin-v"
             property "sonar.host.url", "https://sonarcloud.io"
-            property "sonar.sources", "**/main"
-            property "sonar.tests", "**/test, **/androidTest"
-            property "sonar.test.inclusions", "**/test, **/androidTest"
-            property "sonar.java.coveragePlugin", "kover"
-            property "sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/*.xml"
+            property "sonar.sources", "src/main"
+            property "sonar.tests", "src/test, src/androidTest"
+            property "sonar.java.coveragePlugin", "jacoco"
+            property "sonar.androidLint.reportPaths", "build/reports/lint-results.xml"
+            property "sonar.junit.reportPaths", "build/test-results/testDebugUnitTest"
             property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/reportDebug.xml"
             // Please add exclusions here to exclude classes from sonarqube coverage reports
             property "sonar.coverage.exclusions",
