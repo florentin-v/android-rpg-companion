@@ -126,6 +126,7 @@ object ScenarioDtoMockFactory {
     )
     val summaryDto = SummaryDto(
         text = summaryDescriptionDto,
+        tt = "dd",
     )
     val characterDescriptionDto1 = DescriptionDto(
         paragraphs = listOf(SCENARIO_CHARACTERS_DESCRIPTION_1),

@@ -109,6 +109,7 @@ internal class ScenarioDtoMapperImpl : ScenarioDtoMapper {
         scenarioElements[SUMMARY] = if (summaryDescriptionParagraphs.isNotEmpty()) {
             SummaryDto(
                 text = DescriptionDto(summaryDescriptionParagraphs),
+                tt = "dd"
             )
         } else {
             null

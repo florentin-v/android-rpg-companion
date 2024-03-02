@@ -136,6 +136,7 @@ object ScenarioModelMockFactory {
     )
     val summaryModel = SummaryModel(
         text = summaryDescriptionModel,
+        tt = "dd"
     )
     val chapterDescriptionModel = DescriptionModel(
         paragraphs = listOf(SCENARIO_CHAPTERS_INTRODUCTION_TEXT),

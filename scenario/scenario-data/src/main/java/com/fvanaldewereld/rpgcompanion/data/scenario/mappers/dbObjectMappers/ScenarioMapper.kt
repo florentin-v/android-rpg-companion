@@ -52,7 +52,7 @@ internal class ScenarioMapperImpl : ScenarioMapper {
             )
         },
         summary = from.scenarioBase.summary?.let { summary ->
-            SummaryModel(text = DescriptionModel(summary))
+            SummaryModel(text = DescriptionModel(summary), tt = "dd")
         },
         title = from.scenarioBase.title?.let { title ->
             TitleModel(title = title)

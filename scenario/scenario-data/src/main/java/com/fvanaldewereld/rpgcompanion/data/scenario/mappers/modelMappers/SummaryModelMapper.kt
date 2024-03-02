@@ -9,5 +9,5 @@ interface SummaryModelMapper : ModelMapper<SummaryDto?, SummaryModel>
 internal class SummaryModelMapperImpl : SummaryModelMapper {
     private val descriptionModelMapper: DescriptionModelMapper by GlobalContext.get().inject()
 
-    override fun to(from: SummaryDto?) = SummaryModel(text = descriptionModelMapper.to(from?.text))
+    override fun to(from: SummaryDto?) = SummaryModel(text = descriptionModelMapper.to(from?.text), tt = from?.tt ?: "")
 }
