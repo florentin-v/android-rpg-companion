@@ -1,0 +1,21 @@
+feature:
+  - head-branch:
+      - '^feat/'
+
+bug:
+  - head-branch:
+      - '^fix/'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - documentation/*
+
+CI/CD:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'sonarqube.gradle'
+          - 'kover.gradle'
+          - 'detekt.gradle'
+          - .github/*
