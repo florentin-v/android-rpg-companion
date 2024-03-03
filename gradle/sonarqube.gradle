@@ -17,13 +17,13 @@ afterEvaluate {
             // Please add exclusions here to exclude classes from sonarqube coverage reports
             property "sonar.coverage.exclusions",
                     "**/*Fragment*" +
-                            ",*/*Activity*" +
-                            ",*/di/*" +
-                            ",*/ui/components/*" +
-                            ",*/ui/**/components/*/" +
-                            ",*/ui/theme/*" +
-                            ",*/ui/*/theme/*"
-            property "sonar.cpd.exclusions", "*/mock-factory/*"
+                            ",**/*Activity*" +
+                            ",**/di/**/*" +
+                            ",**/ui/components/**/*" +
+                            ",**/ui/**/components/**/*" +
+                            ",**/ui/theme/**/*" +
+                            ",**/ui/**/theme/**/*"
+            property "sonar.cpd.exclusions", "**/mock-factory/**/*"
         }
     }
 }
