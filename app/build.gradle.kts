@@ -43,7 +43,4 @@ dependencies {
     implementation(project(":scenario:scenario-domain-lib"))
     implementation(project(":scenario:scenario-ui-detail"))
     implementation(project(":scenario:scenario-ui-list"))
-
-    // Implementations - Lottie
-    implementation(libs.lottie.compose)
 }
