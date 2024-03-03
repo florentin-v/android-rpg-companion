@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.fvanaldewereld.rpgcompanion.ui.components.home.HomeScreen
-import com.fvanaldewereld.rpgcompanion.ui.components.splashScreen.SplashScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
 import org.koin.androidx.compose.koinViewModel
@@ -13,7 +12,7 @@ import org.koin.androidx.compose.koinViewModel
 internal fun RPGCompanionNavigation() {
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationRoute.Splash.route) {
+    NavHost(navController = navHostController, startDestination = NavigationRoute.Home.route) {
         // This method navigates back in the navigation stack.
         fun navigateBack() = navHostController.navigateUp()
 
@@ -28,12 +27,6 @@ internal fun RPGCompanionNavigation() {
             navHostController.navigate(navRoute.route) {
                 // Configure popping behavior
                 popUpTo(navRouteToPopUpTo.route) { inclusive = true }
-            }
-        }
-
-        animatedComposable(route = NavigationRoute.Splash.route) {
-            SplashScreen {
-                navigatePopAllTo(NavigationRoute.Home, NavigationRoute.Splash)
             }
         }
 
