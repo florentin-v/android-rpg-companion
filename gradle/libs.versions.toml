@@ -22,7 +22,7 @@ retrofit = "2.9.0"
 retrofit2KotlinCoroutinesAdapter = "0.9.2"
 room = "2.6.1"
 # Plugins versions
-androidGradlePlugin = "8.2.2"
+androidGradlePlugin = "8.3.0"
 androidLibraryPlugin = "8.3.0"
 detekt = "1.23.5"
 detektCompose = "0.3.11"
