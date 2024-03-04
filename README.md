@@ -20,6 +20,7 @@ If the dependency graph change, please run the follow commands at the project ro
 ```shell
 gradlew :app:projectDependencyGraph
 cp ./build/reports/dependency-graph/project.dot* .
+cp ./build/reports/dependency-graph/mermaid.md* .
 ```
 
 ### `app`
