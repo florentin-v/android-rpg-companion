@@ -3,6 +3,7 @@ apply(from = "${project.rootDir}/gradle/compose.gradle")
 apply(from = "${project.rootDir}/gradle/koin.gradle")
 apply(from = "${project.rootDir}/gradle/unit_test.gradle")
 apply(from = "${project.rootDir}/gradle/kover.gradle")
+apply(from = "${project.rootDir}/gradle/projectDependencyGraph.gradle")
 apply(plugin = "kotlin-parcelize")
 
 plugins {

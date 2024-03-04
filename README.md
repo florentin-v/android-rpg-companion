@@ -13,7 +13,14 @@ a scenario contained in a GDocs.
 
 The app has been modularized in order to respect clean architecture.
 
-![dependency graph](documentation/graph.png)
+![Project dependancy graph](./project.dot.png)
+
+If the dependency graph change, please run the follow commands at the project root:
+
+```shell
+gradlew :app:projectDependencyGraph
+cp ./build/reports/dependency-graph/project.dot* .
+```
 
 ### `app`
 

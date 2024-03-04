@@ -1,0 +1,158 @@
+task projectDependencyGraph {
+    doLast {
+        launchGraphGeneration()
+    }
+}
+
+private List launchGraphGeneration() {
+
+    def dot = new File(rootProject.buildDir, 'reports/dependency-graph/project.dot')
+    def mermaid = new File(rootProject.buildDir, 'reports/dependency-graph/mermaid.md')
+    dot.parentFile.mkdirs()
+    dot.delete()
+    mermaid.parentFile.mkdirs()
+    mermaid.delete()
+
+    dot << 'digraph {\n'
+    dot << "  graph [label=\"${rootProject.name}\\n \",labelloc=t,fontsize=30,ranksep=1.4];\n"
+    dot << '  node [style=filled, fillcolor="#bbbbbb"];\n'
+    dot << '  rankdir=LR;\n'
+
+    mermaid << 'flowchart LR\n'
+
+    def rootProjects = []
+    def queue = [rootProject]
+    while (!queue.isEmpty()) {
+        def project = queue.remove(0)
+        rootProjects.add(project)
+        queue.addAll(project.childProjects.values())
+    }
+
+    def projects = new LinkedHashSet<Project>()
+    def dependencies = new LinkedHashMap<Tuple2<Project, Project>, List<String>>()
+    def multiplatformProjects = []
+    def jsProjects = []
+    def androidProjects = []
+    def javaProjects = []
+
+    queue = [rootProject]
+    while (!queue.isEmpty()) {
+        def project = queue.remove(0)
+        queue.addAll(project.childProjects.values())
+
+        if (project.plugins.hasPlugin('org.jetbrains.kotlin.multiplatform')) {
+            multiplatformProjects.add(project)
+        }
+        if (project.plugins.hasPlugin('org.jetbrains.kotlin.js')) {
+            jsProjects.add(project)
+        }
+        if (project.plugins.hasPlugin('com.android.library') || project.plugins.hasPlugin('com.android.application')) {
+            androidProjects.add(project)
+        }
+        if (project.plugins.hasPlugin('java-library') || project.plugins.hasPlugin('java')) {
+            javaProjects.add(project)
+        }
+
+        project.configurations.all { config ->
+            config.dependencies
+                    .withType(ProjectDependency)
+                    .collect { it.dependencyProject }
+                    .each { dependency ->
+                        // Remove "KMP folder modules"
+                        if (!project.name.endsWith("shared")) {
+                            projects.add(project)
+                            projects.add(dependency)
+                            rootProjects.remove(dependency)
+
+                            def graphKey = new Tuple2<Project, Project>(project, dependency)
+                            def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
+
+                            if (config.name.toLowerCase().endsWith('testimplementation')) {
+                                traits.add('style=dotted')
+                            } else {
+                                traits.add('style=filled')
+                            }
+                        }
+                    }
+        }
+    }
+
+    projects = projects.sort { it.path }
+
+    dot << '\n  # Projects\n\n'
+    for (project in projects) {
+        def traits = []
+
+        if (rootProjects.contains(project)) {
+            traits.add('shape=box')
+        }
+
+        if (multiplatformProjects.contains(project)) {
+            if (project.name == "domain") {
+                traits.add('fillcolor="#fdb1ff"')
+            } else {
+                traits.add('fillcolor="#d3c4ff"')
+            }
+        } else if (jsProjects.contains(project)) {
+            traits.add('fillcolor="#ffffba"')
+        } else if (androidProjects.contains(project)) {
+            if (project.name.endsWith("app")) {
+                traits.add('fillcolor="#baffc9"')
+            } else if (project.name.contains("domain")) {
+                traits.add('fillcolor="#fdb1ff"')
+            } else if (project.name.contains("data")) {
+                traits.add('fillcolor="#d3c4ff"')
+            } else if (project.name.contains("test") || project.name.contains("mock")) {
+                traits.add('fillcolor="#f0ffc4"')
+            } else {
+                traits.add('fillcolor="#badeff"')
+            }
+        } else if (javaProjects.contains(project)) {
+            traits.add('fillcolor="#ffb3ba"')
+        } else {
+            traits.add('fillcolor="#eeeeee"')
+        }
+
+        dot << "  \"${project.path}\" [${traits.join(", ")}];\n"
+    }
+
+    dot << '\n  {rank = same;'
+    for (project in projects) {
+        if (rootProjects.contains(project)) {
+            dot << " \"${project.path}\";"
+        }
+    }
+    dot << '}\n'
+
+    dot << '\n  # Dependencies\n\n'
+    dependencies.forEach { key, traits ->
+        def firstPath = key.first.path
+        def secondPath = key.second.path
+
+        if (firstPath != secondPath) {
+            def replaceFirstPath = firstPath.replace(':', '').replace('-', '')
+            def replaceSecondPath = secondPath.replace(':', '').replace('-', '')
+            mermaid << "  ${replaceFirstPath}[${firstPath}] --> ${replaceSecondPath}[${secondPath}]\n"
+
+            dot << "  \"${firstPath}\" -> \"${secondPath}\""
+
+            if (!traits.isEmpty()) {
+                dot << " [${traits.join(", ")}]"
+            }
+            dot << '\n'
+        }
+    }
+
+    dot << '}\n'
+
+
+    def command = 'dot -Tpng -O project.dot'
+    def p = command.execute([], dot.parentFile)
+    p.waitFor()
+    if (p.exitValue() != 0) {
+        throw new RuntimeException(p.errorStream.text)
+    }
+
+    println("Project module dependency graph with Dot created at ${dot.absolutePath}.png")
+    println("Project module dependency graph with Mermaid created at ${mermaid.absolutePath}.png")
+}

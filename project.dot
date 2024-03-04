@@ -1,0 +1,49 @@
+digraph {
+  graph [label="RPG Companion\n ",labelloc=t,fontsize=30,ranksep=1.4];
+  node [style=filled, fillcolor="#bbbbbb"];
+  rankdir=LR;
+
+  # Projects
+
+  ":app" [fillcolor="#baffc9"];
+  ":common" [fillcolor="#badeff"];
+  ":common-test" [fillcolor="#f0ffc4"];
+  ":mock-factory" [fillcolor="#f0ffc4"];
+  ":scenario:scenario-data" [fillcolor="#d3c4ff"];
+  ":scenario:scenario-domain-api" [fillcolor="#fdb1ff"];
+  ":scenario:scenario-domain-lib" [fillcolor="#fdb1ff"];
+  ":scenario:scenario-ui-detail" [fillcolor="#badeff"];
+  ":scenario:scenario-ui-list" [fillcolor="#badeff"];
+
+  {rank = same;}
+
+  # Dependencies
+
+  ":app" -> ":common" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-data" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-domain-lib" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-ui-detail" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-ui-list" [style=filled, style=filled]
+  ":app" -> ":common-test" [style=filled]
+  ":app" -> ":scenario:scenario-domain-api" [style=filled]
+  ":app" -> ":mock-factory" [style=dotted]
+  ":mock-factory" -> ":scenario:scenario-domain-api" [style=filled]
+  ":mock-factory" -> ":common" [style=filled]
+  ":mock-factory" -> ":scenario:scenario-data" [style=filled]
+  ":scenario:scenario-domain-api" -> ":mock-factory" [style=dotted]
+  ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-api" [style=filled]
+  ":scenario:scenario-ui-list" -> ":common" [style=filled]
+  ":scenario:scenario-ui-list" -> ":mock-factory" [style=filled]
+  ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-lib" [style=filled]
+  ":scenario:scenario-domain-lib" -> ":scenario:scenario-domain-api" [style=filled]
+  ":scenario:scenario-domain-lib" -> ":mock-factory" [style=dotted]
+  ":scenario:scenario-domain-lib" -> ":common-test" [style=dotted]
+  ":scenario:scenario-data" -> ":scenario:scenario-domain-api" [style=filled]
+  ":scenario:scenario-data" -> ":common" [style=filled]
+  ":scenario:scenario-data" -> ":mock-factory" [style=dotted]
+  ":scenario:scenario-data" -> ":common-test" [style=dotted]
+  ":scenario:scenario-ui-detail" -> ":scenario:scenario-domain-api" [style=filled]
+  ":scenario:scenario-ui-detail" -> ":common" [style=filled]
+  ":scenario:scenario-ui-detail" -> ":mock-factory" [style=filled]
+  ":scenario:scenario-ui-detail" -> ":scenario:scenario-domain-lib" [style=filled]
+}
