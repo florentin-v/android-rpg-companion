@@ -13,14 +13,13 @@ a scenario contained in a GDocs.
 
 The app has been modularized in order to respect clean architecture.
 
-![Project dependancy graph](./project.dot.png)
+![Project dependancy graph](./documentation/dependency-graph/project.dot.png)
 
 If the dependency graph change, please run the follow commands at the project root:
 
 ```shell
-gradlew :app:projectDependencyGraph
-cp ./build/reports/dependency-graph/project.dot* .
-cp ./build/reports/dependency-graph/mermaid.md* .
+./gradlew :app:projectDependencyGraph
+cp ./build/reports/dependency-graph/project.* ./documentation/dependency-graph/
 ```
 
 ### `app`

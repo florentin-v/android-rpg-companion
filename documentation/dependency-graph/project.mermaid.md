@@ -1,11 +1,9 @@
-flowchart LR
+flowchart TB
   app[:app] --> common[:common]
   app[:app] --> scenarioscenariodata[:scenario:scenario-data]
   app[:app] --> scenarioscenariodomainlib[:scenario:scenario-domain-lib]
   app[:app] --> scenarioscenariouidetail[:scenario:scenario-ui-detail]
   app[:app] --> scenarioscenariouilist[:scenario:scenario-ui-list]
-  app[:app] --> commontest[:common-test]
-  app[:app] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   app[:app] --> mockfactory[:mock-factory]
   mockfactory[:mock-factory] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   mockfactory[:mock-factory] --> common[:common]
