@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.jlleitschuh.ktlint) apply false
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.module.dependency.graph)
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.sonarqube) apply false
 }
