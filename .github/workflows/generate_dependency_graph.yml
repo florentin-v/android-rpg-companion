@@ -1,0 +1,29 @@
+name: "Generate Dependency Graph"
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths:
+      - "**.gradle*"
+
+jobs:
+  generate_dependency_graph:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Set Up JDK 17"
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu'
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v2
+      - name: "Generate files"
+        run: ./gradlew :app:projectDependencyGraph
+      - name: "Copy in ./docs/dependency-graph/"
+        run: cp ./build/reports/dependency-graph/project.* ./docs/dependency-graph/
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: apply projectDependencyGraph changes"
