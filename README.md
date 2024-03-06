@@ -13,13 +13,14 @@ a scenario contained in a GDocs.
 
 The app has been modularized in order to respect clean architecture.
 
-![Project dependancy graph](./documentation/dependency-graph/project.dot.png)
+![Project dependancy graph](docs/dependency-graph/project.dot.png)
 
-If the dependency graph change, please run the follow commands at the project root:
+The dependency graph is updated automatically as soon as a `*.gradle*` file is modified.
+But if you want to regenerate it manually,, please run the follow commands at the project root:
 
 ```shell
 ./gradlew :app:projectDependencyGraph
-cp ./build/reports/dependency-graph/project.* ./documentation/dependency-graph/
+cp ./build/reports/dependency-graph/project.* ./docs/dependency-graph/
 ```
 
 ### `app`

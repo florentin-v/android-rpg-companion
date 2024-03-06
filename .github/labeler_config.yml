@@ -10,7 +10,12 @@ documentation:
   - changed-files:
       - any-glob-to-any-file:
           - '**/*.md'
-          - documentation/*
+          - docs/*
+
+dependencies:
+  - head-branch:
+      - 'dependency'
+      - 'dependencies'
 
 CI/CD:
   - changed-files:
