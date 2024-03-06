@@ -30,13 +30,19 @@ internal fun RPGCompanionNavigation() {
             }
         }
 
-        animatedComposable(route = NavigationRoute.Home.route) {
+        animatedComposable(
+            route = NavigationRoute.Home.route,
+            deepLinks = NavigationRoute.Home.deepLinks,
+        ) {
             HomeScreen {
                 navigateTo(NavigationRoute.ScenarioList)
             }
         }
 
-        animatedComposable(route = NavigationRoute.ScenarioList.route) {
+        animatedComposable(
+            route = NavigationRoute.ScenarioList.route,
+            deepLinks = NavigationRoute.ScenarioList.deepLinks,
+        ) {
             ScenarioListScreen(
                 viewModel = koinViewModel(),
                 onBackButtonPressed = ::navigateBack,
@@ -48,7 +54,10 @@ internal fun RPGCompanionNavigation() {
             )
         }
 
-        animatedComposable(route = NavigationRoute.ScenarioDetail.route) {
+        animatedComposable(
+            route = NavigationRoute.ScenarioDetail.route,
+            deepLinks = NavigationRoute.ScenarioDetail.deepLinks,
+        ) {
             ScenarioDetailScreen(
                 viewModel = koinViewModel(),
                 onBackButtonPressed = ::navigateBack,
