@@ -6,7 +6,6 @@ import androidx.navigation.compose.rememberNavController
 import com.fvanaldewereld.rpgcompanion.ui.components.home.HomeScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun RPGCompanionNavigation() {
