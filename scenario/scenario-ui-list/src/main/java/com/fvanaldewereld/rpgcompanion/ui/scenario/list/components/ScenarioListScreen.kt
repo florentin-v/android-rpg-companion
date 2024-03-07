@@ -21,12 +21,13 @@ import com.fvanaldewereld.rpgcompanion.ui.scenario.list.R
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListUiState
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListViewModel
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScenarioListScreen(
-    viewModel: ScenarioListViewModel,
     modifier: Modifier = Modifier,
+    viewModel: ScenarioListViewModel = koinViewModel(),
     onBackButtonPressed: () -> Unit = {},
     goToScenarioDetail: (id: Long) -> Unit = {},
 ) {
