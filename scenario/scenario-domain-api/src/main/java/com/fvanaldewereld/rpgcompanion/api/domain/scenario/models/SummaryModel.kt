@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SummaryModel(
-    val text: DescriptionModel? = null,
+    val text: DescriptionModel = DescriptionModel(),
 ) : Parcelable, ScenarioElementModel

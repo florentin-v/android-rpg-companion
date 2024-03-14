@@ -6,5 +6,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.dto.DescriptionDto
 interface DescriptionModelMapper : ModelMapper<DescriptionDto?, DescriptionModel>
 
 internal class DescriptionModelMapperImpl : DescriptionModelMapper {
-    override fun to(from: DescriptionDto?) = DescriptionModel(paragraphs = from?.paragraphs)
+    override fun to(from: DescriptionDto?) = from?.paragraphs?.let { paragraphs ->
+        DescriptionModel(paragraphs = paragraphs)
+    } ?: DescriptionModel()
 }

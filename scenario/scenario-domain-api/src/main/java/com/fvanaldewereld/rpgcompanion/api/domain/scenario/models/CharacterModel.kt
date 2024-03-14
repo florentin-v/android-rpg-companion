@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CharacterModel(
-    val name: String? = "",
-    val description: DescriptionModel? = null,
+    val name: String,
+    val description: DescriptionModel,
 ) : Parcelable, Model

@@ -39,7 +39,7 @@ fun ScenarioItemDeletingDialog(
             Text(
                 text = stringResource(
                     R.string.scenarioList_success_dialog_description,
-                    scenario?.title?.title.orEmpty(),
+                    scenario?.mainInfo?.title?.value ?: stringResource(R.string.scenarioList_page_scenario_noTitle),
                 ),
             )
         },

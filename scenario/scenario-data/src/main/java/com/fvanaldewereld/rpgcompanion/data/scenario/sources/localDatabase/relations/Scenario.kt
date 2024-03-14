@@ -13,15 +13,15 @@ data class Scenario(
         parentColumn = "id",
         entityColumn = "scenarioId"
     )
-    val chapters: List<Chapter>? = null,
+    val chapters: List<Chapter> = emptyList(),
     @Relation(
         parentColumn = "id",
         entityColumn = "scenarioId"
     )
-    val characters: List<Character>? = null,
+    val characters: List<Character> = emptyList(),
     @Relation(
         parentColumn = "id",
         entityColumn = "scenarioId"
     )
-    val places: List<Place>? = null,
+    val places: List<Place> = emptyList(),
 ) : LocalDbRelation

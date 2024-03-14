@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ChaptersDto(
-    val chapters: List<ChapterDto>? = emptyList(),
+    val chapters: List<ChapterDto>,
 ) : Parcelable, ScenarioElementDto

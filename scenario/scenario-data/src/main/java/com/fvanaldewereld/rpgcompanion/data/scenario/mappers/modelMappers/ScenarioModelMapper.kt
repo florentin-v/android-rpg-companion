@@ -7,22 +7,16 @@ import org.koin.core.context.GlobalContext
 interface ScenarioModelMapper : ModelMapper<ScenarioDto, ScenarioModel>
 
 internal class ScenarioModelMapperImpl : ScenarioModelMapper {
-    private val authorModeMapper: AuthorModelMapper by GlobalContext.get().inject()
     private val chaptersModelMapper: ChaptersModelMapper by GlobalContext.get().inject()
     private val charactersModelMapper: CharactersModelMapper by GlobalContext.get().inject()
-    private val informationModelMapper: InformationModelMapper by GlobalContext.get().inject()
     private val placesModelMapper: PlacesModelMapper by GlobalContext.get().inject()
-    private val summaryModelMapper: SummaryModelMapper by GlobalContext.get().inject()
-    private val titleModelMapper: TitleModelMapper by GlobalContext.get().inject()
+    private val mainInfoModelMapper: MainInfoModelMapper by GlobalContext.get().inject()
 
     override fun to(from: ScenarioDto) = ScenarioModel(
-        author = authorModeMapper.to(from.author),
-        characters = charactersModelMapper.to(from.characters),
-        chapters = chaptersModelMapper.to(from.chapters),
         documentName = from.documentName,
-        information = informationModelMapper.to(from.information),
-        places = placesModelMapper.to(from.places),
-        summary = summaryModelMapper.to(from.summary),
-        title = titleModelMapper.to(from.title),
+        chapters = chaptersModelMapper.to(from = from.chapters),
+        characters = charactersModelMapper.to(from = from.characters),
+        mainInfo = mainInfoModelMapper.to(from = from),
+        places = placesModelMapper.to(from = from.places),
     )
 }

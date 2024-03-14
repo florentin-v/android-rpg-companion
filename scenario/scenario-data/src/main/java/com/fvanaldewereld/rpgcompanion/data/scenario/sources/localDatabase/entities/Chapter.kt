@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class Chapter(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     var scenarioId: Long? = null,
-    val name: String? = null,
-    val description: List<String>? = null,
+    val name: String,
+    val description: List<String>,
 ) : LocalDbEntity

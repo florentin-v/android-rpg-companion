@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SummaryDto(
-    val text: DescriptionDto? = null,
+    val text: DescriptionDto,
 ) : Parcelable, ScenarioElementDto

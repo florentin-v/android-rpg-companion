@@ -1,6 +1,8 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers
 
 import BasicKoinTest
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.InformationModel
+import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.embedded.Information
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDbObjectMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import kotlinx.coroutines.runBlocking
@@ -112,6 +114,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty Scenario THEN return empty ScenarioModel`() = runBlocking {
         // GIVEN
+        Mockito.`when`(mockInformationMapper.to(Information())).thenReturn(InformationModel())
 
         // WHEN
         val scenarioModel = scenarioMapper.to(ScenarioDbObjectMockFactory.emptyScenario)
@@ -126,6 +129,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty ScenarioModel THEN return empty Scenario`() = runBlocking {
         // GIVEN
+        Mockito.`when`(mockInformationMapper.from(InformationModel())).thenReturn(Information())
 
         // WHEN
         val scenarioModel = scenarioMapper.from(ScenarioModelMockFactory.emptyScenarioModelWithId)

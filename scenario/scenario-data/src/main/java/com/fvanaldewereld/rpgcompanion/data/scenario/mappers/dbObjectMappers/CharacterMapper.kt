@@ -17,6 +17,6 @@ internal class CharacterMapperImpl : CharacterMapper {
 
     override fun from(to: CharacterModel) = Character(
         name = to.name,
-        description = to.description?.paragraphs,
+        description = to.description.paragraphs,
     )
 }

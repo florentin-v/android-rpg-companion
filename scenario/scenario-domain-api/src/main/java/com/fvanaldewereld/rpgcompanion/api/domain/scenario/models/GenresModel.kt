@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Immutable
 @Parcelize
 data class GenresModel(
-    val genres: List<String> = emptyList(),
+    val values: List<String> = emptyList(),
 ) : Parcelable, Model

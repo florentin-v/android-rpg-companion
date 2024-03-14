@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ChaptersModel(
-    val chapters: List<ChapterModel>? = emptyList(),
+    val chapters: List<ChapterModel> = emptyList(),
 ) : Parcelable, ScenarioElementModel

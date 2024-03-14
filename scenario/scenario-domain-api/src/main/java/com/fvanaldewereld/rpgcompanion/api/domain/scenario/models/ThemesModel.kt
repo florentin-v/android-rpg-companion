@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Immutable
 @Parcelize
 data class ThemesModel(
-    val themes: List<String> = emptyList(),
+    val values: List<String> = emptyList(),
 ) : Parcelable, Model

@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DescriptionDto(
-    val paragraphs: List<String>? = emptyList(),
+    val paragraphs: List<String>,
 ) : Parcelable, Dto

@@ -3,6 +3,7 @@
     <string name="scenarioList_addButton_contentDescription">Add new scenario button</string>
     <string name="scenarioList_error_text">Error : %1$s</string>
     <string name="scenarioList_noResult_text">There is no scenario ! \nYou can use the \"plus\" button to import one.</string>
+    <string name="scenarioList_page_scenario_noTitle">Untitled</string>
     <string name="scenarioList_success_bottomSheet_placeholder">Enter a valide GDocs URL (public shared)</string>
     <string name="scenarioList_success_bottomSheet_submitButton_label">Submit</string>
     <string name="scenarioList_success_bottomSheet_textfield_label">URL</string>

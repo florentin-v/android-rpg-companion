@@ -21,7 +21,7 @@ internal fun ThemesComposable(themesModel: ThemesModel) {
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 15.dp),
     ) {
-        themesModel.themes.forEach { theme ->
+        themesModel.values.forEach { theme ->
             AssistChip(
                 onClick = {},
                 modifier = Modifier.padding(2.dp),

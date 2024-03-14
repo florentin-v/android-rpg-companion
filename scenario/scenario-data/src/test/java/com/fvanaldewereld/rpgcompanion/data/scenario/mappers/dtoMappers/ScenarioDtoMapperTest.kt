@@ -20,7 +20,7 @@ class ScenarioDtoMapperTest {
     }
 
     @Test
-    fun `GIVEN empty Document WHEN map THEN return empty ScenarioEntity`() {
+    fun `GIVEN empty Document WHEN map THEN return empty ScenarioDto`() {
         // GIVEN
         mockkStatic("com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.extensions.UrlExtensionKt")
         every { any<URL>().extractGoogleDocumentId() } returns GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID
@@ -33,7 +33,7 @@ class ScenarioDtoMapperTest {
     }
 
     @Test
-    fun `GIVEN Document WHEN map THEN return ScenarioEntity`() {
+    fun `GIVEN Document WHEN map THEN return ScenarioDto`() {
         // GIVEN
         mockkStatic("com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.extensions.UrlExtensionKt")
         every { any<URL>().extractGoogleDocumentId() } returns GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID

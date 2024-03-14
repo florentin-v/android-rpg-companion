@@ -18,9 +18,9 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.embed
 )
 data class ScenarioBase(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    @ColumnInfo(name = "document_name") val documentName: String? = null,
+    @ColumnInfo(name = "document_name") val documentName: String,
     val author: String? = null,
-    @Embedded val information: Information? = null,
-    val summary: List<String>? = null,
+    @Embedded val information: Information = Information(),
+    val summary: List<String> = emptyList(),
     val title: String? = null,
 ) : LocalDbEntity

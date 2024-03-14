@@ -10,8 +10,8 @@ internal class PlacesModelMapperImpl : PlacesModelMapper {
     private val placeModelMapper: PlaceModelMapper by GlobalContext.get().inject()
 
     override fun to(from: PlacesDto?) = PlacesModel(
-        places = from?.places?.map { placeEntity ->
-            placeModelMapper.to(placeEntity)
-        },
+        places = from?.places?.map { placeDto ->
+            placeModelMapper.to(placeDto)
+        } ?: emptyList(),
     )
 }

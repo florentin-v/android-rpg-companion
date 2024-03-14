@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AuthorDto(
-    val name: String? = "",
+    val name: String,
 ) : Parcelable, ScenarioElementDto
