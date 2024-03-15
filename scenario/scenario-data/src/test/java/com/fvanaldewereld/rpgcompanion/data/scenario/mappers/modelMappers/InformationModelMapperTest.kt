@@ -16,7 +16,7 @@ class InformationModelMapperTest {
     }
 
     @Test
-    fun `WHEN map InformationEntity THEN return InformationModel`() {
+    fun `WHEN map InformationDto THEN return InformationModel`() {
         // GIVEN
 
         // WHEN

@@ -1,6 +1,7 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers
 
 import BasicKoinTest
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChaptersModel
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDtoMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -30,7 +31,7 @@ class ChaptersModelMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ChapterModelMapper WHEN map ChaptersEntity THEN return ChaptersModel`() {
+    fun `GIVEN mock ChapterModelMapper WHEN map ChaptersDto THEN return ChaptersModel`() {
         // GIVEN
         Mockito.`when`(mockChapterModelMapper.to(ScenarioDtoMockFactory.chapterDto))
             .thenReturn(ScenarioModelMockFactory.chapterModel)
@@ -39,5 +40,16 @@ class ChaptersModelMapperTest : BasicKoinTest() {
 
         // THEN
         assertEquals(scenario, ScenarioModelMockFactory.chaptersModel)
+    }
+
+    @Test
+    fun `WHEN map null THEN return empty ChaptersModel`() {
+        // GIVEN
+
+        // WHEN
+        val scenario = chaptersModelMapper.to(null)
+
+        // THEN
+        assertEquals(scenario, ChaptersModel())
     }
 }

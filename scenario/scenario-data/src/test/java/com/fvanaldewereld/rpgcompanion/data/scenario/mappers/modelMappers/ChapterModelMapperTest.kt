@@ -30,7 +30,7 @@ class ChapterModelMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock DescriptionModelMapper WHEN map ChapterEntity THEN return ChapterModel`() {
+    fun `GIVEN mock DescriptionModelMapper WHEN map ChapterDto THEN return ChapterModel`() {
         // GIVEN
         Mockito.`when`(mockDescriptionModeMapper.to(ScenarioDtoMockFactory.chapterDescriptionDto))
             .thenReturn(ScenarioModelMockFactory.chapterDescriptionModel)

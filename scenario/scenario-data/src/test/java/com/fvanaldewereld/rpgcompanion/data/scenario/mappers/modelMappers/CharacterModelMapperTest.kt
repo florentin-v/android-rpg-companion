@@ -30,7 +30,7 @@ class CharacterModelMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock DescriptionModelMapper WHEN map CharacterEntity THEN return CharacterModel`() {
+    fun `GIVEN mock DescriptionModelMapper WHEN map CharacterDto THEN return CharacterModel`() {
         // GIVEN
         Mockito.`when`(mockDescriptionModeMapper.to(ScenarioDtoMockFactory.characterDescriptionDto1))
             .thenReturn(ScenarioModelMockFactory.characterDescriptionModel1)

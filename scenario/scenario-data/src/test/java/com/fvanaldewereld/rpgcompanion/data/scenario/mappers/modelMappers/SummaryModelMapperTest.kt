@@ -30,7 +30,7 @@ class SummaryModelMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock DescriptionModelMapper WHEN map SummaryEntity THEN return SummaryModel`() {
+    fun `GIVEN mock DescriptionModelMapper WHEN map SummaryDto THEN return SummaryModel`() {
         // GIVEN
         Mockito.`when`(mockDescriptionModeMapper.to(ScenarioDtoMockFactory.summaryDescriptionDto))
             .thenReturn(ScenarioModelMockFactory.summaryDescriptionModel)
