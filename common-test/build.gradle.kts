@@ -19,4 +19,5 @@ dependencies {
     implementation(libs.koin.junit5)
     implementation(libs.mockito.kotlin)
     implementation(libs.mockk)
+    implementation(project(":app"))
 }
