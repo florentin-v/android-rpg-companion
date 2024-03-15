@@ -12,6 +12,6 @@ internal class PlacesModelMapperImpl : PlacesModelMapper {
     override fun to(from: PlacesDto?) = PlacesModel(
         places = from?.places?.map { placeDto ->
             placeModelMapper.to(placeDto)
-        } ?: emptyList(),
+        }.orEmpty(),
     )
 }

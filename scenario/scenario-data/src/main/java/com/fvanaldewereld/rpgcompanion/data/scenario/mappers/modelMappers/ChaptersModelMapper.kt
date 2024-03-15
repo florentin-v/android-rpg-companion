@@ -12,6 +12,6 @@ internal class ChaptersModelMapperImpl : ChaptersModelMapper {
     override fun to(from: ChaptersDto?) = ChaptersModel(
         chapters = from?.chapters?.map { chapterDto ->
             chapterModelMapper.to(chapterDto)
-        } ?: emptyList(),
+        }.orEmpty(),
     )
 }

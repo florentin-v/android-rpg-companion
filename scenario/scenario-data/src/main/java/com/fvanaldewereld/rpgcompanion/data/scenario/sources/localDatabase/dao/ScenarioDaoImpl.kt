@@ -24,32 +24,24 @@ class ScenarioDaoImpl : ScenarioDao {
 
     override fun insertScenario(scenario: Scenario): Long {
         val scenarioBaseId = scenarioBaseDao.insertScenarioBase(scenario.scenarioBase)
-        scenario.chapters?.let { chapters ->
-            run {
-                chapters.map { it.scenarioId = scenarioBaseId }
-                chapterDao.insertAll(chapters)
-            }
-        }
-        scenario.characters?.let { characters ->
-            run {
-                characters.map { it.scenarioId = scenarioBaseId }
-                characterDao.insertAll(characters)
-            }
-        }
-        scenario.places?.let { places ->
-            run {
-                places.map { it.scenarioId = scenarioBaseId }
-                placeDao.insertAll(places)
-            }
+        scenario.run {
+            chapters.map { it.scenarioId = scenarioBaseId }
+            chapterDao.insertAll(chapters)
+            characters.map { it.scenarioId = scenarioBaseId }
+            characterDao.insertAll(characters)
+            places.map { it.scenarioId = scenarioBaseId }
+            placeDao.insertAll(places)
         }
         return scenarioBaseId
     }
 
     override fun deleteScenario(scenario: Scenario): Long {
         scenarioBaseDao.deleteScenarioBase(scenarioBase = scenario.scenarioBase)
-        scenario.chapters?.map { chapterDao.delete(it) }
-        scenario.characters?.map { characterDao.delete(it) }
-        scenario.places?.map { placeDao.delete(it) }
+        scenario.apply {
+            chapters.map { chapterDao.delete(it) }
+            characters.map { characterDao.delete(it) }
+            places.map { placeDao.delete(it) }
+        }
         return scenario.scenarioBase.id
     }
 
@@ -64,23 +56,21 @@ class ScenarioDaoImpl : ScenarioDao {
         }
 
     override fun getScenarioByDocumentName(documentName: String): Scenario =
-        scenarioBaseDao.getScenarioBaseByDocumentName(documentName = documentName)
-            .let { scenarioBase ->
-                Scenario(
-                    scenarioBase = scenarioBase,
-                    chapters = chapterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                    characters = characterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                    places = placeDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                )
-            }
-
-    override fun getScenarioById(id: Long): Scenario = scenarioBaseDao.getScenarioBaseById(id)
-        .let { scenarioBase ->
+        with(scenarioBaseDao.getScenarioBaseByDocumentName(documentName = documentName)) {
             Scenario(
-                scenarioBase = scenarioBase,
-                chapters = chapterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                characters = characterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
-                places = placeDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                scenarioBase = this,
+                chapters = chapterDao.getAllByScenarioId(scenarioId = this.id),
+                characters = characterDao.getAllByScenarioId(scenarioId = this.id),
+                places = placeDao.getAllByScenarioId(scenarioId = this.id),
             )
         }
+
+    override fun getScenarioById(id: Long): Scenario = with(scenarioBaseDao.getScenarioBaseById(id)) {
+        Scenario(
+            scenarioBase = this,
+            chapters = chapterDao.getAllByScenarioId(scenarioId = this.id),
+            characters = characterDao.getAllByScenarioId(scenarioId = this.id),
+            places = placeDao.getAllByScenarioId(scenarioId = this.id),
+        )
+    }
 }

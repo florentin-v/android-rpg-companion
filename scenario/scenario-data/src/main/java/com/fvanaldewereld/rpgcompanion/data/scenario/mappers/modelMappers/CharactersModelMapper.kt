@@ -12,6 +12,6 @@ internal class CharactersModelMapperImpl : CharactersModelMapper {
     override fun to(from: CharactersDto?) = CharactersModel(
         characters = from?.characters?.map { characterDto ->
             characterModelMapper.to(characterDto)
-        } ?: emptyList(),
+        }.orEmpty(),
     )
 }
