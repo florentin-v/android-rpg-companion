@@ -1,6 +1,7 @@
 dependencies {
     testImplementation(libs.koin.junit5)
     testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
     testImplementation(libs.mockk)
     testImplementation(project(":mock-factory"))
 }
