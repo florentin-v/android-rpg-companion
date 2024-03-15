@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class PlacesModelMapperTest : BasicKoinTest() {
 
@@ -20,7 +21,7 @@ class PlacesModelMapperTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<PlaceModelMapper>() }
+                single { mock<PlaceModelMapper>() }
             },
         )
     }
@@ -33,9 +34,9 @@ class PlacesModelMapperTest : BasicKoinTest() {
     @Test
     fun `GIVEN mock PlaceModelMapper WHEN map PlacesDto THEN return PlacesModel`() {
         // GIVEN
-        Mockito.`when`(mockPlaceModelMapper.to(ScenarioDtoMockFactory.placeDto1))
+        whenever(mockPlaceModelMapper.to(ScenarioDtoMockFactory.placeDto1))
             .thenReturn(ScenarioModelMockFactory.placeModel1)
-        Mockito.`when`(mockPlaceModelMapper.to(ScenarioDtoMockFactory.placeDto2))
+        whenever(mockPlaceModelMapper.to(ScenarioDtoMockFactory.placeDto2))
             .thenReturn(ScenarioModelMockFactory.placeModel2)
         // WHEN
         val scenario = placesModelMapper.to(ScenarioDtoMockFactory.placesDto)

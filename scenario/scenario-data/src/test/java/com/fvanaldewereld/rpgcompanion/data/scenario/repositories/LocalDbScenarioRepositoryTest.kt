@@ -15,6 +15,8 @@ import org.koin.dsl.module
 import org.koin.test.inject
 import org.mockito.Mockito
 import org.mockito.internal.verification.VerificationModeFactory.times
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class LocalDbScenarioRepositoryTest : BasicKoinTest() {
 
@@ -25,8 +27,8 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<ScenarioDao>() }
-                single { Mockito.mock<ScenarioMapper>() }
+                single { mock<ScenarioDao>() }
+                single { mock<ScenarioMapper>() }
             },
         )
     }
@@ -40,9 +42,9 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock ScenarioMapper and insertScenario WHEN executing addScenario of LocalDbScenarioRepository THEN return Long`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockScenarioMapper.from(ScenarioModelMockFactory.scenarioModelWithoutId))
+            whenever(mockScenarioMapper.from(ScenarioModelMockFactory.scenarioModelWithoutId))
                 .thenReturn(ScenarioDbObjectMockFactory.scenario)
-            Mockito.`when`(mockScenarioDao.insertScenario(ScenarioDbObjectMockFactory.scenario))
+            whenever(mockScenarioDao.insertScenario(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioDbObjectMockFactory.SCENARIO_ID)
 
             // WHEN
@@ -59,9 +61,9 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock ScenarioMapper and getAllScenarios WHEN executing getAllScenarios of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
+            whenever(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithId)
-            Mockito.`when`(mockScenarioDao.getAllScenarios())
+            whenever(mockScenarioDao.getAllScenarios())
                 .thenReturn(listOf(ScenarioDbObjectMockFactory.scenario))
 
             // WHEN
@@ -76,9 +78,9 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock ScenarioMapper and getScenarioByDocumentName WHEN executing getScenarioByDocumentName of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
+            whenever(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithId)
-            Mockito.`when`(
+            whenever(
                 mockScenarioDao.getScenarioByDocumentName(
                     documentName = ScenarioDbObjectMockFactory.SCENARIO_DOCUMENT_NAME,
                 ),
@@ -98,9 +100,9 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock ScenarioMapper and getScenarioById WHEN executing getScenarioById of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
+            whenever(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithId)
-            Mockito.`when`(mockScenarioDao.getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID))
+            whenever(mockScenarioDao.getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID))
                 .thenReturn(ScenarioDbObjectMockFactory.scenario)
 
             // WHEN
@@ -117,9 +119,9 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock ScenarioMapper and deleteById WHEN executing deleteById of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockScenarioDao.getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID))
+            whenever(mockScenarioDao.getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID))
                 .thenReturn(ScenarioDbObjectMockFactory.scenario)
-            Mockito.`when`(mockScenarioDao.deleteScenario(ScenarioDbObjectMockFactory.scenario))
+            whenever(mockScenarioDao.deleteScenario(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioDbObjectMockFactory.SCENARIO_ID)
 
             // WHEN

@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class ScenarioMapperTest : BasicKoinTest() {
 
@@ -26,10 +27,10 @@ class ScenarioMapperTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<ChapterMapper>() }
-                single { Mockito.mock<CharacterMapper>() }
-                single { Mockito.mock<PlaceMapper>() }
-                single { Mockito.mock<InformationMapper>() }
+                single { mock<ChapterMapper>() }
+                single { mock<CharacterMapper>() }
+                single { mock<PlaceMapper>() }
+                single { mock<InformationMapper>() }
             },
         )
     }
@@ -43,17 +44,17 @@ class ScenarioMapperTest : BasicKoinTest() {
     fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map Scenario THEN return ScenarioModel`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockChapterMapper.to(ScenarioDbObjectMockFactory.chapter))
+            whenever(mockChapterMapper.to(ScenarioDbObjectMockFactory.chapter))
                 .thenReturn(ScenarioModelMockFactory.chapterModel)
-            Mockito.`when`(mockCharacterMapper.to(ScenarioDbObjectMockFactory.character1))
+            whenever(mockCharacterMapper.to(ScenarioDbObjectMockFactory.character1))
                 .thenReturn(ScenarioModelMockFactory.characterModel1)
-            Mockito.`when`(mockCharacterMapper.to(ScenarioDbObjectMockFactory.character2))
+            whenever(mockCharacterMapper.to(ScenarioDbObjectMockFactory.character2))
                 .thenReturn(ScenarioModelMockFactory.characterModel2)
-            Mockito.`when`(mockPlaceMapper.to(ScenarioDbObjectMockFactory.place1))
+            whenever(mockPlaceMapper.to(ScenarioDbObjectMockFactory.place1))
                 .thenReturn(ScenarioModelMockFactory.placeModel1)
-            Mockito.`when`(mockPlaceMapper.to(ScenarioDbObjectMockFactory.place2))
+            whenever(mockPlaceMapper.to(ScenarioDbObjectMockFactory.place2))
                 .thenReturn(ScenarioModelMockFactory.placeModel2)
-            Mockito.`when`(mockInformationMapper.to(ScenarioDbObjectMockFactory.information))
+            whenever(mockInformationMapper.to(ScenarioDbObjectMockFactory.information))
                 .thenReturn(ScenarioModelMockFactory.informationModel)
 
             // WHEN
@@ -67,17 +68,17 @@ class ScenarioMapperTest : BasicKoinTest() {
     fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map ScenarioModel THEN return Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockChapterMapper.from(ScenarioModelMockFactory.chapterModel))
+            whenever(mockChapterMapper.from(ScenarioModelMockFactory.chapterModel))
                 .thenReturn(ScenarioDbObjectMockFactory.chapter)
-            Mockito.`when`(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel1))
+            whenever(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel1))
                 .thenReturn(ScenarioDbObjectMockFactory.character1)
-            Mockito.`when`(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel2))
+            whenever(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel2))
                 .thenReturn(ScenarioDbObjectMockFactory.character2)
-            Mockito.`when`(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel1))
+            whenever(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel1))
                 .thenReturn(ScenarioDbObjectMockFactory.place1)
-            Mockito.`when`(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel2))
+            whenever(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel2))
                 .thenReturn(ScenarioDbObjectMockFactory.place2)
-            Mockito.`when`(mockInformationMapper.from(ScenarioModelMockFactory.informationModel))
+            whenever(mockInformationMapper.from(ScenarioModelMockFactory.informationModel))
                 .thenReturn(ScenarioDbObjectMockFactory.information)
 
             // WHEN
@@ -91,17 +92,17 @@ class ScenarioMapperTest : BasicKoinTest() {
     fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map ScenarioModel without Id THEN return Scenario`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockChapterMapper.from(ScenarioModelMockFactory.chapterModel))
+            whenever(mockChapterMapper.from(ScenarioModelMockFactory.chapterModel))
                 .thenReturn(ScenarioDbObjectMockFactory.chapter)
-            Mockito.`when`(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel1))
+            whenever(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel1))
                 .thenReturn(ScenarioDbObjectMockFactory.character1)
-            Mockito.`when`(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel2))
+            whenever(mockCharacterMapper.from(ScenarioModelMockFactory.characterModel2))
                 .thenReturn(ScenarioDbObjectMockFactory.character2)
-            Mockito.`when`(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel1))
+            whenever(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel1))
                 .thenReturn(ScenarioDbObjectMockFactory.place1)
-            Mockito.`when`(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel2))
+            whenever(mockPlaceMapper.from(ScenarioModelMockFactory.placeModel2))
                 .thenReturn(ScenarioDbObjectMockFactory.place2)
-            Mockito.`when`(mockInformationMapper.from(ScenarioModelMockFactory.informationModel))
+            whenever(mockInformationMapper.from(ScenarioModelMockFactory.informationModel))
                 .thenReturn(ScenarioDbObjectMockFactory.information)
 
             // WHEN
@@ -114,7 +115,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty Scenario THEN return empty ScenarioModel`() = runBlocking {
         // GIVEN
-        Mockito.`when`(mockInformationMapper.to(Information())).thenReturn(InformationModel())
+        whenever(mockInformationMapper.to(Information())).thenReturn(InformationModel())
 
         // WHEN
         val scenarioModel = scenarioMapper.to(ScenarioDbObjectMockFactory.emptyScenario)
@@ -129,7 +130,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty ScenarioModel THEN return empty Scenario`() = runBlocking {
         // GIVEN
-        Mockito.`when`(mockInformationMapper.from(InformationModel())).thenReturn(Information())
+        whenever(mockInformationMapper.from(InformationModel())).thenReturn(Information())
 
         // WHEN
         val scenarioModel = scenarioMapper.from(ScenarioModelMockFactory.emptyScenarioModelWithId)

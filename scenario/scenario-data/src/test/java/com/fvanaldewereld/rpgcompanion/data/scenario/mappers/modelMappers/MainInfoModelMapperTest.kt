@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class MainInfoModelMapperTest : BasicKoinTest() {
 
@@ -28,14 +29,14 @@ class MainInfoModelMapperTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<AuthorModelMapper>() }
-                single { Mockito.mock<ChaptersModelMapper>() }
-                single { Mockito.mock<CharactersModelMapper>() }
-                single { Mockito.mock<InformationModelMapper>() }
-                single { Mockito.mock<MainInfoModelMapper>() }
-                single { Mockito.mock<PlacesModelMapper>() }
-                single { Mockito.mock<SummaryModelMapper>() }
-                single { Mockito.mock<TitleModelMapper>() }
+                single { mock<AuthorModelMapper>() }
+                single { mock<ChaptersModelMapper>() }
+                single { mock<CharactersModelMapper>() }
+                single { mock<InformationModelMapper>() }
+                single { mock<MainInfoModelMapper>() }
+                single { mock<PlacesModelMapper>() }
+                single { mock<SummaryModelMapper>() }
+                single { mock<TitleModelMapper>() }
             },
         )
     }
@@ -48,10 +49,10 @@ class MainInfoModelMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty ScenarioDto THEN return empty MainInfoModel`() {
         // GIVEN
-        Mockito.`when`(mockAuthorModeMapper.to(null)).thenReturn(AuthorModel())
-        Mockito.`when`(mockInformationModelMapper.to(InformationDto())).thenReturn(InformationModel())
-        Mockito.`when`(mockSummaryModelMapper.to(null)).thenReturn(SummaryModel())
-        Mockito.`when`(mockTitleModelMapper.to(null)).thenReturn(TitleModel())
+        whenever(mockAuthorModeMapper.to(null)).thenReturn(AuthorModel())
+        whenever(mockInformationModelMapper.to(InformationDto())).thenReturn(InformationModel())
+        whenever(mockSummaryModelMapper.to(null)).thenReturn(SummaryModel())
+        whenever(mockTitleModelMapper.to(null)).thenReturn(TitleModel())
 
         // WHEN
         val scenario = mainInfoModelMapper.to(ScenarioDtoMockFactory.emptyScenarioDto)
@@ -63,13 +64,13 @@ class MainInfoModelMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map ScenarioDto THEN return MainInfoModel`() {
         // GIVEN
-        Mockito.`when`(mockAuthorModeMapper.to(ScenarioDtoMockFactory.authorDto))
+        whenever(mockAuthorModeMapper.to(ScenarioDtoMockFactory.authorDto))
             .thenReturn(ScenarioModelMockFactory.authorModel)
-        Mockito.`when`(mockInformationModelMapper.to(ScenarioDtoMockFactory.informationDto))
+        whenever(mockInformationModelMapper.to(ScenarioDtoMockFactory.informationDto))
             .thenReturn(ScenarioModelMockFactory.informationModel)
-        Mockito.`when`(mockSummaryModelMapper.to(ScenarioDtoMockFactory.summaryDto))
+        whenever(mockSummaryModelMapper.to(ScenarioDtoMockFactory.summaryDto))
             .thenReturn(ScenarioModelMockFactory.summaryModel)
-        Mockito.`when`(mockTitleModelMapper.to(ScenarioDtoMockFactory.titleDto))
+        whenever(mockTitleModelMapper.to(ScenarioDtoMockFactory.titleDto))
             .thenReturn(ScenarioModelMockFactory.titleModel)
 
         // WHEN

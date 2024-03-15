@@ -3,7 +3,7 @@ import org.koin.core.KoinApplication
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 import org.koin.test.junit5.mock.MockProviderExtension
-import org.mockito.Mockito
+import org.mockito.Mockito.mock
 
 abstract class BasicKoinTest : KoinTest {
 
@@ -18,6 +18,6 @@ abstract class BasicKoinTest : KoinTest {
     @JvmField
     @RegisterExtension
     val mockProvider = MockProviderExtension.create { clazz ->
-        Mockito.mock(clazz.java)
+        mock(clazz.java)
     }
 }

@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class ScenarioModelMapperTest : BasicKoinTest() {
 
@@ -30,14 +31,14 @@ class ScenarioModelMapperTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<AuthorModelMapper>() }
-                single { Mockito.mock<ChaptersModelMapper>() }
-                single { Mockito.mock<CharactersModelMapper>() }
-                single { Mockito.mock<InformationModelMapper>() }
-                single { Mockito.mock<MainInfoModelMapper>() }
-                single { Mockito.mock<PlacesModelMapper>() }
-                single { Mockito.mock<SummaryModelMapper>() }
-                single { Mockito.mock<TitleModelMapper>() }
+                single { mock<AuthorModelMapper>() }
+                single { mock<ChaptersModelMapper>() }
+                single { mock<CharactersModelMapper>() }
+                single { mock<InformationModelMapper>() }
+                single { mock<MainInfoModelMapper>() }
+                single { mock<PlacesModelMapper>() }
+                single { mock<SummaryModelMapper>() }
+                single { mock<TitleModelMapper>() }
             },
         )
     }
@@ -50,10 +51,10 @@ class ScenarioModelMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map empty ScenarioDto THEN return empty ScenarioModel`() {
         // GIVEN
-        Mockito.`when`(mockChaptersModelMapper.to(null)).thenReturn(ChaptersModel())
-        Mockito.`when`(mockCharactersModelMapper.to(null)).thenReturn(CharactersModel())
-        Mockito.`when`(mockMainInfoModelMapper.to(ScenarioDtoMockFactory.emptyScenarioDto)).thenReturn(MainInfoModel())
-        Mockito.`when`(mockPlacesModelMapper.to(null)).thenReturn(PlacesModel())
+        whenever(mockChaptersModelMapper.to(null)).thenReturn(ChaptersModel())
+        whenever(mockCharactersModelMapper.to(null)).thenReturn(CharactersModel())
+        whenever(mockMainInfoModelMapper.to(ScenarioDtoMockFactory.emptyScenarioDto)).thenReturn(MainInfoModel())
+        whenever(mockPlacesModelMapper.to(null)).thenReturn(PlacesModel())
 
         // WHEN
         val scenario = scenarioModelMapper.to(ScenarioDtoMockFactory.emptyScenarioDto)
@@ -65,21 +66,21 @@ class ScenarioModelMapperTest : BasicKoinTest() {
     @Test
     fun `WHEN map ScenarioDto THEN return ScenarioModel`() {
         // GIVEN
-        Mockito.`when`(mockAuthorModeMapper.to(ScenarioDtoMockFactory.authorDto))
+        whenever(mockAuthorModeMapper.to(ScenarioDtoMockFactory.authorDto))
             .thenReturn(ScenarioModelMockFactory.authorModel)
-        Mockito.`when`(mockChaptersModelMapper.to(ScenarioDtoMockFactory.chaptersDto))
+        whenever(mockChaptersModelMapper.to(ScenarioDtoMockFactory.chaptersDto))
             .thenReturn(ScenarioModelMockFactory.chaptersModel)
-        Mockito.`when`(mockCharactersModelMapper.to(ScenarioDtoMockFactory.charactersDto))
+        whenever(mockCharactersModelMapper.to(ScenarioDtoMockFactory.charactersDto))
             .thenReturn(ScenarioModelMockFactory.charactersModel)
-        Mockito.`when`(mockInformationModelMapper.to(ScenarioDtoMockFactory.informationDto))
+        whenever(mockInformationModelMapper.to(ScenarioDtoMockFactory.informationDto))
             .thenReturn(ScenarioModelMockFactory.informationModel)
-        Mockito.`when`(mockPlacesModelMapper.to(ScenarioDtoMockFactory.placesDto))
+        whenever(mockPlacesModelMapper.to(ScenarioDtoMockFactory.placesDto))
             .thenReturn(ScenarioModelMockFactory.placesModel)
-        Mockito.`when`(mockSummaryModelMapper.to(ScenarioDtoMockFactory.summaryDto))
+        whenever(mockSummaryModelMapper.to(ScenarioDtoMockFactory.summaryDto))
             .thenReturn(ScenarioModelMockFactory.summaryModel)
-        Mockito.`when`(mockTitleModelMapper.to(ScenarioDtoMockFactory.titleDto))
+        whenever(mockTitleModelMapper.to(ScenarioDtoMockFactory.titleDto))
             .thenReturn(ScenarioModelMockFactory.titleModel)
-        Mockito.`when`(mockMainInfoModelMapper.to(ScenarioDtoMockFactory.scenarioDto))
+        whenever(mockMainInfoModelMapper.to(ScenarioDtoMockFactory.scenarioDto))
             .thenReturn(ScenarioModelMockFactory.mainInfoModel)
 
         // WHEN
