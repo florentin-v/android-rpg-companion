@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "***** Generate and dependency graph ******"
+
+git stash -q --keep-index
+
+./gradlew :app:projectDependencyGraph
+cp ./build/reports/dependency-graph/project.* ./docs/dependency-graph/
+
+RESULT=$?
+
+git stash pop -q
+git add --all
+
+echo "***** Done with dependency graph ******"
+exit $RESULT

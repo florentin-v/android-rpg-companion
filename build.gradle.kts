@@ -1,8 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+apply(from = "${project.rootDir}/gradle/detekt.gradle")
+apply(from = "${project.rootDir}/gradle/git_hooks.gradle.kts")
 apply(from = "${project.rootDir}/gradle/ktlint.gradle")
 apply(from = "${project.rootDir}/gradle/sonarqube.gradle")
-apply(from = "${project.rootDir}/gradle/detekt.gradle")
 
 plugins {
     alias(libs.plugins.android.application) apply false
