@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CharactersModel(
-    val characters: List<CharacterModel>? = null,
+    val characters: List<CharacterModel> = emptyList(),
 ) : Parcelable, ScenarioElementModel

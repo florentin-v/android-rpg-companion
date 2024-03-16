@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TitleDto(
-    val value: String? = "",
+    val value: String,
 ) : Parcelable, ScenarioElementDto

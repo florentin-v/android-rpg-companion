@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.navigation
+package com.fvanaldewereld.rpgcompanion.common.navigation
 
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.AnimatedContentTransitionScope
@@ -11,7 +11,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 // Extension function for NavGraphBuilder to create an animated Composable with specified transitions
-internal fun NavGraphBuilder.animatedComposable(
+fun NavGraphBuilder.animatedComposable(
     route: String,
     content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
 ) {

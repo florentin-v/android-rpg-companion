@@ -1,5 +1,6 @@
 package com.fvanaldewereld.rpgcompanion.ui.scenario.list
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -56,7 +57,17 @@ class ScenarioListViewModel(
                         withContext(dispatchers.main()) {
                             goToScenarioDetail(scenarioId)
                         }
+                    }.onFailure {
+                        Log.e(
+                            javaClass.simpleName,
+                            it.localizedMessage ?: "An error has occured during addScenarioUseCase",
+                        )
                     }
+                }.onFailure {
+                    Log.e(
+                        javaClass.simpleName,
+                        it.localizedMessage ?: "An error has occured during getScenarioByUrlUseCase",
+                    )
                 }
             }
         }
@@ -88,6 +99,12 @@ class ScenarioListViewModel(
                         } else {
                             ScenarioListUiState.NoResult
                         }
+                    }
+                    .onFailure {
+                        Log.e(
+                            javaClass.simpleName,
+                            it.localizedMessage ?: "An error has occured during getScenarioListUseCase",
+                        )
                     }
             }
         }

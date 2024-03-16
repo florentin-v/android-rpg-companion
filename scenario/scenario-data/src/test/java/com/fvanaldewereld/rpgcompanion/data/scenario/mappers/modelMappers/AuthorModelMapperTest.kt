@@ -16,7 +16,7 @@ class AuthorModelMapperTest {
     }
 
     @Test
-    fun `WHEN map AuthorEntity THEN return AuthorModel`() {
+    fun `WHEN map AuthorDto THEN return AuthorModel`() {
         // GIVEN
 
         // WHEN

@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
 
@@ -38,7 +38,7 @@ class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
     fun `GIVEN mock getGoogleDocsByUrl WHEN executing GetGdocsByUrlUseCase THEN return ScenarioModel`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockGoogleDocsRepository.getScenarioByGdocsUrl(GoogleDocsMockFactory.googleDocsUrl))
+            whenever(mockGoogleDocsRepository.getScenarioByGdocsUrl(GoogleDocsMockFactory.googleDocsUrl))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithoutId)
 
             // WHEN

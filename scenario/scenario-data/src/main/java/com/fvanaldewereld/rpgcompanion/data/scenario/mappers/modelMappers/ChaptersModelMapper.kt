@@ -10,6 +10,8 @@ internal class ChaptersModelMapperImpl : ChaptersModelMapper {
     private val chapterModelMapper: ChapterModelMapper by GlobalContext.get().inject()
 
     override fun to(from: ChaptersDto?) = ChaptersModel(
-        chapters = from?.chapters?.map { chapterEntity -> chapterModelMapper.to(chapterEntity) }
+        chapters = from?.chapters?.map { chapterDto ->
+            chapterModelMapper.to(chapterDto)
+        }.orEmpty(),
     )
 }

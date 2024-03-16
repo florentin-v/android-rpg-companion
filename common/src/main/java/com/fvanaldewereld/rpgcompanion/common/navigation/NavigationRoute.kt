@@ -1,6 +1,6 @@
-package com.fvanaldewereld.rpgcompanion.navigation
+package com.fvanaldewereld.rpgcompanion.common.navigation
 
-import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.ScenarioDetailViewModel.Companion.SCENARIO_ID_KEY
+const val SCENARIO_ID_KEY = "scenarioId"
 
 sealed class NavigationRoute(val route: String) {
     data object Home : NavigationRoute("home")
@@ -9,5 +9,10 @@ sealed class NavigationRoute(val route: String) {
         fun createRoute(scenarioId: Long): String {
             return "scenario_detail/$scenarioId"
         }
+
+        data object Basics : NavigationRoute("basics")
+        data object Chapters : NavigationRoute("chapters")
+        data object Characters : NavigationRoute("characters")
+        data object Places : NavigationRoute("places")
     }
 }

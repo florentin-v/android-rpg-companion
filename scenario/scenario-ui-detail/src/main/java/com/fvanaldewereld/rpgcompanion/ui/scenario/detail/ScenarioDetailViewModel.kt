@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fvanaldewereld.rpgcompanion.common.dispatchers.KDispatchers
+import com.fvanaldewereld.rpgcompanion.common.navigation.SCENARIO_ID_KEY
 import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetScenarioByDocumentNameUseCase
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +17,6 @@ class ScenarioDetailViewModel(
 
     companion object {
         const val SCENARIO_UI_STATE_KEY = "SCENARIO_UI_STATE_KEY"
-        const val SCENARIO_ID_KEY = "scenarioId"
     }
 
     private val getScenarioByDocumentNameUseCase: GetScenarioByDocumentNameUseCase by GlobalContext.get().inject()

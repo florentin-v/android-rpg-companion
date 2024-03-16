@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PlaceDto(
-    val name: String? = "",
-    val description: DescriptionDto? = null,
+    val name: String,
+    val description: DescriptionDto,
 ) : Parcelable, Dto

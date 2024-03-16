@@ -1,6 +1,7 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers
 
 import BasicKoinTest
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharactersModel
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDtoMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,7 +10,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class CharactersModelMapperTest : BasicKoinTest() {
 
@@ -19,7 +21,7 @@ class CharactersModelMapperTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<CharacterModelMapper>() }
+                single { mock<CharacterModelMapper>() }
             },
         )
     }
@@ -30,16 +32,27 @@ class CharactersModelMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock CharacterModelMapper WHEN map CharactersEntity THEN return CharactersModel`() {
+    fun `GIVEN mock CharacterModelMapper WHEN map CharactersDto THEN return CharactersModel`() {
         // GIVEN
-        Mockito.`when`(mockCharacterModelMapper.to(ScenarioDtoMockFactory.characterDto1))
+        whenever(mockCharacterModelMapper.to(ScenarioDtoMockFactory.characterDto1))
             .thenReturn(ScenarioModelMockFactory.characterModel1)
-        Mockito.`when`(mockCharacterModelMapper.to(ScenarioDtoMockFactory.characterDto2))
+        whenever(mockCharacterModelMapper.to(ScenarioDtoMockFactory.characterDto2))
             .thenReturn(ScenarioModelMockFactory.characterModel2)
         // WHEN
         val scenario = charactersModelMapper.to(ScenarioDtoMockFactory.charactersDto)
 
         // THEN
         assertEquals(scenario, ScenarioModelMockFactory.charactersModel)
+    }
+
+    @Test
+    fun `WHEN map null THEN return empty CharactersModel`() {
+        // GIVEN
+
+        // WHEN
+        val scenario = charactersModelMapper.to(null)
+
+        // THEN
+        assertEquals(scenario, CharactersModel())
     }
 }

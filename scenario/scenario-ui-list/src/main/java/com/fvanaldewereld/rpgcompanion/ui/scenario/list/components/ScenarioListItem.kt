@@ -50,7 +50,11 @@ internal fun ScenarioListItem(
                     Text("$scenarioId", style = TextStyle(color = bubbleLabelColor))
                 }
             },
-            headlineContent = { Text("${scenario.title?.title}") },
+            headlineContent = {
+                Text(
+                    scenario.mainInfo.title.value ?: stringResource(id = R.string.scenarioList_page_scenario_noTitle),
+                )
+            },
             trailingContent = {
                 IconButton(onClick = { deleteScenario(scenarioId) }) {
                     Icon(
@@ -71,7 +75,7 @@ internal fun ScenarioListItem(
                     modifier = Modifier.fillMaxWidth(),
                     maxItemsInEachRow = 3,
                 ) {
-                    scenario.information?.genres?.genres?.forEach { genre ->
+                    scenario.mainInfo.information.genres.values.forEach { genre ->
                         ScenarioListItemChips(genre)
                     }
                 }

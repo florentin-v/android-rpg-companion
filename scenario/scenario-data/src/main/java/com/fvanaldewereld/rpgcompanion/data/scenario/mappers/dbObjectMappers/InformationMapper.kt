@@ -10,14 +10,14 @@ interface InformationMapper : DbObjectMapper<Information, InformationModel>
 internal class InformationMapperImpl : InformationMapper {
 
     override fun to(from: Information) = InformationModel(
-        genres = from.genres?.let { GenresModel(genres = it) },
+        genres = GenresModel(values = from.genres),
         nbPlayers = from.nbPlayers,
-        themes = from.themes?.let { ThemesModel(it) },
+        themes = ThemesModel(from.themes),
     )
 
     override fun from(to: InformationModel) = Information(
-        genres = to.genres?.genres,
+        genres = to.genres.values,
         nbPlayers = to.nbPlayers,
-        themes = to.themes?.themes,
+        themes = to.themes.values,
     )
 }

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     // SCENARIO DETAIL PAGE
-    <string name="scenario_detail_page_author">From %1$s</string>
+    <string name="scenarioDetail_page_author">From %1$s</string>
+    <string name="scenarioDetail_page_basics">Basics</string>
+    <string name="scenarioDetail_page_chapters">Chapters</string>
+    <string name="scenarioDetail_page_characters">Characters</string>
+    <string name="scenarioDetail_page_noAuthor">Unknown author</string>
+    <string name="scenarioDetail_page_noChapters">There is no chapters</string>
+    <string name="scenarioDetail_page_noPlaces">There is no places</string>
+    <string name="scenarioDetail_page_noSummary">There is no summary</string>
+    <string name="scenarioDetail_page_noTitle">Untitled</string>
+    <string name="scenarioDetail_page_no_characters">There is no characters</string>
+    <string name="scenarioDetail_page_places">Places</string>
+    <string name="scenarioDetail_page_summary">Summary</string>
 </resources>

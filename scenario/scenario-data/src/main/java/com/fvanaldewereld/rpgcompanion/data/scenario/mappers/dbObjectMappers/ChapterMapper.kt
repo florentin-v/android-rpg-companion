@@ -17,6 +17,6 @@ internal class ChapterMapperImpl : ChapterMapper {
 
     override fun from(to: ChapterModel) = Chapter(
         name = to.name,
-        description = to.description?.paragraphs
+        description = to.description.paragraphs
     )
 }

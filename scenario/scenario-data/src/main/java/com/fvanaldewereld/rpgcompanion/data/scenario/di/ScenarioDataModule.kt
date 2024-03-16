@@ -29,6 +29,8 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.Descri
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.DescriptionModelMapperImpl
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.InformationModelMapper
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.InformationModelMapperImpl
+import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.MainInfoModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.MainInfoModelMapperImpl
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlaceModelMapper
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlaceModelMapperImpl
 import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlacesModelMapper
@@ -64,6 +66,7 @@ val SCENARIO_DATA_MODULE = module {
     single<CharactersModelMapper> { CharactersModelMapperImpl() }
     single<DescriptionModelMapper> { DescriptionModelMapperImpl() }
     single<InformationModelMapper> { InformationModelMapperImpl() }
+    single<MainInfoModelMapper> { MainInfoModelMapperImpl() }
     single<PlaceModelMapper> { PlaceModelMapperImpl() }
     single<PlacesModelMapper> { PlacesModelMapperImpl() }
     single<ScenarioModelMapper> { ScenarioModelMapperImpl() }

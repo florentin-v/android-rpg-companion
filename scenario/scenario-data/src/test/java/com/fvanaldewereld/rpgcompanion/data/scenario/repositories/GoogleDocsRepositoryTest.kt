@@ -14,7 +14,8 @@ import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.mockito.Mockito
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class GoogleDocsRepositoryTest : BasicKoinTest() {
 
@@ -25,8 +26,8 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
     override fun KoinApplication.buildModules() {
         modules(
             module {
-                single { Mockito.mock<GoogleDocsDataSource>() }
-                single { Mockito.mock<ScenarioModelMapper>() }
+                single { mock<GoogleDocsDataSource>() }
+                single { mock<ScenarioModelMapper>() }
             },
         )
     }
@@ -40,9 +41,9 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
     fun `GIVEN mock getGoogleDocsById and ScenarioModelMapper WHEN executing getScenarioByGdocsUrl of GoogleDocsRepository THEN return Document`() =
         runBlocking {
             // GIVEN
-            Mockito.`when`(mockGoogleDocsDataSource.getGoogleDocsById(GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID))
+            whenever(mockGoogleDocsDataSource.getGoogleDocsById(GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID))
                 .thenReturn(ScenarioDtoMockFactory.scenarioDto)
-            Mockito.`when`(mockScenarioModelMapper.to(ScenarioDtoMockFactory.scenarioDto))
+            whenever(mockScenarioModelMapper.to(ScenarioDtoMockFactory.scenarioDto))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithoutId)
 
             // WHEN

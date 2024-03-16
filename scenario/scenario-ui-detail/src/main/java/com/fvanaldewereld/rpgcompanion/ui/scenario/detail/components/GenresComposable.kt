@@ -21,7 +21,7 @@ internal fun GenresComposable(genresModel: GenresModel) {
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 15.dp),
     ) {
-        genresModel.genres.forEach { genre ->
+        genresModel.values.forEach { genre ->
             AssistChip(
                 onClick = {},
                 modifier = Modifier.padding(2.dp),

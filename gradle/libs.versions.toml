@@ -13,9 +13,10 @@ googleAuthLibraryOauth2Http = "1.22.0"
 koinAndroid = "3.5.3"
 koinAndroidxCompose = "3.5.3"
 koinTest = "3.5.3"
+kotlinxCollectionsImmutable = "0.3.7"
 kotlinxSerialization = "1.6.3"
 loggingInterceptor = "4.12.0"
-mockitoCore = "5.11.0"
+mockitoKotlin = "4.1.0"
 mockk = "1.13.10"
 okhttp = "4.12.0"
 retrofit = "2.9.0"
@@ -52,8 +53,9 @@ google-auth-library-oauth2-http = { module = "com.google.auth:google-auth-librar
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koinAndroid" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 koin-junit5 = { group = "io.insert-koin", name = "koin-test-junit5", version.ref = "koinTest" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 okhttp3-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 okhttp3-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
@@ -65,6 +67,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+
 
 
 [bundles]

@@ -10,6 +10,7 @@ import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharactersMode
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.DescriptionModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.GenresModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.InformationModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.MainInfoModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlacesModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
@@ -125,10 +126,10 @@ object ScenarioModelMockFactory {
     val informationModel = InformationModel(
         nbPlayers = NUMBER_OF_PLAYERS_VALUE,
         genres = GenresModel(
-            genres = listOf(GENRES_HORROR, GENRES_DRAMA),
+            values = listOf(GENRES_HORROR, GENRES_DRAMA),
         ),
         themes = ThemesModel(
-            themes = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
+            values = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
         ),
     )
     val summaryDescriptionModel = DescriptionModel(
@@ -136,6 +137,12 @@ object ScenarioModelMockFactory {
     )
     val summaryModel = SummaryModel(
         text = summaryDescriptionModel,
+    )
+    val mainInfoModel = MainInfoModel(
+        title = titleModel,
+        author = authorModel,
+        information = informationModel,
+        summary = summaryModel,
     )
     val chapterDescriptionModel = DescriptionModel(
         paragraphs = listOf(SCENARIO_CHAPTERS_INTRODUCTION_TEXT),
@@ -192,10 +199,7 @@ object ScenarioModelMockFactory {
 
     val scenarioModelWithoutId = ScenarioModel(
         documentName = SCENARIO_DOCUMENT_NAME,
-        title = titleModel,
-        author = authorModel,
-        information = informationModel,
-        summary = summaryModel,
+        mainInfo = mainInfoModel,
         chapters = chaptersModel,
         characters = charactersModel,
         places = placesModel,
@@ -204,10 +208,7 @@ object ScenarioModelMockFactory {
     val scenarioModelWithId = ScenarioModel(
         id = SCENARIO_ID,
         documentName = SCENARIO_DOCUMENT_NAME,
-        title = titleModel,
-        author = authorModel,
-        information = informationModel,
-        summary = summaryModel,
+        mainInfo = mainInfoModel,
         chapters = chaptersModel,
         characters = charactersModel,
         places = placesModel,

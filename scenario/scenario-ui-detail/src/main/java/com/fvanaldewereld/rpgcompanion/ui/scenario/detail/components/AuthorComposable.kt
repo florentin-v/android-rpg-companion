@@ -11,13 +11,12 @@ import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.R
 
 @Composable
 internal fun AuthorComposable(authorModel: AuthorModel) {
-    authorModel.name?.let { authorName ->
-        Text(
-            text = stringResource(R.string.scenario_detail_page_author, authorName),
-            style = Typography.titleLarge.copy(
-                fontStyle = FontStyle.Italic,
-                color = Color.LightGray,
-            ),
-        )
-    }
+    Text(
+        text = authorModel.name?.let { stringResource(R.string.scenarioDetail_page_author, it) }
+            ?: stringResource(id = R.string.scenarioDetail_page_noAuthor),
+        style = Typography.titleLarge.copy(
+            fontStyle = FontStyle.Italic,
+            color = Color.LightGray,
+        ),
+    )
 }

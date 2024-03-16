@@ -3,6 +3,8 @@ package com.fvanaldewereld.rpgcompanion.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
+import com.fvanaldewereld.rpgcompanion.common.navigation.animatedComposable
 import com.fvanaldewereld.rpgcompanion.ui.components.home.HomeScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen

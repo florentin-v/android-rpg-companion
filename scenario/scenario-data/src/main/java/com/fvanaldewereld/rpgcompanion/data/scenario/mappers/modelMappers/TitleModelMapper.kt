@@ -6,5 +6,5 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TitleDto
 interface TitleModelMapper : ModelMapper<TitleDto?, TitleModel>
 
 internal class TitleModelMapperImpl : TitleModelMapper {
-    override fun to(from: TitleDto?) = TitleModel(title = from?.value)
+    override fun to(from: TitleDto?) = TitleModel(value = from?.value)
 }

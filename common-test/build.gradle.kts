@@ -17,6 +17,7 @@ android {
 dependencies {
     // Implementations - Unit Test
     implementation(libs.koin.junit5)
-    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
     implementation(libs.mockk)
+    implementation(project(":app"))
 }

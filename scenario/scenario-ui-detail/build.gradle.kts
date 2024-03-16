@@ -18,6 +18,9 @@ dependencies {
     implementation(project(":mock-factory"))
     implementation(project(":scenario:scenario-domain-lib"))
 
+    // Implementations - Libs
+    implementation(libs.kotlinx.collections.immutable)
+
     // API - Modules
     api(project(":scenario:scenario-domain-api"))
 }

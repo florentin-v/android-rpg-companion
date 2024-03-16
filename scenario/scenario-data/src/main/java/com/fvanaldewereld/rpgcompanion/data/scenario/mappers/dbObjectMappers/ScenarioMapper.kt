@@ -4,6 +4,7 @@ import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.AuthorModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChaptersModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharactersModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.DescriptionModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.MainInfoModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlacesModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.SummaryModel
@@ -23,65 +24,49 @@ internal class ScenarioMapperImpl : ScenarioMapper {
 
     override fun to(from: Scenario) = ScenarioModel(
         id = from.scenarioBase.id,
-        author = from.scenarioBase.author?.let { author ->
-            AuthorModel(name = author)
-        },
-        chapters = from.chapters?.let { chapters ->
-            ChaptersModel(
-                chapters = chapters.map { chapter ->
-                    chapterMapper.to(from = chapter)
-                },
-            )
-        },
-        characters = from.characters?.let { characters ->
-            CharactersModel(
-                characters = characters.map { character ->
-                    characterMapper.to(from = character)
-                },
-            )
-        },
         documentName = from.scenarioBase.documentName,
-        information = from.scenarioBase.information?.let { information ->
-            informationMapper.to(from = information)
-        },
-        places = from.places?.let { places ->
-            PlacesModel(
-                places = places.map { place ->
-                    placeMapper.to(from = place)
-                },
-            )
-        },
-        summary = from.scenarioBase.summary?.let { summary ->
-            SummaryModel(text = DescriptionModel(summary))
-        },
-        title = from.scenarioBase.title?.let { title ->
-            TitleModel(title = title)
-        },
+        mainInfo = MainInfoModel(
+            author = AuthorModel(name = from.scenarioBase.author),
+            information = informationMapper.to(from = from.scenarioBase.information),
+            summary = SummaryModel(text = DescriptionModel(from.scenarioBase.summary)),
+            title = TitleModel(value = from.scenarioBase.title),
+        ),
+        chapters = ChaptersModel(
+            chapters = from.chapters.map { chapter ->
+                chapterMapper.to(from = chapter)
+            },
+        ),
+        characters = CharactersModel(
+            characters = from.characters.map { character ->
+                characterMapper.to(from = character)
+            },
+        ),
+        places = PlacesModel(
+            places = from.places.map { place ->
+                placeMapper.to(from = place)
+            },
+        ),
     )
 
     override fun from(to: ScenarioModel): Scenario {
-        val chapters = to.chapters?.chapters?.map { chapterMapper.from(it) }
-        val characters = to.characters?.characters?.map { characterMapper.from(it) }
-        val places = to.places?.places?.map { placeMapper.from(it) }
-        val scenarioBase: ScenarioBase = to.id?.let { id ->
+        val chapters = to.chapters.chapters.map { chapterMapper.from(it) }
+        val characters = to.characters.characters.map { characterMapper.from(it) }
+        val places = to.places.places.map { placeMapper.from(it) }
+        val scenarioBase = to.id?.let {
             ScenarioBase(
-                id = id,
-                author = to.author?.name,
+                id = it,
+                author = to.mainInfo.author.name,
                 documentName = to.documentName,
-                information = to.information?.let { information ->
-                    informationMapper.from(to = information)
-                },
-                summary = to.summary?.text?.paragraphs,
-                title = to.title?.title,
+                information = informationMapper.from(to = to.mainInfo.information),
+                summary = to.mainInfo.summary.text.paragraphs,
+                title = to.mainInfo.title.value,
             )
         } ?: ScenarioBase(
-            author = to.author?.name,
+            author = to.mainInfo.author.name,
             documentName = to.documentName,
-            information = to.information?.let { information ->
-                informationMapper.from(to = information)
-            },
-            summary = to.summary?.text?.paragraphs,
-            title = to.title?.title,
+            information = informationMapper.from(to = to.mainInfo.information),
+            summary = to.mainInfo.summary.text.paragraphs,
+            title = to.mainInfo.title.value,
         )
 
         return Scenario(
