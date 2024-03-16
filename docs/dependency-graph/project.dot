@@ -19,11 +19,13 @@ digraph {
 
   # Dependencies
 
-  ":app" -> ":common" [style=filled]
-  ":app" -> ":scenario:scenario-data" [style=filled]
-  ":app" -> ":scenario:scenario-domain-lib" [style=filled]
-  ":app" -> ":scenario:scenario-ui-detail" [style=filled]
-  ":app" -> ":scenario:scenario-ui-list" [style=filled]
+  ":app" -> ":common" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-data" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-domain-lib" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-ui-detail" [style=filled, style=filled]
+  ":app" -> ":scenario:scenario-ui-list" [style=filled, style=filled]
+  ":app" -> ":common-test" [style=filled]
+  ":app" -> ":scenario:scenario-domain-api" [style=filled]
   ":app" -> ":mock-factory" [style=dotted]
   ":mock-factory" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":mock-factory" -> ":common" [style=filled]
