@@ -4,7 +4,7 @@ android-compile-sdk = "34"
 android-min-sdk = "31"
 android-target-sdk = "34"
 # Libraries versions
-androidxComposeBom = "2024.02.01"
+androidxComposeBom = "2024.02.02"
 androidxLifecycle = "2.7.0"
 androidxNavigation = "2.7.7"
 converterGson = "2.9.0"
