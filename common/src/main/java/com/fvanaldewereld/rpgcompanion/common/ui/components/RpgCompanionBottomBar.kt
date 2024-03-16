@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
-import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.BottomNavigationBarItemInfo
+import com.fvanaldewereld.rpgcompanion.common.ui.models.BottomNavigationBarItemInfo
 import kotlinx.collections.immutable.ImmutableMap
 
 @Composable

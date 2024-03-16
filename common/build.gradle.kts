@@ -10,3 +10,8 @@ plugins {
 android {
     namespace = "com.fvanaldewereld.rpgcompanion.common"
 }
+
+dependencies {
+    // Implementations - Libs
+    implementation(libs.kotlinx.collections.immutable)
+}

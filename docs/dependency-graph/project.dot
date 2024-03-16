@@ -27,6 +27,7 @@ digraph {
   ":app" -> ":common-test" [style=filled]
   ":app" -> ":scenario:scenario-domain-api" [style=filled]
   ":app" -> ":mock-factory" [style=dotted]
+  ":common-test" -> ":app" [style=filled]
   ":mock-factory" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":mock-factory" -> ":common" [style=filled]
   ":mock-factory" -> ":scenario:scenario-data" [style=filled]

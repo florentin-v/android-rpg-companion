@@ -7,6 +7,7 @@ flowchart TB
   app[:app] --> commontest[:common-test]
   app[:app] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   app[:app] --> mockfactory[:mock-factory]
+  commontest[:common-test] --> app[:app]
   mockfactory[:mock-factory] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   mockfactory[:mock-factory] --> common[:common]
   mockfactory[:mock-factory] --> scenarioscenariodata[:scenario:scenario-data]

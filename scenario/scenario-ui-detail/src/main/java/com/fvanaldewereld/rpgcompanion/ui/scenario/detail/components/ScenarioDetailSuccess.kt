@@ -23,6 +23,7 @@ import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
 import com.fvanaldewereld.rpgcompanion.common.navigation.animatedComposable
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionBottomBar
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionTopAppBar
+import com.fvanaldewereld.rpgcompanion.common.ui.models.BottomNavigationBarItemInfo
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.R
