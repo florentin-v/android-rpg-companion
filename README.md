@@ -15,13 +15,8 @@ The app has been modularized in order to respect clean architecture.
 
 ![Project dependancy graph](docs/dependency-graph/project.dot.png)
 
-The dependency graph is updated automatically as soon as a `*.gradle*` file is modified.
-But if you want to regenerate it manually,, please run the follow commands at the project root:
-
-```shell
-./gradlew :app:projectDependencyGraph
-cp ./build/reports/dependency-graph/project.* ./docs/dependency-graph/
-```
+The dependency graph is automatically updated in a pre-commit hook (see [pre-commit script](.scripts/pre-commit)).
+It may be necessary to modify permissions locally via the `chmod ug+x .git/hooks/pre-commit` command line.
 
 ### `app`
 
@@ -90,3 +85,12 @@ Contains all the elements of the UI layer which concern the Scenario List Screen
 * UiStates which describes the state of the screen
 * Koin module which inject all
   ViewModels ([ScenarioUiListModule.kt](/scenario/scenario-ui-list/src/main/java/com/fvanaldewereld/rpgcompanion/ui/scenario/list/di/ScenarioUiListModule.kt))
+
+## Custom Gradle Tasks
+
+### `projectDependencyGraph` in [project_dependency_graph.gradle](./gradle/project_dependency_graph.gradle)
+This task analyzes the project dependencies and generate a `.png` graph using intermediate `.dot` and `.md` (mermaid) files.
+
+### `installGitHooks` in [git_hooks.gradle.kts](./gradle/git_hooks.gradle.kts)
+This task copies the script `./scripts/pre-commit` to `./.git/hooks`.
+
