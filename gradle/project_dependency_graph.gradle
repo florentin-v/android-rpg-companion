@@ -1,4 +1,4 @@
-task projectDependencyGraph {
+tasks.register('projectDependencyGraph') {
     doLast {
         launchGraphGeneration()
     }
@@ -53,31 +53,37 @@ private List launchGraphGeneration() {
             javaProjects.add(project)
         }
 
-        project.configurations.all { config ->
-            config.dependencies
-                    .withType(ProjectDependency)
-                    .collect { it.dependencyProject }
-                    .each { dependency ->
-                        // Remove "KMP folder modules"
-                        if (!project.name.endsWith("shared")) {
-                            projects.add(project)
-                            projects.add(dependency)
-                            rootProjects.remove(dependency)
+        project.configurations.configureEach { config ->
+            if (!config.name.toLowerCase().endsWith('kover')) {
+                config.dependencies
+                        .withType(ProjectDependency)
+                        .collect { it.dependencyProject }
+                        .each { dependency ->
+                            // Remove "KMP folder modules"
+                            if (!project.name.endsWith("shared")) {
+                                projects.add(project)
+                                projects.add(dependency)
+                                rootProjects.remove(dependency)
 
-                            def graphKey = new Tuple2<Project, Project>(project, dependency)
-                            def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
+                                def graphKey = new Tuple2<Project, Project>(project, dependency)
+                                def traits = dependencies.computeIfAbsent(graphKey) { new ArrayList<String>() }
 
-                            if (config.name.toLowerCase().endsWith('compile')) {
-                                traits.add('color=green,style=dotted')
-                            } else if (config.name.toLowerCase().endsWith('testimplementation')) {
-                                traits.add('style=dotted')
-                            } else if (config.name.toLowerCase().endsWith('api')) {
-                                traits.add('color=red,style=dotted')
-                            } else {
-                                traits.add('style=filled')
+                                if (config.name.toLowerCase().endsWith('compile')) {
+                                    traits.add('color=green,style=dotted')
+                                } else if (config.name.toLowerCase().endsWith('api')) {
+                                    traits.add('color=red,style=dotted')
+                                } else if (config.name.toLowerCase().endsWith('androidtestimplementation')) {
+                                    traits.add('color=blue,style=dotted')
+                                } else if (config.name.toLowerCase().endsWith('testimplementation')) {
+                                    traits.add('style=dotted')
+                                } else if (config.name.toLowerCase().endsWith('implementation')) {
+                                    traits.add('style=filled')
+                                } else {
+                                    // DO NOTHING
+                                }
                             }
                         }
-                    }
+            }
         }
     }
 
