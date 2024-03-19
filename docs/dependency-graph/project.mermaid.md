@@ -9,7 +9,6 @@ flowchart TB
   mockfactory[:mock-factory] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   mockfactory[:mock-factory] --> common[:common]
   mockfactory[:mock-factory] --> scenarioscenariodata[:scenario:scenario-data]
-  scenarioscenariodomainapi[:scenario:scenario-domain-api] --> mockfactory[:mock-factory]
   scenarioscenariouilist[:scenario:scenario-ui-list] --> scenarioscenariodomainapi[:scenario:scenario-domain-api]
   scenarioscenariouilist[:scenario:scenario-ui-list] --> common[:common]
   scenarioscenariouilist[:scenario:scenario-ui-list] --> mockfactory[:mock-factory]

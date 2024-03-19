@@ -29,7 +29,6 @@ digraph {
   ":mock-factory" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":mock-factory" -> ":common" [style=filled]
   ":mock-factory" -> ":scenario:scenario-data" [style=filled]
-  ":scenario:scenario-domain-api" -> ":mock-factory" [style=dotted]
   ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":scenario:scenario-ui-list" -> ":common" [style=filled]
   ":scenario:scenario-ui-list" -> ":mock-factory" [style=filled]
