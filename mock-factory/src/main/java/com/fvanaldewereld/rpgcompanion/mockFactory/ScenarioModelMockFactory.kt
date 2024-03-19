@@ -24,7 +24,7 @@ object ScenarioModelMockFactory {
 
     private const val SCENARIO_DOCUMENT_NAME = "Scenario - Example"
 
-    private const val SCENARIO_TITLE = "Scenario"
+    const val SCENARIO_TITLE = "Scenario"
 
     private const val SCENARIO_AUTHOR = "Author"
 

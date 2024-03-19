@@ -11,6 +11,8 @@ import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
 import com.fvanaldewereld.rpgcompanion.common.ui.models.BottomNavigationBarItemInfo
 import kotlinx.collections.immutable.ImmutableMap
 
+const val RPG_COMPANION_BOTTOM_BAR_TEST_TAG = "BOTTOM_BAR"
+
 @Composable
 fun RpgCompanionBottomBar(
     bottomBarItems: ImmutableMap<NavigationRoute, BottomNavigationBarItemInfo>,
