@@ -5,13 +5,15 @@ apply(from = "${project.rootDir}/gradle/koin.gradle")
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin)
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.fvanaldewereld.rpgcompanion.common"
+    namespace = "com.fvanaldewereld.rpgcompanion.ui.home"
 }
 
 dependencies {
-    // Implementations - Libs
-    implementation(libs.kotlinx.collections.immutable)
+    // Implementations - Modules
+    implementation(project(":common"))
+
 }

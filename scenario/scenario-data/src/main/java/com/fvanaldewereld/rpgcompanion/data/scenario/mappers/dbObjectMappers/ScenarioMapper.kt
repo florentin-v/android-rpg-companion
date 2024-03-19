@@ -15,7 +15,7 @@ import org.koin.core.context.GlobalContext
 
 interface ScenarioMapper : DbObjectMapper<Scenario, ScenarioModel>
 
-internal class ScenarioMapperImpl : ScenarioMapper {
+class ScenarioMapperImpl : ScenarioMapper {
 
     private val chapterMapper: ChapterMapper by GlobalContext.get().inject()
     private val characterMapper: CharacterMapper by GlobalContext.get().inject()

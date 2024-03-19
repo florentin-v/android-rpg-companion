@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +34,7 @@ import com.fvanaldewereld.rpgcompanion.ui.scenario.list.R
 internal fun ScenarioListItem(
     scenario: ScenarioModel,
     modifier: Modifier = Modifier,
+    position: Int = 0,
     goToScenarioDetail: (scenarioId: Long) -> Unit = {},
     deleteScenario: (scenarioId: Long) -> Unit = {},
 ) {
@@ -53,6 +55,7 @@ internal fun ScenarioListItem(
             headlineContent = {
                 Text(
                     scenario.mainInfo.title.value ?: stringResource(id = R.string.scenarioList_page_scenario_noTitle),
+                    modifier = Modifier.testTag(ScenarioListTestTag.ItemTitle(index = position).value),
                 )
             },
             trailingContent = {
@@ -67,7 +70,9 @@ internal fun ScenarioListItem(
                     )
                 }
             },
-            modifier = modifier.clickable { goToScenarioDetail(scenarioId) },
+            modifier = modifier
+                .testTag(ScenarioListTestTag.Item(index = position).value)
+                .clickable { goToScenarioDetail(scenarioId) },
             supportingContent = {
                 FlowRow(
                     verticalArrangement = Arrangement.Center,

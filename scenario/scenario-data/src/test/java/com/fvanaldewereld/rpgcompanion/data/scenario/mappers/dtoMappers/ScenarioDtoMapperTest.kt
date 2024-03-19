@@ -1,18 +1,19 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dtoMappers
 
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.extensions.extractGoogleDocumentId
 import com.fvanaldewereld.rpgcompanion.mockFactory.GoogleDocsMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDtoMockFactory
-import io.mockk.every
-import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.whenever
 import java.net.URL
 
 class ScenarioDtoMapperTest {
 
     private lateinit var scenarioDtoMapper: ScenarioDtoMapper
+
+    private val mockedURL = mock(URL::class.java)
 
     @BeforeEach
     fun setUp() {
@@ -22,8 +23,7 @@ class ScenarioDtoMapperTest {
     @Test
     fun `GIVEN empty Document WHEN map THEN return empty ScenarioDto`() {
         // GIVEN
-        mockkStatic("com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.extensions.UrlExtensionKt")
-        every { any<URL>().extractGoogleDocumentId() } returns GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID
+        whenever(mockedURL.path).thenReturn(GoogleDocsMockFactory.googleDocsUrl.path)
 
         // WHEN
         val scenario = scenarioDtoMapper.to(GoogleDocsMockFactory.emptyGoogleDocsDocument)
@@ -35,8 +35,7 @@ class ScenarioDtoMapperTest {
     @Test
     fun `GIVEN Document WHEN map THEN return ScenarioDto`() {
         // GIVEN
-        mockkStatic("com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.extensions.UrlExtensionKt")
-        every { any<URL>().extractGoogleDocumentId() } returns GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID
+        whenever(mockedURL.path).thenReturn(GoogleDocsMockFactory.googleDocsUrl.path)
 
         // WHEN
         val scenario = scenarioDtoMapper.to(GoogleDocsMockFactory.googleDocsDocument)

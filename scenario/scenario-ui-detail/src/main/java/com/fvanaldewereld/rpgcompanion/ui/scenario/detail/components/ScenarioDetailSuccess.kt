@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -23,6 +24,7 @@ import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
 import com.fvanaldewereld.rpgcompanion.common.navigation.animatedComposable
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionBottomBar
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionTopAppBar
+import com.fvanaldewereld.rpgcompanion.common.ui.models.BottomNavigationBarItemInfo
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.R
@@ -58,10 +60,12 @@ internal fun ScenarioDetailSuccess(
     fun navigateTo(navRoute: NavigationRoute) = navHostController.navigate(navRoute.route)
 
     Scaffold(
+        modifier = Modifier.testTag(ScenarioDetailTestTag.Screen.value),
         topBar = {
             RpgCompanionTopAppBar(
                 title = scenario.mainInfo.title.value ?: stringResource(id = R.string.scenarioDetail_page_noTitle),
                 onBackButtonPressed = onBackButtonPressed,
+                modifier = Modifier.testTag(ScenarioDetailTestTag.TopAppBar.value),
             )
         },
         bottomBar = {
@@ -74,6 +78,7 @@ internal fun ScenarioDetailSuccess(
                     selectedItemIndex = index
                     navigateTo(navRoute = navRoute)
                 },
+                modifier = Modifier.testTag(ScenarioDetailTestTag.BottomBar.value),
             )
         },
     ) {

@@ -12,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 
+const val RPG_COMPANION_TOP_APP_BAR_TEST_TAG = "TOP_APP_BAR"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RpgCompanionTopAppBar(
     modifier: Modifier = Modifier,
     title: String = "",
-    onBackButtonPressed: (() -> Unit)? = null,
+    onBackButtonPressed: (() -> Unit)? = null
 ) {
     TopAppBar(
         navigationIcon = {

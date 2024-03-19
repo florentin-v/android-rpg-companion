@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
@@ -38,11 +39,12 @@ fun ScenarioListScreen(
     var deletingScenario by remember { mutableStateOf<ScenarioModel?>(null) }
 
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.testTag(ScenarioListTestTag.Screen.value),
         topBar = {
             RpgCompanionTopAppBar(
                 title = stringResource(R.string.scenarioList_topBar_title),
                 onBackButtonPressed = onBackButtonPressed,
+                modifier = Modifier.testTag(ScenarioListTestTag.TopAppBar.value)
             )
         },
         floatingActionButton = {
