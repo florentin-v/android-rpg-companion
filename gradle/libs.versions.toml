@@ -25,7 +25,7 @@ room = "2.6.1"
 # Plugins versions
 androidGradlePlugin = "8.3.0"
 androidLibraryPlugin = "8.3.0"
-detekt = "1.23.5"
+detekt = "1.23.6"
 detektCompose = "0.3.11"
 jetbrainsKotlinPlugin = "1.9.22"
 koverPlugin = "0.7.6"
