@@ -103,7 +103,7 @@ val SCENARIO_DATA_MODULE = module {
     single<CharacterDao> { get<ScenarioDatabase>().characterDao() }
     single<PlaceDao> { get<ScenarioDatabase>().placeDao() }
 
-// Repositories
+    // Repositories
     factory<GoogleDocsRepository> { GoogleDocsRepositoryImpl() }
     single<DbScenarioRepository> { LocalDbScenarioRepositoryImpl() }
 }
