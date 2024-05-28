@@ -14,7 +14,7 @@ import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 
 @Composable
-internal fun ScenarioListSuccess(
+fun ScenarioListSuccess(
     scenarioListModel: ScenarioListModel,
     modifier: Modifier = Modifier,
     goToScenarioDetail: (scenarioId: Long) -> Unit = {},
@@ -26,6 +26,7 @@ internal fun ScenarioListSuccess(
         itemsIndexed(scenarioListModel.scenarioModels) { index, scenario ->
             ScenarioListItem(
                 scenario = scenario,
+                position = index,
                 goToScenarioDetail = goToScenarioDetail,
                 deleteScenario = { updateDeletingScenario(scenario) },
             )

@@ -1,0 +1,19 @@
+dependencies {
+    implementation project(':common')
+}
+dependencies {
+    // Android Test Implementations - Libs
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test.manifest)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.koin.junit5)
+    androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.mockito.inline)
+
+    // Android Test Implementations - Modules
+    androidTestImplementation(project(":common"))
+    androidTestImplementation(project(":common-test"))
+    androidTestImplementation(project(":mock-factory"))
+    androidTestImplementation(project(":scenario:scenario-ui-detail"))
+}
