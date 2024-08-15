@@ -3,18 +3,6 @@ package com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao
 import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.relations.Scenario
 import org.koin.core.context.GlobalContext
 
-interface ScenarioDao {
-    fun insertScenario(scenario: Scenario): Long
-
-    fun deleteScenario(scenario: Scenario): Long
-
-    fun getAllScenarios(): List<Scenario>
-
-    fun getScenarioByDocumentName(documentName: String): Scenario
-
-    fun getScenarioById(id: Long): Scenario
-}
-
 class ScenarioDaoImpl : ScenarioDao {
 
     private val scenarioBaseDao: ScenarioBaseDao by GlobalContext.get().inject()
@@ -46,6 +34,16 @@ class ScenarioDaoImpl : ScenarioDao {
     }
 
     override fun getAllScenarios(): List<Scenario> = scenarioBaseDao.getAllScenariosBase()
+        .map { scenarioBase ->
+            Scenario(
+                scenarioBase = scenarioBase,
+                chapters = chapterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                characters = characterDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+                places = placeDao.getAllByScenarioId(scenarioId = scenarioBase.id),
+            )
+        }
+
+    override fun getLastScenarios(number: Int): List<Scenario> = scenarioBaseDao.getLastScenariosBase(number)
         .map { scenarioBase ->
             Scenario(
                 scenarioBase = scenarioBase,

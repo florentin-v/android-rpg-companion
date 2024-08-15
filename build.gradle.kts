@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 apply(from = "${project.rootDir}/gradle/detekt.gradle")
@@ -24,4 +26,25 @@ buildscript {
 
 allprojects {
     apply(from = "${project.rootDir}/gradle/detekt_shared.gradle")
+}
+
+tasks.register("konsistCheck") {
+    group = "verification"
+    description = "Runs Konsist static code analysis"
+
+    doLast {
+        val output = ByteArrayOutputStream()
+        val result = project.exec {
+            commandLine("./gradlew", "konsist-test:test", "--rerun-tasks")
+            standardOutput = output
+            errorOutput = output
+            isIgnoreExitValue = true
+        }
+
+        println(output.toString())
+
+        if (result.exitValue != 0) {
+            throw GradleException("Konsist tests failed")
+        }
+    }
 }

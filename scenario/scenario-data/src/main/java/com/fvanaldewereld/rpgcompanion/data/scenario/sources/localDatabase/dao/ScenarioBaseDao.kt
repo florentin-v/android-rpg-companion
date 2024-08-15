@@ -14,6 +14,9 @@ interface ScenarioBaseDao {
     @Query("SELECT * FROM scenario_base")
     fun getAllScenariosBase(): List<ScenarioBase>
 
+    @Query("SELECT * FROM scenario_base LIMIT :number")
+    fun getLastScenariosBase(number: Int): List<ScenarioBase>
+
     @Query("SELECT * FROM scenario_base WHERE id = :scenarioId")
     fun getScenarioBaseById(scenarioId: Long): ScenarioBase
 

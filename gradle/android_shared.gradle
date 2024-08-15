@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdk libs.versions.android.min.sdk.get().toInteger()
         targetSdk libs.versions.android.target.sdk.get().toInteger()
-        versionName "1.0"
-        versionCode 1
     }
 
     sourceSets {

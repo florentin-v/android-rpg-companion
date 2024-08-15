@@ -1,11 +1,17 @@
 package com.fvanaldewereld.rpgcompanion.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
 import com.fvanaldewereld.rpgcompanion.common.navigation.animatedComposable
-import com.fvanaldewereld.rpgcompanion.ui.components.home.HomeScreen
+import com.fvanaldewereld.rpgcompanion.ui.home.component.HomeScreen
+import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.BottomNavBarAction
+import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastCharacterPressed
+import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastGameSessionPressed
+import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastScenarioPressed
+import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.TopAppBarAction
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
 
@@ -24,8 +30,28 @@ internal fun RPGCompanionNavigation() {
         fun navigateTo(navRoute: String) = navHostController.navigate(navRoute)
 
         animatedComposable(route = NavigationRoute.Home.route) {
-            HomeScreen {
-                navigateTo(NavigationRoute.ScenarioList)
+            HomeScreen { homeScreenAction ->
+                when (homeScreenAction) {
+                    BottomNavBarAction.CharactersPressed -> {}
+                    BottomNavBarAction.GamesPressed -> {}
+                    BottomNavBarAction.HomePressed -> navigateTo(NavigationRoute.Home)
+                    BottomNavBarAction.LibraryPressed -> {}
+                    BottomNavBarAction.ScenariosPressed -> {
+                        Log.d("DEBUG NAV", "--------------- ScenariosPressed")
+                        navigateTo(NavigationRoute.ScenarioList)
+                    }
+
+                    is LastCharacterPressed -> {}
+                    is LastGameSessionPressed -> {}
+                    is LastScenarioPressed -> {
+                        Log.d("DEBUG NAV", "--------------- LastScenarioPressed id : ${homeScreenAction.id}")
+
+                        navigateTo(NavigationRoute.ScenarioDetail.createRoute(scenarioId = homeScreenAction.id))
+                    }
+
+                    TopAppBarAction.ProfilePressed -> {}
+                    TopAppBarAction.SearchPressed -> {}
+                }
             }
         }
 
@@ -42,4 +68,5 @@ internal fun RPGCompanionNavigation() {
             ScenarioDetailScreen(onBackButtonPressed = ::navigateBack)
         }
     }
+
 }

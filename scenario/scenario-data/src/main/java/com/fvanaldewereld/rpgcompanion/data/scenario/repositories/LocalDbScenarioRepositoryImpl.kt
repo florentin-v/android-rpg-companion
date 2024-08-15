@@ -17,9 +17,10 @@ class LocalDbScenarioRepositoryImpl : DbScenarioRepository {
         )
 
     override suspend fun getAllScenarios(): List<ScenarioModel> =
-        scenarioDao.getAllScenarios().map {
-            scenarioMapperImpl.to(from = it)
-        }
+        scenarioDao.getAllScenarios().map(scenarioMapperImpl::to)
+
+    override suspend fun getLastScenarios(number: Int): List<ScenarioModel> =
+        scenarioDao.getLastScenarios(number).map(scenarioMapperImpl::to)
 
     override suspend fun getScenarioByDocumentName(documentName: String): ScenarioModel =
         scenarioMapperImpl.to(

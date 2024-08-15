@@ -8,6 +8,7 @@ digraph {
   ":app" [fillcolor="#baffc9"];
   ":common" [fillcolor="#badeff"];
   ":common-test" [fillcolor="#f0ffc4"];
+  ":konsist-test" [fillcolor="#f0ffc4"];
   ":mock-factory" [fillcolor="#f0ffc4"];
   ":scenario:scenario-data" [fillcolor="#d3c4ff"];
   ":scenario:scenario-domain-api" [fillcolor="#fdb1ff"];
@@ -20,16 +21,18 @@ digraph {
   # Dependencies
 
   ":app" -> ":common" [style=filled, style=filled]
+  ":app" -> ":mock-factory" [style=filled, style=dotted]
   ":app" -> ":scenario:scenario-data" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-domain-lib" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-ui-detail" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-ui-list" [style=filled, style=filled]
   ":app" -> ":common-test" [style=filled]
   ":app" -> ":scenario:scenario-domain-api" [style=filled]
-  ":app" -> ":mock-factory" [style=dotted]
+  ":common-test" -> ":app" [style=filled]
   ":mock-factory" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":mock-factory" -> ":common" [style=filled]
   ":mock-factory" -> ":scenario:scenario-data" [style=filled]
+  ":konsist-test" -> ":mock-factory" [style=dotted]
   ":scenario:scenario-domain-api" -> ":mock-factory" [style=dotted]
   ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":scenario:scenario-ui-list" -> ":common" [style=filled]

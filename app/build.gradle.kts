@@ -40,6 +40,7 @@ android {
 dependencies {
     // Implementations - Modules
     implementation(project(":common"))
+    implementation(project(":mock-factory"))
     implementation(project(":scenario:scenario-data"))
     implementation(project(":scenario:scenario-domain-lib"))
     implementation(project(":scenario:scenario-ui-detail"))

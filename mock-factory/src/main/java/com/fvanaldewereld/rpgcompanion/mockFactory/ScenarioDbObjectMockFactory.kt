@@ -15,7 +15,7 @@ object ScenarioDbObjectMockFactory {
 
     const val SCENARIO_ID: Long = 0
 
-    private const val SCENARIO_TITLE = "Scenario"
+    private const val SCENARIO_TITLE = "Scenario - Example"
 
     private const val SCENARIO_AUTHOR = "Author"
 

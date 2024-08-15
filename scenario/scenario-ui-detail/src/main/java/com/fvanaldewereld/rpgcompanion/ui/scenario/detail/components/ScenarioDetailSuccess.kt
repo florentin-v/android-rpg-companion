@@ -1,98 +1,130 @@
 package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SecondaryTabRow
+import androidx.compose.material3.Tab
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
-import com.fvanaldewereld.rpgcompanion.common.navigation.animatedComposable
-import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionBottomBar
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionTopAppBar
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.R
-import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ScenarioDetailSuccess(
     scenario: ScenarioModel,
     onBackButtonPressed: () -> Unit = {},
 ) {
-    val bottomBarItems = persistentMapOf(
-        NavigationRoute.ScenarioDetail.Basics to BottomNavigationBarItemInfo(
+    val tabs = persistentListOf(
+        TabInfo(
             labelResId = R.string.scenarioDetail_page_basics,
             imageVector = Icons.Filled.Info,
+            route = NavigationRoute.ScenarioDetail.Basics,
         ),
-        NavigationRoute.ScenarioDetail.Chapters to BottomNavigationBarItemInfo(
+        TabInfo(
             labelResId = R.string.scenarioDetail_page_chapters,
             imageVector = Icons.AutoMirrored.Filled.List,
+            route = NavigationRoute.ScenarioDetail.Chapters,
         ),
-        NavigationRoute.ScenarioDetail.Characters to BottomNavigationBarItemInfo(
+        TabInfo(
             labelResId = R.string.scenarioDetail_page_characters,
             imageVector = Icons.Filled.Person,
+            route = NavigationRoute.ScenarioDetail.Characters,
         ),
-        NavigationRoute.ScenarioDetail.Places to BottomNavigationBarItemInfo(
+        TabInfo(
             labelResId = R.string.scenarioDetail_page_places,
             imageVector = Icons.Filled.LocationOn,
+            route = NavigationRoute.ScenarioDetail.Places,
         ),
     )
-    var selectedItemIndex by remember { mutableIntStateOf(0) }
-    val navHostController: NavHostController = rememberNavController()
+    val scope = rememberCoroutineScope()
+    val navHostController = rememberNavController()
+    val pagerState = rememberPagerState(initialPage = 0, pageCount = { tabs.size })
+    val selectedTabIndex = remember { derivedStateOf { pagerState.currentPage } }
 
     // This method navigates to a specified route (NavigationRoute).
     fun navigateTo(navRoute: NavigationRoute) = navHostController.navigate(navRoute.route)
 
     Scaffold(
         topBar = {
-            RpgCompanionTopAppBar(
-                title = scenario.mainInfo.title.value ?: stringResource(id = R.string.scenarioDetail_page_noTitle),
-                onBackButtonPressed = onBackButtonPressed,
-            )
-        },
-        bottomBar = {
-            RpgCompanionBottomBar(
-                bottomBarItems = bottomBarItems,
-                isSelected = { index ->
-                    selectedItemIndex == index
-                },
-                onItemClick = { index, navRoute ->
-                    selectedItemIndex = index
-                    navigateTo(navRoute = navRoute)
-                },
-            )
+            Column {
+                RpgCompanionTopAppBar(
+                    title = scenario.mainInfo.title.value ?: stringResource(id = R.string.scenarioDetail_page_noTitle),
+                    onBackButtonPressed = onBackButtonPressed,
+                )
+
+                SecondaryTabRow(
+                    selectedTabIndex = selectedTabIndex.value,
+                ) {
+                    tabs.forEachIndexed { index, tabInfo ->
+                        Tab(
+                            selected = selectedTabIndex.value == index,
+                            icon = { Icon(tabInfo.imageVector, contentDescription = "") },
+                            onClick = {
+                                scope.launch {
+                                    pagerState.scrollToPage(index)
+                                }
+                            },
+                        )
+                    }
+                }
+            }
         },
     ) {
-        NavHost(
-            navController = navHostController,
-            startDestination = NavigationRoute.ScenarioDetail.Basics.route,
-            modifier = Modifier.padding(it),
+        LaunchedEffect(pagerState) {
+            snapshotFlow { pagerState.currentPage }.collect { page ->
+                navigateTo(tabs[page].route)
+            }
+        }
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier
+                .padding(it)
+                .fillMaxWidth(),
         ) {
-            animatedComposable(route = NavigationRoute.ScenarioDetail.Basics.route) {
-                ScenarioDetailMainInfo(scenario.mainInfo)
-            }
-            animatedComposable(route = NavigationRoute.ScenarioDetail.Places.route) {
-                ScenarioDetailPlaces(scenario.places)
-            }
-            animatedComposable(route = NavigationRoute.ScenarioDetail.Chapters.route) {
-                ScenarioDetailChapters(scenario.chapters)
-            }
-            animatedComposable(route = NavigationRoute.ScenarioDetail.Characters.route) {
-                ScenarioDetailCharacters(scenario.characters)
+            NavHost(
+                navController = navHostController,
+                startDestination = NavigationRoute.ScenarioDetail.Basics.route,
+            ) {
+                composable(route = NavigationRoute.ScenarioDetail.Basics.route) {
+                    ScenarioDetailMainInfo(scenario.mainInfo)
+                }
+                composable(route = NavigationRoute.ScenarioDetail.Places.route) {
+                    ScenarioDetailPlaces(scenario.places)
+                }
+                composable(route = NavigationRoute.ScenarioDetail.Chapters.route) {
+                    ScenarioDetailChapters(scenario.chapters)
+                }
+                composable(route = NavigationRoute.ScenarioDetail.Characters.route) {
+                    ScenarioDetailCharacters(scenario.characters)
+                }
             }
         }
     }
