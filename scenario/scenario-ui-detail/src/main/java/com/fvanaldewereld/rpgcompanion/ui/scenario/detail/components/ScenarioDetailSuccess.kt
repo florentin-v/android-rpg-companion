@@ -46,22 +46,22 @@ internal fun ScenarioDetailSuccess(
         TabInfo(
             labelResId = R.string.scenarioDetail_page_basics,
             imageVector = Icons.Filled.Info,
-            route = NavigationRoute.ScenarioDetail.Basics,
+            route = NavigationRoute.SubScenarioDetail.Basics,
         ),
         TabInfo(
             labelResId = R.string.scenarioDetail_page_chapters,
             imageVector = Icons.AutoMirrored.Filled.List,
-            route = NavigationRoute.ScenarioDetail.Chapters,
+            route = NavigationRoute.SubScenarioDetail.Chapters,
         ),
         TabInfo(
             labelResId = R.string.scenarioDetail_page_characters,
             imageVector = Icons.Filled.Person,
-            route = NavigationRoute.ScenarioDetail.Characters,
+            route = NavigationRoute.SubScenarioDetail.Characters,
         ),
         TabInfo(
             labelResId = R.string.scenarioDetail_page_places,
             imageVector = Icons.Filled.LocationOn,
-            route = NavigationRoute.ScenarioDetail.Places,
+            route = NavigationRoute.SubScenarioDetail.Places,
         ),
     )
     val scope = rememberCoroutineScope()
@@ -70,7 +70,7 @@ internal fun ScenarioDetailSuccess(
     val selectedTabIndex = remember { derivedStateOf { pagerState.currentPage } }
 
     // This method navigates to a specified route (NavigationRoute).
-    fun navigateTo(navRoute: NavigationRoute) = navHostController.navigate(navRoute.route)
+    fun navigateTo(route: NavigationRoute) = navHostController.navigate(route)
 
     Scaffold(
         topBar = {
@@ -111,18 +111,18 @@ internal fun ScenarioDetailSuccess(
         ) {
             NavHost(
                 navController = navHostController,
-                startDestination = NavigationRoute.ScenarioDetail.Basics.route,
+                startDestination = NavigationRoute.SubScenarioDetail.Basics,
             ) {
-                composable(route = NavigationRoute.ScenarioDetail.Basics.route) {
+                composable<NavigationRoute.SubScenarioDetail.Basics> {
                     ScenarioDetailMainInfo(scenario.mainInfo)
                 }
-                composable(route = NavigationRoute.ScenarioDetail.Places.route) {
+                composable<NavigationRoute.SubScenarioDetail.Places> {
                     ScenarioDetailPlaces(scenario.places)
                 }
-                composable(route = NavigationRoute.ScenarioDetail.Chapters.route) {
+                composable<NavigationRoute.SubScenarioDetail.Chapters> {
                     ScenarioDetailChapters(scenario.chapters)
                 }
-                composable(route = NavigationRoute.ScenarioDetail.Characters.route) {
+                composable<NavigationRoute.SubScenarioDetail.Characters> {
                     ScenarioDetailCharacters(scenario.characters)
                 }
             }

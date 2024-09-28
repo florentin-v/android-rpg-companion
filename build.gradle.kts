@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.sonarqube) apply false
+    alias(libs.plugins.serialization) apply false
 }
 
 buildscript {

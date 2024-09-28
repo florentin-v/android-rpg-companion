@@ -19,17 +19,14 @@ import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListS
 internal fun RPGCompanionNavigation() {
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationRoute.Home.route) {
+    NavHost(navController = navHostController, startDestination = NavigationRoute.Home) {
         // This method navigates back in the navigation stack.
         fun navigateBack() = navHostController.navigateUp()
 
-        // This method navigates to a specified route (NavigationRoute).
-        fun navigateTo(navRoute: NavigationRoute) = navHostController.navigate(navRoute.route)
+        // This method navigates to a specified route.
+        fun navigateTo(route: NavigationRoute) = navHostController.navigate(route)
 
-        // This method navigates to a specified route (String).
-        fun navigateTo(navRoute: String) = navHostController.navigate(navRoute)
-
-        animatedComposable(route = NavigationRoute.Home.route) {
+        animatedComposable<NavigationRoute.Home> {
             HomeScreen { homeScreenAction ->
                 when (homeScreenAction) {
                     BottomNavBarAction.CharactersPressed -> {}
@@ -46,7 +43,7 @@ internal fun RPGCompanionNavigation() {
                     is LastScenarioPressed -> {
                         Log.d("DEBUG NAV", "--------------- LastScenarioPressed id : ${homeScreenAction.id}")
 
-                        navigateTo(NavigationRoute.ScenarioDetail.createRoute(scenarioId = homeScreenAction.id))
+                        navigateTo(NavigationRoute.ScenarioDetail(scenarioId = homeScreenAction.id))
                     }
 
                     TopAppBarAction.ProfilePressed -> {}
@@ -55,18 +52,17 @@ internal fun RPGCompanionNavigation() {
             }
         }
 
-        animatedComposable(route = NavigationRoute.ScenarioList.route) {
+        animatedComposable<NavigationRoute.ScenarioList> {
             ScenarioListScreen(
                 onBackButtonPressed = ::navigateBack,
                 goToScenarioDetail = { scenarioId ->
-                    navigateTo(NavigationRoute.ScenarioDetail.createRoute(scenarioId = scenarioId))
+                    navigateTo(NavigationRoute.ScenarioDetail(scenarioId = scenarioId))
                 },
             )
         }
 
-        animatedComposable(route = NavigationRoute.ScenarioDetail.route) {
+        animatedComposable<NavigationRoute.ScenarioDetail> {
             ScenarioDetailScreen(onBackButtonPressed = ::navigateBack)
         }
     }
-
 }
