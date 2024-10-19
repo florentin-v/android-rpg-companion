@@ -33,7 +33,7 @@ class ScenarioDaoImpl : ScenarioDao {
         return scenario.scenarioBase.id
     }
 
-    override fun getAllScenarios(): List<Scenario> = scenarioBaseDao.getAllScenariosBase()
+    override fun getAllScenarioList(): List<Scenario> = scenarioBaseDao.getAllScenarioListBase()
         .map { scenarioBase ->
             Scenario(
                 scenarioBase = scenarioBase,
@@ -43,7 +43,7 @@ class ScenarioDaoImpl : ScenarioDao {
             )
         }
 
-    override fun getLastScenarios(number: Int): List<Scenario> = scenarioBaseDao.getLastScenariosBase(number)
+    override fun getLastScenarioList(number: Int): List<Scenario> = scenarioBaseDao.getLastScenarioListBase(number)
         .map { scenarioBase ->
             Scenario(
                 scenarioBase = scenarioBase,

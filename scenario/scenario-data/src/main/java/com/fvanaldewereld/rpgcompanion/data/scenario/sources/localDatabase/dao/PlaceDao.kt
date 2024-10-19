@@ -12,7 +12,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
 @Dao
 interface PlaceDao {
 
-    @Query("SELECT * FROM place WHERE scenarioId = :scenarioId")
+    @Query("SELECT * FROM scenario_place WHERE scenario_id = :scenarioId")
     fun getAllByScenarioId(scenarioId: Long): List<Place>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)

@@ -29,9 +29,8 @@ include(
     ":common-test",
     ":konsist-test",
     ":mock-factory",
-    ":scenario:scenario-data",
-    ":scenario:scenario-domain-api",
-    ":scenario:scenario-domain-lib",
-    ":scenario:scenario-ui-detail",
-    ":scenario:scenario-ui-list",
 )
+
+apply(from = "character/settings.gradle.kts")
+apply(from = "scenario/settings.gradle.kts")
+apply(from = "session/settings.gradle.kts")

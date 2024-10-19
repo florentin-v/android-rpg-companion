@@ -63,14 +63,14 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
             // GIVEN
             whenever(mockScenarioMapper.to(ScenarioDbObjectMockFactory.scenario))
                 .thenReturn(ScenarioModelMockFactory.scenarioModelWithId)
-            whenever(mockScenarioDao.getAllScenarios())
+            whenever(mockScenarioDao.getAllScenarioList())
                 .thenReturn(listOf(ScenarioDbObjectMockFactory.scenario))
 
             // WHEN
-            val result = localDbScenarioRepository.getAllScenarios()
+            val result = localDbScenarioRepository.getAllScenarioList()
 
             // THEN
-            Mockito.verify(mockScenarioDao, times(1)).getAllScenarios()
+            Mockito.verify(mockScenarioDao, times(1)).getAllScenarioList()
             Assertions.assertEquals(result, listOf(ScenarioModelMockFactory.scenarioModelWithId))
         }
 

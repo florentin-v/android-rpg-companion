@@ -28,7 +28,7 @@ internal fun HomeScreenSuccess(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         item {
-            LastGameSessionList(state.lastGameSessionModels, onHomeScreenAction)
+            LastGameSessionList(state.lastSessionModels, onHomeScreenAction)
         }
         item {
             LastCharacterList(state.lastCharacterModels, onHomeScreenAction)
@@ -46,7 +46,7 @@ private fun HomeScreenSuccessPreview() {
         HomeUIState.Success(
             lastCharacterModels = TmpMock.lastCharacterModels,
             lastGameModels = TmpMock.lastGameModels,
-            lastGameSessionModels = TmpMock.lastGameSessionModels,
+            lastSessionModels = TmpMock.lastSessionModels,
             lastScenarioUIs = listOf(
                 LastScenarioUI(
                     id = 1L,

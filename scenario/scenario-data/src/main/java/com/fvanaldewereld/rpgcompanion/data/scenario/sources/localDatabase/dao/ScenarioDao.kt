@@ -7,9 +7,9 @@ interface ScenarioDao {
 
     fun deleteScenario(scenario: Scenario): Long
 
-    fun getAllScenarios(): List<Scenario>
+    fun getAllScenarioList(): List<Scenario>
 
-    fun getLastScenarios(number: Int): List<Scenario>
+    fun getLastScenarioList(number: Int): List<Scenario>
 
     fun getScenarioByDocumentName(documentName: String): Scenario
 

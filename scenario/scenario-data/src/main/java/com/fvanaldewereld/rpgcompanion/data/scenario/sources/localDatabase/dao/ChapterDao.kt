@@ -12,7 +12,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
 @Dao
 interface ChapterDao {
 
-    @Query("SELECT * FROM chapter WHERE scenarioId = :scenarioId")
+    @Query("SELECT * FROM scenario_chapter WHERE scenario_id = :scenarioId")
     fun getAllByScenarioId(scenarioId: Long): List<Chapter>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
@@ -24,4 +24,5 @@ interface ChapterDao {
 
     @Delete
     fun delete(chapter: Chapter)
+
 }

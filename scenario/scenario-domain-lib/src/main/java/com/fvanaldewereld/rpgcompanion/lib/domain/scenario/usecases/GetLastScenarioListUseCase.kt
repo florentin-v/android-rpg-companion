@@ -9,5 +9,5 @@ class GetLastScenarioListUseCase {
     private val localDbScenarioRepository: DbScenarioRepository by GlobalContext.get().inject()
 
     suspend operator fun invoke(number: Int): List<ScenarioModel> =
-        localDbScenarioRepository.getLastScenarios(number = number)
+        localDbScenarioRepository.getLastScenarioList(number = number)
 }

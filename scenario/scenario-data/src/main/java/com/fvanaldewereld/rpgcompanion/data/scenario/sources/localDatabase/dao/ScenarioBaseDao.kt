@@ -12,10 +12,10 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
 interface ScenarioBaseDao {
 
     @Query("SELECT * FROM scenario_base")
-    fun getAllScenariosBase(): List<ScenarioBase>
+    fun getAllScenarioListBase(): List<ScenarioBase>
 
     @Query("SELECT * FROM scenario_base LIMIT :number")
-    fun getLastScenariosBase(number: Int): List<ScenarioBase>
+    fun getLastScenarioListBase(number: Int): List<ScenarioBase>
 
     @Query("SELECT * FROM scenario_base WHERE id = :scenarioId")
     fun getScenarioBaseById(scenarioId: Long): ScenarioBase

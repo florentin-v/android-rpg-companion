@@ -8,5 +8,5 @@ class GetScenarioListUseCase {
 
     private val localDbScenarioRepository: DbScenarioRepository by GlobalContext.get().inject()
 
-    suspend operator fun invoke(): List<ScenarioModel> = localDbScenarioRepository.getAllScenarios()
+    suspend operator fun invoke(): List<ScenarioModel> = localDbScenarioRepository.getAllScenarioList()
 }

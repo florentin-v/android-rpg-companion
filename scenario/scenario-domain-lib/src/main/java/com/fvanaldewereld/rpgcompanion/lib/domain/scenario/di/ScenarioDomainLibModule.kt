@@ -9,6 +9,7 @@ import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetScenarioL
 import org.koin.dsl.module
 
 val SCENARIO_DOMAIN_LIB_MODULE = module {
+
     // Usecases
     single { AddScenarioUseCase() }
     single { DeleteScenarioUseCase() }

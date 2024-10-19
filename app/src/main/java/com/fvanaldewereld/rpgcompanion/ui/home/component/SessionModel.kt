@@ -4,11 +4,11 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CharacterModel(
+data class SessionModel(
     val id: Long,
-    val name: String,
-    val level: Int,
+    val title: String,
+    val status: SessionStatus = SessionStatus.NOT_STARTED,
     val game: GameModel,
 ) : Parcelable
 
-// TODO FVA Move into specifid module
+// TODO FVA Move into specific module

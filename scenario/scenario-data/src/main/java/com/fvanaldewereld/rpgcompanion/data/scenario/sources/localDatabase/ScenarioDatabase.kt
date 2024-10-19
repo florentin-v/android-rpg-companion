@@ -20,7 +20,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
         Place::class,
     ],
     version = 1,
-    exportSchema = false,
+    exportSchema = true,
 )
 @TypeConverters(Converters::class)
 abstract class ScenarioDatabase : RoomDatabase() {
@@ -28,4 +28,9 @@ abstract class ScenarioDatabase : RoomDatabase() {
     abstract fun chapterDao(): ChapterDao
     abstract fun characterDao(): CharacterDao
     abstract fun placeDao(): PlaceDao
+
+    companion object {
+        const val DATABASE_NAME = "scenario-database"
+    }
+
 }

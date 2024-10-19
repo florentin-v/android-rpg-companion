@@ -14,13 +14,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
-import com.fvanaldewereld.rpgcompanion.ui.home.component.GameSessionModel
-import com.fvanaldewereld.rpgcompanion.ui.home.component.GameSessionStatus
+import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionModel
+import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionStatus
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 
 @Composable
 internal fun LastGameSessionItem(
-    gameSessionModel: GameSessionModel,
+    sessionModel: SessionModel,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     ElevatedCard(
@@ -34,18 +34,18 @@ internal fun LastGameSessionItem(
         onClick = {
             onHomeScreenAction(
                 HomeScreenAction.LastGameSessionPressed(
-                    gameSessionModel.id,
+                    sessionModel.id,
                 ),
             )
         },
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("- ${gameSessionModel.title}")
-            Text("- ${gameSessionModel.game.name}")
-            when (gameSessionModel.status) {
-                GameSessionStatus.NOT_STARTED -> Text("- Start the game")
-                GameSessionStatus.PENDING -> Text("- Resume the game")
-                GameSessionStatus.FINISHED -> Text("- See the game report")
+            Text("- ${sessionModel.title}")
+            Text("- ${sessionModel.game.name}")
+            when (sessionModel.status) {
+                SessionStatus.NOT_STARTED -> Text("- Start the game")
+                SessionStatus.PENDING -> Text("- Resume the game")
+                SessionStatus.FINISHED -> Text("- See the game report")
             }
             Text("- ...")
         }
@@ -57,7 +57,7 @@ internal fun LastGameSessionItem(
 private fun LastGameSessionsItemPreview() {
     RpgCompanionTheme {
         LastGameSessionItem(
-            gameSessionModel = TmpMock.lastGameSessionModels.first(),
+            sessionModel = TmpMock.lastSessionModels.first(),
             onHomeScreenAction = {},
         )
     }

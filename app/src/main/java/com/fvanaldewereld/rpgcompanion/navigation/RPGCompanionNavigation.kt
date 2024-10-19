@@ -1,7 +1,7 @@
 package com.fvanaldewereld.rpgcompanion.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.fvanaldewereld.rpgcompanion.common.navigation.NavigationRoute
@@ -12,8 +12,10 @@ import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastCharac
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastGameSessionPressed
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastScenarioPressed
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.TopAppBarAction
+import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 internal fun RPGCompanionNavigation() {
@@ -27,24 +29,29 @@ internal fun RPGCompanionNavigation() {
         fun navigateTo(route: NavigationRoute) = navHostController.navigate(route)
 
         animatedComposable<NavigationRoute.Home> {
-            HomeScreen { homeScreenAction ->
+            val viewModel: HomeViewModel = koinViewModel()
+            HomeScreen(
+                uiState = viewModel.homeUIStateFlow.collectAsStateWithLifecycle().value,
+            ) { homeScreenAction ->
                 when (homeScreenAction) {
                     BottomNavBarAction.CharactersPressed -> {}
                     BottomNavBarAction.GamesPressed -> {}
-                    BottomNavBarAction.HomePressed -> navigateTo(NavigationRoute.Home)
+                    BottomNavBarAction.HomePressed -> navigateTo(
+                        route = NavigationRoute.Home,
+                    )
+
                     BottomNavBarAction.LibraryPressed -> {}
-                    BottomNavBarAction.ScenariosPressed -> {
-                        Log.d("DEBUG NAV", "--------------- ScenariosPressed")
-                        navigateTo(NavigationRoute.ScenarioList)
-                    }
+                    BottomNavBarAction.ScenariosPressed -> navigateTo(
+                        route = NavigationRoute.ScenarioList,
+                    )
 
                     is LastCharacterPressed -> {}
                     is LastGameSessionPressed -> {}
-                    is LastScenarioPressed -> {
-                        Log.d("DEBUG NAV", "--------------- LastScenarioPressed id : ${homeScreenAction.id}")
-
-                        navigateTo(NavigationRoute.ScenarioDetail(scenarioId = homeScreenAction.id))
-                    }
+                    is LastScenarioPressed -> navigateTo(
+                        route = NavigationRoute.ScenarioDetail(
+                            scenarioId = homeScreenAction.id,
+                        ),
+                    )
 
                     TopAppBarAction.ProfilePressed -> {}
                     TopAppBarAction.SearchPressed -> {}

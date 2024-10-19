@@ -12,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.fvanaldewereld.rpgcompanion.api.domain.character.models.CharacterModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
-import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
-import com.fvanaldewereld.rpgcompanion.ui.home.component.CharacterModel
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
+import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
 
 @Composable
 internal fun LastCharacterItem(
@@ -40,7 +40,7 @@ internal fun LastCharacterItem(
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             Text("- ${characterModel.name}")
-            Text("- ${characterModel.game.name}")
+            Text("- ${characterModel.gameId}")
             Text("- ...")
         }
     }

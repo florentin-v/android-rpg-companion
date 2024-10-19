@@ -12,7 +12,7 @@ import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entit
 @Dao
 interface CharacterDao {
 
-    @Query("SELECT * FROM character WHERE scenarioId = :scenarioId")
+    @Query("SELECT * FROM scenario_character WHERE scenario_id = :scenarioId")
     fun getAllByScenarioId(scenarioId: Long): List<Character>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)

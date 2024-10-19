@@ -41,8 +41,19 @@ dependencies {
     // Implementations - Modules
     implementation(project(":common"))
     implementation(project(":mock-factory"))
+
+    implementation(project(":character:character-data"))
+    implementation(project(":character:character-domain-lib"))
+    implementation(project(":character:character-ui-detail"))
+    implementation(project(":character:character-ui-list"))
+
     implementation(project(":scenario:scenario-data"))
     implementation(project(":scenario:scenario-domain-lib"))
     implementation(project(":scenario:scenario-ui-detail"))
     implementation(project(":scenario:scenario-ui-list"))
+
+    implementation(project(":session:session-data"))
+    implementation(project(":session:session-domain-lib"))
+    implementation(project(":session:session-ui-detail"))
+    implementation(project(":session:session-ui-list"))
 }

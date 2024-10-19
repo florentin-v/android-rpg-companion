@@ -94,7 +94,7 @@ val SCENARIO_DATA_MODULE = module {
         Room.databaseBuilder(
             androidContext(),
             ScenarioDatabase::class.java,
-            "scenario-database",
+            ScenarioDatabase.DATABASE_NAME,
         ).build()
     }
     single<ScenarioBaseDao> { get<ScenarioDatabase>().scenarioBaseDao() }

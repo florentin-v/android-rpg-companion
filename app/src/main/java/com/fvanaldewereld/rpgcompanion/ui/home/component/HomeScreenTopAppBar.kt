@@ -9,6 +9,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 
 @Composable
@@ -32,4 +34,14 @@ internal fun HomeScreenTopAppBar(onTopAppBarAction: (HomeScreenAction.TopAppBarA
             }
         },
     )
+}
+
+@Preview
+@Composable
+private fun HomeScreenTopAppBarPreview() {
+    RpgCompanionTheme {
+        HomeScreenTopAppBar(
+            onTopAppBarAction = {},
+        )
+    }
 }

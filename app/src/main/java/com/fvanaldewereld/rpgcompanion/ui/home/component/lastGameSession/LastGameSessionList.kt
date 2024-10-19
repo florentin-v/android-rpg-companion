@@ -12,17 +12,17 @@ import androidx.compose.ui.unit.dp
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
-import com.fvanaldewereld.rpgcompanion.ui.home.component.GameSessionModel
+import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionModel
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 
 @Composable
 internal fun LastGameSessionList(
-    lastGameSessionModels: List<GameSessionModel>,
+    lastSessionModels: List<SessionModel>,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     Column {
         Text("My last game sessions", style = Typography.titleLarge)
-        lastGameSessionModels.ifEmpty { null }?.let {
+        lastSessionModels.ifEmpty { null }?.let {
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 contentPadding = PaddingValues(vertical = 10.dp),
@@ -40,7 +40,7 @@ internal fun LastGameSessionList(
 private fun LastGameSessionListPreview() {
     RpgCompanionTheme {
         LastGameSessionList(
-            lastGameSessionModels = TmpMock.lastGameSessionModels,
+            lastSessionModels = TmpMock.lastSessionModels,
             onHomeScreenAction = {},
         )
     }
