@@ -2,7 +2,7 @@ package com.fvanaldewereld.rpgcompanion.data.scenario.repository
 
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.repositories.DbScenarioRepository
-import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.ScenarioMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.ScenarioMapper
 import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.dao.ScenarioDao
 
 internal class LocalDbScenarioRepository(
