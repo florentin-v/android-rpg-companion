@@ -32,5 +32,6 @@ include(
 )
 
 apply(from = "character/settings.gradle.kts")
+apply(from = "game/settings.gradle.kts")
 apply(from = "scenario/settings.gradle.kts")
 apply(from = "session/settings.gradle.kts")

@@ -35,5 +35,4 @@ internal class LocalDbCharacterRepository(
         .delete(
             characterLocalDb = characterDao.getCharacterById(characterId = characterId),
         )
-
 }

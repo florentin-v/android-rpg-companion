@@ -11,17 +11,17 @@ data class ScenarioLocalDb(
     @Embedded val scenarioBaseLocalDb: ScenarioBaseLocalDb,
     @Relation(
         parentColumn = "id",
-        entityColumn = "scenario_id"
+        entityColumn = "scenario_id",
     )
     val chapterLocalDbList: List<ChapterLocalDb> = emptyList(),
     @Relation(
         parentColumn = "id",
-        entityColumn = "scenario_id"
+        entityColumn = "scenario_id",
     )
     val characterLocalDbList: List<CharacterLocalDb> = emptyList(),
     @Relation(
         parentColumn = "id",
-        entityColumn = "scenario_id"
+        entityColumn = "scenario_id",
     )
     val placeLocalDbList: List<PlaceLocalDb> = emptyList(),
 )

@@ -13,10 +13,11 @@ import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.model.LastScenarioUI
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun LastScenarioList(
-    lastScenarioUIs: List<LastScenarioUI>,
+    lastScenarioUIs: ImmutableList<LastScenarioUI>,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     Column {

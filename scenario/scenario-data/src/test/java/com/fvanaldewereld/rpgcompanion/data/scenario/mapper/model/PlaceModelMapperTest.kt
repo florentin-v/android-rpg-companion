@@ -28,7 +28,7 @@ class PlaceModelMapperTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         placeModelMapper = PlaceModelMapper(
-            descriptionModelMapper = mockDescriptionModeMapper
+            descriptionModelMapper = mockDescriptionModeMapper,
         )
     }
 

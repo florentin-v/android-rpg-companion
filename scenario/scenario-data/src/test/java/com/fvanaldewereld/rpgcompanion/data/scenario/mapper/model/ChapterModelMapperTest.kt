@@ -28,7 +28,7 @@ class ChapterModelMapperTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         chapterModelMapper = ChapterModelMapper(
-            descriptionModelMapper = mockDescriptionModeMapper
+            descriptionModelMapper = mockDescriptionModeMapper,
         )
     }
 

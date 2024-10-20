@@ -14,22 +14,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.common.ui.components.RpgCompanionTopAppBar
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.R
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListUiState
-import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListViewModel
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreenAction
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScenarioListScreen(
+    uiState: ScenarioListUiState,
     modifier: Modifier = Modifier,
-    viewModel: ScenarioListViewModel = koinViewModel(),
-    onBackButtonPressed: () -> Unit = {},
-    goToScenarioDetail: (id: Long) -> Unit = {},
+    onScenarioListScreenAction: (ScenarioListScreenAction) -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
@@ -42,7 +39,7 @@ fun ScenarioListScreen(
         topBar = {
             RpgCompanionTopAppBar(
                 title = stringResource(R.string.scenarioList_topBar_title),
-                onBackButtonPressed = onBackButtonPressed,
+                onBackButtonPressed = { onScenarioListScreenAction(ScenarioListScreenAction.OnBackPressedButton) },
             )
         },
         floatingActionButton = {
@@ -50,17 +47,17 @@ fun ScenarioListScreen(
         },
     ) {
         Box(modifier = Modifier.padding(it)) {
-            when (val uiState = viewModel.scenarioListUiStateFlow.collectAsStateWithLifecycle().value) {
+            when (uiState) {
                 is ScenarioListUiState.Error -> ScenarioListError(errorMessage = uiState.errorMessage)
                 is ScenarioListUiState.Loading -> ScenarioListLoading()
                 is ScenarioListUiState.NoResult -> ScenarioListNoResult()
                 is ScenarioListUiState.Success -> ScenarioListSuccess(
                     scenarioListModel = uiState.scenarioListModel,
-                    goToScenarioDetail = goToScenarioDetail,
                     updateDeletingScenario = { scenarioModel ->
                         openDialog = true
                         deletingScenario = scenarioModel
                     },
+                    onScenarioListScreenAction = onScenarioListScreenAction,
                 )
             }
         }
@@ -71,8 +68,6 @@ fun ScenarioListScreen(
             sheetState = sheetState,
         ) {
             ScenarioListBottomSheet(
-                goToScenarioDetail = goToScenarioDetail,
-                addScenario = viewModel::addScenario,
                 hideBottomSheet = {
                     scope
                         .launch {
@@ -84,6 +79,7 @@ fun ScenarioListScreen(
                             }
                         }
                 },
+                onScenarioListScreenAction = onScenarioListScreenAction,
             )
         }
     }
@@ -92,7 +88,9 @@ fun ScenarioListScreen(
             scenario = deletingScenario,
             onConfirmation = { scenarioId ->
                 openDialog = false
-                viewModel.deleteScenario(scenarioId = scenarioId)
+                onScenarioListScreenAction(
+                    ScenarioListScreenAction.DeleteScenario(id = scenarioId),
+                )
             },
             onCancel = { openDialog = false },
         )

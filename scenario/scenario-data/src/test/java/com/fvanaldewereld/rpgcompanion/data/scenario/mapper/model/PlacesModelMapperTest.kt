@@ -29,7 +29,7 @@ class PlacesModelMapperTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         placeListModelMapper = PlaceListModelMapper(
-            placeModelMapper = mockPlaceModelMapper
+            placeModelMapper = mockPlaceModelMapper,
         )
     }
 

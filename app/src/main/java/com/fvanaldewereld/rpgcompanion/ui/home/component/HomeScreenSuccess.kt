@@ -28,13 +28,13 @@ internal fun HomeScreenSuccess(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         item {
-            LastGameSessionList(state.lastSessionModels, onHomeScreenAction)
+            LastGameSessionList(state.lastSessionModelList, onHomeScreenAction)
         }
         item {
-            LastCharacterList(state.lastCharacterModels, onHomeScreenAction)
+            LastCharacterList(state.lastCharacterUIList, onHomeScreenAction)
         }
         item {
-            LastScenarioList(state.lastScenarioUIs, onHomeScreenAction)
+            LastScenarioList(state.lastScenarioUIList, onHomeScreenAction)
         }
     }
 }
@@ -44,10 +44,10 @@ internal fun HomeScreenSuccess(
 private fun HomeScreenSuccessPreview() {
     HomeScreenSuccess(
         HomeUIState.Success(
-            lastCharacterModels = TmpMock.lastCharacterModelList,
-            lastGameModels = TmpMock.lastGameModelList,
-            lastSessionModels = TmpMock.lastSessionModelList,
-            lastScenarioUIs = listOf(
+            lastCharacterUIList = TmpMock.lastCharacterUIList,
+            lastGameModelList = TmpMock.lastGameModelList,
+            lastSessionModelList = TmpMock.lastSessionModelList,
+            lastScenarioUIList = listOf(
                 LastScenarioUI(
                     id = 1L,
                     title = "title",
@@ -58,4 +58,3 @@ private fun HomeScreenSuccessPreview() {
         onHomeScreenAction = {},
     )
 }
-

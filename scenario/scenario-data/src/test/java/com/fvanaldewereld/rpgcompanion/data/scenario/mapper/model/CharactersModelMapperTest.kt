@@ -29,7 +29,7 @@ class CharactersModelMapperTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         characterListModelMapper = CharacterListModelMapper(
-            characterModelMapper = mockCharacterModelMapper
+            characterModelMapper = mockCharacterModelMapper,
         )
     }
 

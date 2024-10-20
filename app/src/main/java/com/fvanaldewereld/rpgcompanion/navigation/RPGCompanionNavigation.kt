@@ -13,8 +13,11 @@ import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastGameSe
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastScenarioPressed
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.TopAppBarAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel
+import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.ScenarioDetailViewModel
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListViewModel
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreenAction
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -29,7 +32,8 @@ internal fun RPGCompanionNavigation() {
         fun navigateTo(route: NavigationRoute) = navHostController.navigate(route)
 
         animatedComposable<NavigationRoute.Home> {
-            val viewModel: HomeViewModel = koinViewModel()
+            val viewModel = koinViewModel<HomeViewModel>()
+
             HomeScreen(
                 uiState = viewModel.homeUIStateFlow.collectAsStateWithLifecycle().value,
             ) { homeScreenAction ->
@@ -60,16 +64,47 @@ internal fun RPGCompanionNavigation() {
         }
 
         animatedComposable<NavigationRoute.ScenarioList> {
+            val viewModel = koinViewModel<ScenarioListViewModel>()
+
             ScenarioListScreen(
-                onBackButtonPressed = ::navigateBack,
-                goToScenarioDetail = { scenarioId ->
-                    navigateTo(NavigationRoute.ScenarioDetail(scenarioId = scenarioId))
-                },
-            )
+                uiState = viewModel.uiStateFlow.collectAsStateWithLifecycle().value,
+            ) { scenarioListScreenAction ->
+
+                when (scenarioListScreenAction) {
+                    is ScenarioListScreenAction.OnBackPressedButton -> navigateBack()
+
+                    is ScenarioListScreenAction.AddScenario ->
+                        viewModel.addScenario(
+                            scenarioUrl = scenarioListScreenAction.url,
+                            onSuccess = { scenarioId ->
+                                navigateTo(
+                                    route = NavigationRoute.ScenarioDetail(scenarioId = scenarioId),
+                                )
+                            },
+                        )
+
+                    is ScenarioListScreenAction.DeleteScenario ->
+                        viewModel.deleteScenario(
+                            scenarioId = scenarioListScreenAction.id,
+                        )
+
+                    is ScenarioListScreenAction.GoToScenarioDetail ->
+                        navigateTo(
+                            route = NavigationRoute.ScenarioDetail(
+                                scenarioId = scenarioListScreenAction.id,
+                            ),
+                        )
+                }
+            }
         }
 
         animatedComposable<NavigationRoute.ScenarioDetail> {
-            ScenarioDetailScreen(onBackButtonPressed = ::navigateBack)
+            val viewModel = koinViewModel<ScenarioDetailViewModel>()
+
+            ScenarioDetailScreen(
+                uiState = viewModel.uiStateFlow.collectAsStateWithLifecycle().value,
+                onBackButtonPressed = ::navigateBack,
+            )
         }
     }
 }

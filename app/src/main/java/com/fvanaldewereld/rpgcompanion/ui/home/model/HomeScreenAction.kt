@@ -17,5 +17,4 @@ sealed interface HomeScreenAction {
     data class LastGameSessionPressed(val id: Long) : HomeScreenAction
     data class LastCharacterPressed(val id: Long) : HomeScreenAction
     data class LastScenarioPressed(val id: Long) : HomeScreenAction
-
 }

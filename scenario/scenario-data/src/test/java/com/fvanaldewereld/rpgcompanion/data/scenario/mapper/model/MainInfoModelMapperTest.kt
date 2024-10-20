@@ -47,7 +47,7 @@ class MainInfoModelMapperTest : BasicKoinTest() {
             authorModeMapper = mockAuthorModeMapper,
             informationModelMapper = mockInformationModelMapper,
             summaryModelMapper = mockSummaryModelMapper,
-            titleModelMapper = mockTitleModelMapper
+            titleModelMapper = mockTitleModelMapper,
         )
     }
 

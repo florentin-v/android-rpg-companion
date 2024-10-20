@@ -28,20 +28,20 @@ class ScenarioListViewModel(
         const val SCENARIO_LIST_UI_STATE_KEY = "SCENARIO_LIST_UI_STATE_KEY"
     }
 
-    var scenarioListUiStateFlow: StateFlow<ScenarioListUiState> =
+    var uiStateFlow: StateFlow<ScenarioListUiState> =
         savedStateHandle.getStateFlow<ScenarioListUiState>(
             SCENARIO_LIST_UI_STATE_KEY,
             ScenarioListUiState.Loading,
         )
 
     init {
-        if (scenarioListUiStateFlow.value is ScenarioListUiState.Loading) {
+        if (uiStateFlow.value is ScenarioListUiState.Loading) {
             getScenarioList()
         }
     }
 
     @SuppressWarnings("kotlin:S1481")
-    fun addScenario(scenarioUrl: String, goToScenarioDetail: (scenarioId: Long) -> Unit) {
+    fun addScenario(scenarioUrl: String, onSuccess: (scenarioId: Long) -> Unit) {
         viewModelScope.launch {
             savedStateHandle[SCENARIO_LIST_UI_STATE_KEY] = ScenarioListUiState.Loading
             withContext(dispatchers.default()) {
@@ -53,7 +53,7 @@ class ScenarioListViewModel(
                     }.onSuccess { scenarioId ->
                         getScenarioList()
                         withContext(dispatchers.main()) {
-                            goToScenarioDetail(scenarioId)
+                            onSuccess(scenarioId)
                         }
                     }.onFailure {
                         Log.e(

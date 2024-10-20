@@ -13,6 +13,11 @@ digraph {
   ":character:character-ui-list" [fillcolor="#badeff"];
   ":common" [fillcolor="#badeff"];
   ":common-test" [fillcolor="#f0ffc4"];
+  ":game:game-data" [fillcolor="#d3c4ff"];
+  ":game:game-domain-api" [fillcolor="#fdb1ff"];
+  ":game:game-domain-lib" [fillcolor="#fdb1ff"];
+  ":game:game-ui-detail" [fillcolor="#badeff"];
+  ":game:game-ui-list" [fillcolor="#badeff"];
   ":konsist-test" [fillcolor="#f0ffc4"];
   ":mock-factory" [fillcolor="#f0ffc4"];
   ":scenario:scenario-data" [fillcolor="#d3c4ff"];
@@ -36,6 +41,10 @@ digraph {
   ":app" -> ":character:character-domain-lib" [style=filled]
   ":app" -> ":character:character-ui-detail" [style=filled]
   ":app" -> ":character:character-ui-list" [style=filled]
+  ":app" -> ":game:game-data" [style=filled]
+  ":app" -> ":game:game-domain-lib" [style=filled]
+  ":app" -> ":game:game-ui-detail" [style=filled]
+  ":app" -> ":game:game-ui-list" [style=filled]
   ":app" -> ":scenario:scenario-data" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-domain-lib" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-ui-detail" [style=filled, style=filled]
@@ -67,6 +76,22 @@ digraph {
   ":character:character-data" -> ":common" [style=filled]
   ":character:character-data" -> ":mock-factory" [style=dotted]
   ":character:character-data" -> ":common-test" [style=dotted]
+  ":game:game-data" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-data" -> ":common" [style=filled]
+  ":game:game-data" -> ":mock-factory" [style=dotted]
+  ":game:game-data" -> ":common-test" [style=dotted]
+  ":game:game-ui-list" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-ui-list" -> ":common" [style=filled]
+  ":game:game-ui-list" -> ":mock-factory" [style=filled]
+  ":game:game-ui-list" -> ":game:game-domain-lib" [style=filled]
+  ":game:game-domain-api" -> ":mock-factory" [style=dotted]
+  ":game:game-ui-detail" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-ui-detail" -> ":common" [style=filled]
+  ":game:game-ui-detail" -> ":mock-factory" [style=filled]
+  ":game:game-ui-detail" -> ":game:game-domain-lib" [style=filled]
+  ":game:game-domain-lib" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-domain-lib" -> ":mock-factory" [style=dotted]
+  ":game:game-domain-lib" -> ":common-test" [style=dotted]
   ":scenario:scenario-domain-api" -> ":mock-factory" [style=dotted]
   ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":scenario:scenario-ui-list" -> ":common" [style=filled]

@@ -28,21 +28,21 @@ import androidx.compose.ui.unit.dp
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.R
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreenAction
 
 // https://docs.google.com/document/d/1YMuTjXvyU_sZFOu8PlvX1DNlJ7t1h7ne4yQvDSWHE54/edit?usp=sharing
 @SuppressLint("UnrememberedMutableState")
 @Composable
 internal fun ScenarioListBottomSheet(
     modifier: Modifier = Modifier,
-    goToScenarioDetail: (scenarioId: Long) -> Unit = {},
-    addScenario: (scenarioUrl: String, (scenarioId: Long) -> Unit) -> Unit = { _, _ -> run {} },
     hideBottomSheet: () -> Unit = {},
+    onScenarioListScreenAction: (ScenarioListScreenAction) -> Unit = {},
 ) {
     val focusManager = LocalFocusManager.current
     var inputURL by remember { mutableStateOf("") }
     val submitTextField = {
         hideBottomSheet()
-        addScenario(inputURL, goToScenarioDetail)
+        onScenarioListScreenAction(ScenarioListScreenAction.AddScenario(inputURL))
     }
     Column(
         modifier = modifier

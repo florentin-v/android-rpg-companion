@@ -12,14 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
+import com.fvanaldewereld.rpgcompanion.ui.home.model.CharacterUI
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
 
 @Composable
 internal fun LastCharacterItem(
-    characterModel: CharacterModel,
+    characterUI: CharacterUI,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     ElevatedCard(
@@ -33,14 +33,14 @@ internal fun LastCharacterItem(
         onClick = {
             onHomeScreenAction(
                 HomeScreenAction.LastGameSessionPressed(
-                    characterModel.id,
+                    characterUI.id,
                 ),
             )
         },
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
-            Text("- ${characterModel.name}")
-            Text("- ${characterModel.gameId}")
+            Text("- ${characterUI.name}")
+            Text("- ${characterUI.game?.name ?: "Unknown game"}")
             Text("- ...")
         }
     }
@@ -49,11 +49,10 @@ internal fun LastCharacterItem(
 @Preview
 @Composable
 private fun LastCharactersItemPreview() {
+    val characterModel = TmpMock.lastCharacterUIList.first()
     RpgCompanionTheme {
         LastCharacterItem(
-            characterModel = TmpMock.lastCharacterModelList.first(),
-            onHomeScreenAction = {},
-        )
+            characterUI = characterModel,
+        ) {}
     }
 }
-

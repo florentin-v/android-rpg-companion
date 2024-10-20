@@ -12,12 +12,13 @@ import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioListMo
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreenAction
 
 @Composable
 internal fun ScenarioListSuccess(
     scenarioListModel: ScenarioListModel,
     modifier: Modifier = Modifier,
-    goToScenarioDetail: (scenarioId: Long) -> Unit = {},
+    onScenarioListScreenAction: (ScenarioListScreenAction) -> Unit = {},
     updateDeletingScenario: (scenarioModel: ScenarioModel) -> Unit = {},
 ) {
     LazyColumn(
@@ -26,7 +27,9 @@ internal fun ScenarioListSuccess(
         itemsIndexed(scenarioListModel.scenarioModels) { index, scenario ->
             ScenarioListItem(
                 scenario = scenario,
-                goToScenarioDetail = goToScenarioDetail,
+                goToScenarioDetail = {
+                    onScenarioListScreenAction(ScenarioListScreenAction.GoToScenarioDetail(it))
+                },
                 deleteScenario = { updateDeletingScenario(scenario) },
             )
             if (index < scenarioListModel.scenarioModels.lastIndex) HorizontalDivider()

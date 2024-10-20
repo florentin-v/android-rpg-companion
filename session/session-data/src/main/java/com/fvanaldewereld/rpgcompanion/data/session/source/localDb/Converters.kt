@@ -1,12 +1,13 @@
 package com.fvanaldewereld.rpgcompanion.data.session.source.localDb
 
 import androidx.room.TypeConverter
+import com.fvanaldewereld.rpgcompanion.data.session.source.localDb.entity.SessionStatus
 
 object Converters {
 
     @TypeConverter
-    fun toSessionStatus(value: String) = enumValueOf<com.fvanaldewereld.rpgcompanion.data.session.source.localDb.entity.SessionStatus>(value)
+    fun toSessionStatus(value: String) = enumValueOf<SessionStatus>(value)
 
     @TypeConverter
-    fun fromSessionStatus(value: com.fvanaldewereld.rpgcompanion.data.session.source.localDb.entity.SessionStatus) = value.name
+    fun fromSessionStatus(value: SessionStatus) = value.name
 }

@@ -35,5 +35,4 @@ internal class LocalDbSessionRepository(
         .delete(
             sessionLocalDb = sessionDao.getSessionById(sessionId = sessionId),
         )
-
 }

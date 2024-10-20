@@ -41,7 +41,7 @@ class ScenarioMapperTest : BasicKoinTest() {
             chapterMapper = mockChapterMapper,
             characterMapper = mockCharacterMapper,
             informationMapper = mockInformationMapper,
-            placeMapper = mockPlaceMapper
+            placeMapper = mockPlaceMapper,
         )
     }
 

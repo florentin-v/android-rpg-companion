@@ -13,8 +13,8 @@ internal class ChapterMapper {
         ),
     )
 
-     fun toDataLocalDb(from: ChapterModel) = ChapterLocalDb(
+    fun toDataLocalDb(from: ChapterModel) = ChapterLocalDb(
         name = from.name,
-        description = from.description.paragraphs
+        description = from.description.paragraphs,
     )
 }

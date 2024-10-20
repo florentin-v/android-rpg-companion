@@ -8,5 +8,4 @@ data class LastScenarioUI(
     val id: Long,
     val author: String,
     val title: String,
-) : ModelUI, Parcelable
-
+) : Parcelable

@@ -4,18 +4,24 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
+import com.fvanaldewereld.rpgcompanion.api.domain.game.model.GameModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionModel
 import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionStatus
 import com.fvanaldewereld.rpgcompanion.common.dispatchers.KDispatchers
 import com.fvanaldewereld.rpgcompanion.lib.domain.character.useCase.AddCharacterUseCase
 import com.fvanaldewereld.rpgcompanion.lib.domain.character.useCase.GetLastCharacterListUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.game.useCase.AddGameUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.game.useCase.GetGameByIdUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.game.useCase.GetLastGameListUseCase
 import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.GetLastScenarioListUseCase
 import com.fvanaldewereld.rpgcompanion.lib.domain.session.useCase.AddSessionUseCase
 import com.fvanaldewereld.rpgcompanion.lib.domain.session.useCase.GetLastSessionListUseCase
-import com.fvanaldewereld.rpgcompanion.ui.home.component.GameModel
+import com.fvanaldewereld.rpgcompanion.ui.home.mapper.LastCharacterUIMapper
 import com.fvanaldewereld.rpgcompanion.ui.home.mapper.LastScenarioUIMapper
+import com.fvanaldewereld.rpgcompanion.ui.home.model.CharacterUI
 import com.fvanaldewereld.rpgcompanion.ui.home.state.HomeUIState
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,12 +32,16 @@ import kotlinx.coroutines.withContext
 class HomeViewModel(
     private val savedStateHandle: SavedStateHandle,
     private val addCharacterUseCase: AddCharacterUseCase,
+    private val addGameUseCase: AddGameUseCase,
     private val addSessionUseCase: AddSessionUseCase,
+    private val getGameByIdUseCase: GetGameByIdUseCase,
     private val getLastCharacterListUseCase: GetLastCharacterListUseCase,
+    private val getLastGameListUseCase: GetLastGameListUseCase,
     private val getLastScenarioListUseCase: GetLastScenarioListUseCase,
     private val getLastSessionListUseCase: GetLastSessionListUseCase,
     private val dispatchers: KDispatchers,
     private val lastScenarioUIMapper: LastScenarioUIMapper,
+    private val lastCharacterUIMapper: LastCharacterUIMapper,
 ) : ViewModel() {
 
     companion object {
@@ -39,11 +49,12 @@ class HomeViewModel(
 
         // region TMP mock
         object TmpMock {
-            val lastGameModelList = listOf(
-                GameModel(0, "Starfinder"),
-                GameModel(1, "Imperium 5"),
+            val lastGameModelList = persistentListOf(
+                GameModel(name = "Starfinder"),
+                GameModel(name = "Imperium 5"),
+                GameModel(name = "Fallout"),
             )
-            val lastSessionModelList = listOf(
+            val lastSessionModelList = persistentListOf(
                 SessionModel(
                     title = "Game session 0",
                     status = SessionStatus.NOT_STARTED,
@@ -61,7 +72,7 @@ class HomeViewModel(
                 ),
             )
 
-            val lastCharacterModelList = listOf(
+            val lastCharacterModelList = persistentListOf(
                 CharacterModel(
                     level = 1,
                     name = "David Jackson",
@@ -78,6 +89,27 @@ class HomeViewModel(
                     name = "Alaxa",
                 ),
             )
+
+            val lastCharacterUIList = persistentListOf(
+                CharacterUI(
+                    id = 0,
+                    level = 11,
+                    name = "David Jackson",
+                    game = lastGameModelList[0],
+                ),
+                CharacterUI(
+                    id = 1,
+                    game = lastGameModelList[0],
+                    level = 1,
+                    name = "Poulpi 1.0",
+                ),
+                CharacterUI(
+                    id = 2,
+                    game = lastGameModelList[1],
+                    level = 1,
+                    name = "Alaxa",
+                ),
+            )
         }
         // endregion
     }
@@ -87,22 +119,22 @@ class HomeViewModel(
         HomeUIState.Loading,
     )
 
-    private val lastCharacterModelListFlow = MutableStateFlow<List<CharacterModel>>(emptyList())
+    private val lastCharacterUIListFlow = MutableStateFlow<List<CharacterUI>>(emptyList())
     private val lastGameModelListFlow = MutableStateFlow<List<GameModel>>(emptyList())
     private val lastSessionModelListFlow = MutableStateFlow<List<SessionModel>>(emptyList())
     private val lastScenarioModelListFlow = MutableStateFlow<List<ScenarioModel>>(emptyList())
 
     private val combinedFlow = combine(
-        lastCharacterModelListFlow,
+        lastCharacterUIListFlow,
         lastGameModelListFlow,
         lastSessionModelListFlow,
         lastScenarioModelListFlow,
-    ) { lastCharacterModels, lastGameModels, lastGameSessionModels, lastScenarioModels ->
+    ) { lastCharacterUIList, lastGameModelList, lastSessionModelList, lastScenarioModelList ->
         HomeUIState.Success(
-            lastCharacterModels = lastCharacterModels,
-            lastGameModels = lastGameModels,
-            lastSessionModels = lastGameSessionModels,
-            lastScenarioUIs = lastScenarioModels.mapNotNull(lastScenarioUIMapper::to),
+            lastCharacterUIList = lastCharacterUIList,
+            lastGameModelList = lastGameModelList,
+            lastSessionModelList = lastSessionModelList,
+            lastScenarioUIList = lastScenarioModelList.mapNotNull(lastScenarioUIMapper::toUI),
         )
     }
 
@@ -121,23 +153,23 @@ class HomeViewModel(
     private fun getData() {
         viewModelScope.launch {
             withContext(dispatchers.default()) {
-                getLastCharacterModels()
-                getLastGameModels()
-                getLastSessionModels()
-                getLastScenarioModels()
+                getLastCharacterUIList()
+                getLastGameModelList()
+                getLastSessionModelList()
+                getLastScenarioModelList()
             }
         }
     }
 
-    private suspend fun getLastScenarioModels() {
+    private suspend fun getLastScenarioModelList() {
         // TODO Catch SQLiteException
         delay(2000)
         kotlin.runCatching { getLastScenarioListUseCase(number = 3) }
             .onSuccess { lastScenarioModelList -> lastScenarioModelListFlow.value = lastScenarioModelList }
     }
 
-    private suspend fun getLastSessionModels() {
-        // TODO FVA Remove this after implementing the character creation flow
+    private suspend fun getLastSessionModelList() {
+        // TODO FVA Remove this after implementing the session creation flow
         addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[0])
         addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[1])
         addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[2])
@@ -148,12 +180,18 @@ class HomeViewModel(
             .onSuccess { lastSessionModelList -> lastSessionModelListFlow.value = lastSessionModelList }
     }
 
-    private suspend fun getLastGameModels() {
+    private suspend fun getLastGameModelList() {
+        // TODO FVA Remove this after implementing the session creation flow
+        addGameUseCase(gameModel = TmpMock.lastGameModelList[0])
+        addGameUseCase(gameModel = TmpMock.lastGameModelList[1])
+        addGameUseCase(gameModel = TmpMock.lastGameModelList[2])
+
         delay(2000)
-        lastGameModelListFlow.value = TmpMock.lastGameModelList
+        kotlin.runCatching { getLastGameListUseCase(number = 2) }
+            .onSuccess { lastGameModelList -> lastGameModelListFlow.value = lastGameModelList }
     }
 
-    private suspend fun getLastCharacterModels() {
+    private suspend fun getLastCharacterUIList() {
         // TODO FVA Remove this after implementing the character creation flow
         addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[0])
         addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[1])
@@ -162,6 +200,17 @@ class HomeViewModel(
         // TODO Catch SQLiteException
         delay(2000)
         kotlin.runCatching { getLastCharacterListUseCase(number = 2) }
-            .onSuccess { lastCharacterModelList -> lastCharacterModelListFlow.value = lastCharacterModelList }
+            .onSuccess { lastCharacterModelList ->
+                val lastCharacterUIList = lastCharacterModelList.map { characterModel ->
+                    val gameModel = characterModel.gameId?.let {
+                        kotlin.runCatching { getGameByIdUseCase(it) }.getOrNull()
+                    }
+                    lastCharacterUIMapper.toUIWithGameModel(
+                        from = characterModel,
+                        gameModel = gameModel,
+                    )
+                }
+                lastCharacterUIListFlow.value = lastCharacterUIList
+            }
     }
 }

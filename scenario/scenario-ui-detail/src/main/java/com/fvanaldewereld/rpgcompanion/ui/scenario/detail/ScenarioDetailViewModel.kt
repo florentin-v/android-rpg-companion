@@ -24,14 +24,14 @@ class ScenarioDetailViewModel(
     private val scenarioId: Long
         get() = savedStateHandle.toRoute<NavigationRoute.ScenarioDetail>().scenarioId
 
-    var scenarioDetailUiStateFlow: StateFlow<ScenarioDetailUiState> =
+    var uiStateFlow: StateFlow<ScenarioDetailUiState> =
         savedStateHandle.getStateFlow<ScenarioDetailUiState>(
             SCENARIO_UI_STATE_KEY,
             ScenarioDetailUiState.Loading,
         )
 
     init {
-        if (scenarioDetailUiStateFlow.value is ScenarioDetailUiState.Loading) {
+        if (uiStateFlow.value is ScenarioDetailUiState.Loading) {
             getScenarioDetail()
         }
     }

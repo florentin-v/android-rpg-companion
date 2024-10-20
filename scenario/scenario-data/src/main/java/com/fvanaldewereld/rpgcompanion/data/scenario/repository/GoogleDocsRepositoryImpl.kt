@@ -12,7 +12,6 @@ internal class GoogleDocsRepositoryImpl(
     private val scenarioModelMapper: ScenarioModelMapper,
 ) : GoogleDocsRepository {
 
-
     override suspend fun getScenarioByGdocsUrl(documentUrl: URL): ScenarioModel {
         val scenarioDto = googleDocsDataSource.getGoogleDocsById(documentUrl.extractGoogleDocumentId())
         return scenarioModelMapper.toDomain(scenarioDto)

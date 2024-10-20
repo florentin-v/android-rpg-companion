@@ -1,12 +1,10 @@
-package com.fvanaldewereld.rpgcompanion.ui.home.component
+package com.fvanaldewereld.rpgcompanion.api.domain.game.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GameModel(
-    val id: Long,
+    val id: Long = 0,
     val name: String,
 ) : Parcelable
-
-// TODO FVA Move into specific module

@@ -36,7 +36,7 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
     fun setUp() {
         googleDocsRepository = GoogleDocsRepositoryImpl(
             googleDocsDataSource = mockGoogleDocsDataSource,
-            scenarioModelMapper = mockScenarioModelMapper
+            scenarioModelMapper = mockScenarioModelMapper,
         )
     }
 

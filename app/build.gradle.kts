@@ -46,6 +46,11 @@ dependencies {
     implementation(project(":character:character-domain-lib"))
     implementation(project(":character:character-ui-detail"))
     implementation(project(":character:character-ui-list"))
+    
+    implementation(project(":game:game-data"))
+    implementation(project(":game:game-domain-lib"))
+    implementation(project(":game:game-ui-detail"))
+    implementation(project(":game:game-ui-list"))
 
     implementation(project(":scenario:scenario-data"))
     implementation(project(":scenario:scenario-domain-lib"))
@@ -56,4 +61,7 @@ dependencies {
     implementation(project(":session:session-domain-lib"))
     implementation(project(":session:session-ui-detail"))
     implementation(project(":session:session-ui-list"))
+
+    // Implementations - Libraries
+    implementation(libs.kotlinx.collections.immutable)
 }

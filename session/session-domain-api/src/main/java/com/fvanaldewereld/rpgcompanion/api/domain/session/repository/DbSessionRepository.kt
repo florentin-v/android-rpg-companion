@@ -2,7 +2,6 @@ package com.fvanaldewereld.rpgcompanion.api.domain.session.repository
 
 import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionModel
 
-
 interface DbSessionRepository {
 
     suspend fun addSession(sessionModel: SessionModel)

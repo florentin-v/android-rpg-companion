@@ -28,7 +28,7 @@ class SummaryModelMapperTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         summaryModelMapper = SummaryModelMapper(
-            descriptionModelMapper = mockDescriptionModeMapper
+            descriptionModelMapper = mockDescriptionModeMapper,
         )
     }
 

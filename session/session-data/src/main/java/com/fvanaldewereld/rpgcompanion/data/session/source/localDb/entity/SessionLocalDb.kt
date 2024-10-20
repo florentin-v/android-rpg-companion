@@ -9,6 +9,5 @@ data class SessionLocalDb(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo("game_id") val gameId: Long? = null,
     val title: String,
-    val status: SessionStatus
+    val status: SessionStatus,
 )
-

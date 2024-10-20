@@ -9,26 +9,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
+import com.fvanaldewereld.rpgcompanion.ui.home.model.CharacterUI
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun LastCharacterList(
-    lastCharacterModels: List<CharacterModel>,
+    lastCharacterUIList: ImmutableList<CharacterUI>,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     Column {
         Text("My last characters", style = Typography.titleLarge)
-        lastCharacterModels.ifEmpty { null }?.let {
-            LazyRow (
+        lastCharacterUIList.ifEmpty { null }?.let {
+            LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 contentPadding = PaddingValues(vertical = 10.dp),
             ) {
-                items(it) { characterModel ->
-                    LastCharacterItem(characterModel, onHomeScreenAction)
+                items(it) { characterUI ->
+                    LastCharacterItem(
+                        characterUI = characterUI,
+                        onHomeScreenAction = onHomeScreenAction,
+                    )
                 }
             }
         } ?: Text("There is no character !")
@@ -40,7 +44,7 @@ internal fun LastCharacterList(
 private fun LastCharacterListPreview() {
     RpgCompanionTheme {
         LastCharacterList(
-            lastCharacterModels = TmpMock.lastCharacterModelList,
+            lastCharacterUIList = TmpMock.lastCharacterUIList,
             onHomeScreenAction = {},
         )
     }

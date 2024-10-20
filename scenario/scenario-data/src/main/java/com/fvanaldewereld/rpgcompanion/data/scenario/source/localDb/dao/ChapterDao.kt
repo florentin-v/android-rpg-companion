@@ -24,5 +24,4 @@ interface ChapterDao {
 
     @Delete
     fun delete(chapterLocalDb: ChapterLocalDb)
-
 }

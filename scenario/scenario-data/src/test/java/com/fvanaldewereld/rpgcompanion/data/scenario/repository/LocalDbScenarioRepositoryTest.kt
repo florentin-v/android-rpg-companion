@@ -37,7 +37,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     fun setUp() {
         localDbScenarioRepository = LocalDbScenarioRepository(
             scenarioDao = mockScenarioDao,
-            scenarioMapper = mockScenarioMapper
+            scenarioMapper = mockScenarioMapper,
         )
     }
 

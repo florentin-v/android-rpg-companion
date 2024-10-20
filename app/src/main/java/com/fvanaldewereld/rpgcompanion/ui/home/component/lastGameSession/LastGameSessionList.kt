@@ -14,10 +14,11 @@ import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun LastGameSessionList(
-    lastSessionModels: List<SessionModel>,
+    lastSessionModels: ImmutableList<SessionModel>,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     Column {

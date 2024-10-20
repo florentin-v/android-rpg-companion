@@ -32,5 +32,4 @@ abstract class ScenarioDatabase : RoomDatabase() {
     companion object {
         const val DATABASE_NAME = "scenario-database"
     }
-
 }

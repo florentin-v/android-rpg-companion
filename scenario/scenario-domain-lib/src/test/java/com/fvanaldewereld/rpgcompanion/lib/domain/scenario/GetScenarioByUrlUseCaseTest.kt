@@ -31,7 +31,7 @@ class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
     @BeforeEach
     fun setUp() {
         getScenarioByUrlUseCase = GetScenarioByUrlUseCase(
-            googleDocsRepository = mockGoogleDocsRepository
+            googleDocsRepository = mockGoogleDocsRepository,
         )
     }
 
