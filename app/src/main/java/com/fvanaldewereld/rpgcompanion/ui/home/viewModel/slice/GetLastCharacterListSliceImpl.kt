@@ -28,7 +28,7 @@ class GetLastCharacterListSliceImpl(
             addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[1])
             addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[2])
         }
-        delay(2000)
+        delay(2_000L)
 
         runCatching { getLastCharacterListUseCase(number = 2) }
             .onSuccess { lastCharacterModelList ->

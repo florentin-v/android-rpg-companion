@@ -18,6 +18,7 @@ import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.slice.GetLastCharacterL
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.slice.GetLastGameListSlice
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.slice.GetLastScenarioListSlice
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.slice.GetLastSessionListSlice
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -63,6 +64,7 @@ class HomeViewModel(
     init {
         if (homeUIStateFlow.value is HomeUIState.Loading) {
             viewModelScope.launch {
+                delay(5_000L)
                 combinedFlow.collect { homeUiState ->
                     savedStateHandle[HOME_UI_STATE_KEY] = homeUiState
                 }

@@ -24,7 +24,7 @@ class GetLastGameListSliceImpl(
             addGameUseCase(gameModel = TmpMock.lastGameModelList[1])
             addGameUseCase(gameModel = TmpMock.lastGameModelList[2])
         }
-        delay(2000)
+        delay(2_000L)
 
         runCatching { getLastGameListUseCase(number) }
             .onSuccess { gameList ->

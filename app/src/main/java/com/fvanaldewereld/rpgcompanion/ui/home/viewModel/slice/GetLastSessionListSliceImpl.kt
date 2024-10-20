@@ -24,7 +24,7 @@ class GetLastSessionListSliceImpl(
             addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[1])
             addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[2])
         }
-        delay(2000)
+        delay(2_000L)
 
         runCatching { getLastSessionListUseCase(number) }
             .onSuccess { sessionList ->

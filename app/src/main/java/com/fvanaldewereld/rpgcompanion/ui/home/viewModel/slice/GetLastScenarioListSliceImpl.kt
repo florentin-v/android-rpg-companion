@@ -16,7 +16,7 @@ class GetLastScenarioListSliceImpl(
 
     override suspend fun getLastScenarioList(number: Int) {
         _lastScenarioListState.value = LastScenarioListState.Loading
-        delay(2000)
+        delay(2_000L)
         kotlin.runCatching { getLastScenarioListUseCase(number) }
             .onSuccess { scenarioList ->
                 _lastScenarioListState.value = LastScenarioListState.Success(
