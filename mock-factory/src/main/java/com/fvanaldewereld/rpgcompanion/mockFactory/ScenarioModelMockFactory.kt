@@ -3,19 +3,19 @@
 package com.fvanaldewereld.rpgcompanion.mockFactory
 
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.AuthorModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChapterListModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChapterModel
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChaptersModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharacterListModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharacterModel
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharactersModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.DescriptionModel
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.GenresModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.GenreListModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.InformationModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.MainInfoModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceListModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceModel
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlacesModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.SummaryModel
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ThemesModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ThemeListModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.TitleModel
 
 object ScenarioModelMockFactory {
@@ -24,7 +24,7 @@ object ScenarioModelMockFactory {
 
     private const val SCENARIO_DOCUMENT_NAME = "Scenario - Example"
 
-    private const val SCENARIO_TITLE = "Scenario - Example"
+    private const val SCENARIO_TITLE = "Scenario"
 
     private const val SCENARIO_AUTHOR = "Author"
 
@@ -125,10 +125,10 @@ object ScenarioModelMockFactory {
     val authorModel = AuthorModel(SCENARIO_AUTHOR)
     val informationModel = InformationModel(
         nbPlayers = NUMBER_OF_PLAYERS_VALUE,
-        genres = GenresModel(
+        genreList = GenreListModel(
             values = listOf(GENRES_HORROR, GENRES_DRAMA),
         ),
-        themes = ThemesModel(
+        themeList = ThemeListModel(
             values = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
         ),
     )
@@ -151,7 +151,7 @@ object ScenarioModelMockFactory {
         name = SCENARIO_CHAPTERS_INTRODUCTION,
         description = chapterDescriptionModel,
     )
-    val chaptersModel = ChaptersModel(
+    val chapterListModel = ChapterListModel(
         listOf(
             chapterModel,
         ),
@@ -170,8 +170,8 @@ object ScenarioModelMockFactory {
         name = SCENARIO_CHARACTERS_NAME_2,
         description = characterDescriptionModel2,
     )
-    val charactersModel = CharactersModel(
-        characters = listOf(
+    val characterListModel = CharacterListModel(
+        list = listOf(
             characterModel1,
             characterModel2,
         ),
@@ -190,8 +190,8 @@ object ScenarioModelMockFactory {
         name = SCENARIO_PLACES_NAME_2,
         description = placeDescriptionModel2,
     )
-    val placesModel = PlacesModel(
-        places = listOf(
+    val placeListModel = PlaceListModel(
+        list = listOf(
             placeModel1,
             placeModel2,
         ),
@@ -200,18 +200,18 @@ object ScenarioModelMockFactory {
     val scenarioModelWithoutId = ScenarioModel(
         documentName = SCENARIO_DOCUMENT_NAME,
         mainInfo = mainInfoModel,
-        chapters = chaptersModel,
-        characters = charactersModel,
-        places = placesModel,
+        chapterList = chapterListModel,
+        characterList = characterListModel,
+        placeList = placeListModel,
     )
 
     val scenarioModelWithId = ScenarioModel(
         id = SCENARIO_ID,
         documentName = SCENARIO_DOCUMENT_NAME,
         mainInfo = mainInfoModel,
-        chapters = chaptersModel,
-        characters = charactersModel,
-        places = placesModel,
+        chapterList = chapterListModel,
+        characterList = characterListModel,
+        placeList = placeListModel,
     )
 
     val emptyScenarioModelWithoutId = ScenarioModel(

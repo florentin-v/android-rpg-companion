@@ -42,6 +42,7 @@ object GoogleDocsMockFactory {
     private const val SCENARIO_INFORMATION = "Information"
 
     private const val NUMBER_OF_PLAYERS_LABEL = "Number of players"
+
     private const val NUMBER_OF_PLAYERS_VALUE = 4
 
     private const val GENRES_LABEL = "Genres"

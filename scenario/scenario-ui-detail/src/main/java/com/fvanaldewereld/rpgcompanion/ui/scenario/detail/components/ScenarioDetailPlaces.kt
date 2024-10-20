@@ -9,12 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlacesModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceListModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.R
 
 @Composable
-fun ScenarioDetailPlaces(placesModel: PlacesModel, modifier: Modifier = Modifier) {
+fun ScenarioDetailPlaces(placeListModel: PlaceListModel, modifier: Modifier = Modifier) {
     LazyColumn(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -25,7 +25,7 @@ fun ScenarioDetailPlaces(placesModel: PlacesModel, modifier: Modifier = Modifier
                 style = Typography.headlineSmall,
                 modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
             )
-            with(placesModel.places) {
+            with(placeListModel.list) {
                 if (isNotEmpty()) {
                     forEach { place ->
                         Text(

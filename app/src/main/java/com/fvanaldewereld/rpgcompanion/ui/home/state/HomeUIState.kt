@@ -1,9 +1,9 @@
 package com.fvanaldewereld.rpgcompanion.ui.home.state
 
 import android.os.Parcelable
-import com.fvanaldewereld.rpgcompanion.api.domain.character.models.CharacterModel
+import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
+import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionModel
 import com.fvanaldewereld.rpgcompanion.ui.home.component.GameModel
-import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionModel
 import com.fvanaldewereld.rpgcompanion.ui.home.model.LastScenarioUI
 import kotlinx.parcelize.Parcelize
 

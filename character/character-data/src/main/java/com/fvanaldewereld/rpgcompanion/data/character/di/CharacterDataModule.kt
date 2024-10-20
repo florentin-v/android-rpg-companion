@@ -1,21 +1,21 @@
 package com.fvanaldewereld.rpgcompanion.data.character.di
 
 import androidx.room.Room
-import com.fvanaldewereld.rpgcompanion.api.domain.character.repositories.DbCharacterRepository
-import com.fvanaldewereld.rpgcompanion.data.character.mappers.CharacterMapper
-import com.fvanaldewereld.rpgcompanion.data.character.mappers.CharacterMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.character.repositories.LocalDbCharacterRepositoryImpl
-import com.fvanaldewereld.rpgcompanion.data.character.sources.localDatabase.CharacterDatabase
-import com.fvanaldewereld.rpgcompanion.data.character.sources.localDatabase.dao.CharacterDao
+import com.fvanaldewereld.rpgcompanion.api.domain.character.repository.DbCharacterRepository
+import com.fvanaldewereld.rpgcompanion.data.character.mapper.CharacterMapper
+import com.fvanaldewereld.rpgcompanion.data.character.repository.LocalDbCharacterRepository
+import com.fvanaldewereld.rpgcompanion.data.character.source.localDb.CharacterDatabase
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val CHARACTER_DATA_MODULE = module {
 
-    // DbObjectMapper
-    single<CharacterMapper> { CharacterMapperImpl() }
+    // Mapper
+    singleOf(::CharacterMapper)
 
-    // Sources
+    // Source
     single<CharacterDatabase> {
         Room.databaseBuilder(
             androidContext(),
@@ -23,8 +23,8 @@ val CHARACTER_DATA_MODULE = module {
             CharacterDatabase.DATABASE_NAME,
         ).build()
     }
-    single<CharacterDao> { get<CharacterDatabase>().characterDao() }
+    singleOf(CharacterDatabase::characterDao)
 
-    // Repositories
-    single<DbCharacterRepository> { LocalDbCharacterRepositoryImpl() }
+    // Repository
+    singleOf(::LocalDbCharacterRepository) bind DbCharacterRepository::class
 }

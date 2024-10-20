@@ -6,28 +6,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioListModel
 import com.fvanaldewereld.rpgcompanion.common.dispatchers.KDispatchers
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.AddScenarioUseCase
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.DeleteScenarioUseCase
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetScenarioByUrlUseCase
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetScenarioListUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.AddScenarioUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.DeleteScenarioUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.GetScenarioByUrlUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.GetScenarioListUseCase
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.context.GlobalContext
 import java.net.URL
 
 class ScenarioListViewModel(
     private val savedStateHandle: SavedStateHandle,
+    private val addScenarioUseCase: AddScenarioUseCase,
+    private val deleteScenarioUseCase: DeleteScenarioUseCase,
+    private val getScenarioByUrlUseCase: GetScenarioByUrlUseCase,
+    private val getScenarioListUseCase: GetScenarioListUseCase,
+    private val dispatchers: KDispatchers,
 ) : ViewModel() {
 
     companion object {
         const val SCENARIO_LIST_UI_STATE_KEY = "SCENARIO_LIST_UI_STATE_KEY"
     }
-
-    private val addScenarioUseCase: AddScenarioUseCase by GlobalContext.get().inject()
-    private val deleteScenarioUseCase: DeleteScenarioUseCase by GlobalContext.get().inject()
-    private val getScenarioListUseCase: GetScenarioListUseCase by GlobalContext.get().inject()
-    private val dispatchers: KDispatchers by GlobalContext.get().inject()
 
     var scenarioListUiStateFlow: StateFlow<ScenarioListUiState> =
         savedStateHandle.getStateFlow<ScenarioListUiState>(
@@ -43,7 +42,6 @@ class ScenarioListViewModel(
 
     @SuppressWarnings("kotlin:S1481")
     fun addScenario(scenarioUrl: String, goToScenarioDetail: (scenarioId: Long) -> Unit) {
-        val getScenarioByUrlUseCase by GlobalContext.get().inject<GetScenarioByUrlUseCase>()
         viewModelScope.launch {
             savedStateHandle[SCENARIO_LIST_UI_STATE_KEY] = ScenarioListUiState.Loading
             withContext(dispatchers.default()) {

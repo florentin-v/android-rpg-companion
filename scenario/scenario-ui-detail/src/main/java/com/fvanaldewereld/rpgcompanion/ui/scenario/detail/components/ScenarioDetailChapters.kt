@@ -9,11 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChaptersModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChapterListModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 
 @Composable
-fun ScenarioDetailChapters(chaptersModel: ChaptersModel, modifier: Modifier = Modifier) {
+fun ScenarioDetailChapters(chapterListModel: ChapterListModel, modifier: Modifier = Modifier) {
     LazyColumn(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -24,7 +24,7 @@ fun ScenarioDetailChapters(chaptersModel: ChaptersModel, modifier: Modifier = Mo
                 style = Typography.headlineSmall,
                 modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
             )
-            chaptersModel.chapters.forEach { chapter ->
+            chapterListModel.list.forEach { chapter ->
                 Text(
                     chapter.name,
                     style = Typography.titleLarge,

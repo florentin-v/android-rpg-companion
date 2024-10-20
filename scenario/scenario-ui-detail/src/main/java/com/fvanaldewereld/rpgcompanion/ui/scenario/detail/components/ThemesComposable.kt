@@ -12,16 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ThemesModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ThemeListModel
 
 @Composable
 @OptIn(ExperimentalLayoutApi::class)
-internal fun ThemesComposable(themesModel: ThemesModel) {
+internal fun ThemesComposable(themeListModel: ThemeListModel) {
     FlowRow(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 15.dp),
     ) {
-        themesModel.values.forEach { theme ->
+        themeListModel.values.forEach { theme ->
             AssistChip(
                 onClick = {},
                 modifier = Modifier.padding(2.dp),

@@ -117,13 +117,13 @@ internal fun ScenarioDetailSuccess(
                     ScenarioDetailMainInfo(scenario.mainInfo)
                 }
                 composable<NavigationRoute.SubScenarioDetail.Places> {
-                    ScenarioDetailPlaces(scenario.places)
+                    ScenarioDetailPlaces(scenario.placeList)
                 }
                 composable<NavigationRoute.SubScenarioDetail.Chapters> {
-                    ScenarioDetailChapters(scenario.chapters)
+                    ScenarioDetailChapters(scenario.chapterList)
                 }
                 composable<NavigationRoute.SubScenarioDetail.Characters> {
-                    ScenarioDetailCharacters(scenario.characters)
+                    ScenarioDetailCharacters(scenario.characterList)
                 }
             }
         }

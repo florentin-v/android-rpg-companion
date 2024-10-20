@@ -75,7 +75,7 @@ internal fun ScenarioListItem(
                     modifier = Modifier.fillMaxWidth(),
                     maxItemsInEachRow = 3,
                 ) {
-                    scenario.mainInfo.information.genres.values.forEach { genre ->
+                    scenario.mainInfo.information.genreList.values.forEach { genre ->
                         ScenarioListItemChips(genre)
                     }
                 }

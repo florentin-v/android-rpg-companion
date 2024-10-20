@@ -26,11 +26,11 @@ fun ScenarioDetailMainInfo(mainInfoModel: MainInfoModel, modifier: Modifier = Mo
         }
 
         item {
-            GenresComposable(mainInfoModel.information.genres)
+            GenresComposable(mainInfoModel.information.genreList)
         }
 
         item {
-            ThemesComposable(mainInfoModel.information.themes)
+            ThemesComposable(mainInfoModel.information.themeList)
         }
 
         item {

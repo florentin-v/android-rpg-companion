@@ -12,16 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.GenresModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.GenreListModel
 
 @Composable
 @OptIn(ExperimentalLayoutApi::class)
-internal fun GenresComposable(genresModel: GenresModel) {
+internal fun GenresComposable(genreListModel: GenreListModel) {
     FlowRow(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 15.dp),
     ) {
-        genresModel.values.forEach { genre ->
+        genreListModel.values.forEach { genre ->
             AssistChip(
                 onClick = {},
                 modifier = Modifier.padding(2.dp),

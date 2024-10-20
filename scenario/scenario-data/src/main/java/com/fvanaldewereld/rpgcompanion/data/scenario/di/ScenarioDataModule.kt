@@ -3,107 +3,83 @@ package com.fvanaldewereld.rpgcompanion.data.scenario.di
 import androidx.room.Room
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.repositories.DbScenarioRepository
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.repositories.GoogleDocsRepository
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.ChapterMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.ChapterMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.CharacterMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.CharacterMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.InformationMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.InformationMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.PlaceMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.PlaceMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.ScenarioMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dbObjectMappers.ScenarioMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dtoMappers.ScenarioDtoMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.dtoMappers.ScenarioDtoMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.AuthorModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.AuthorModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ChapterModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ChapterModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ChaptersModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ChaptersModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.CharacterModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.CharacterModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.CharactersModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.CharactersModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.DescriptionModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.DescriptionModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.InformationModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.InformationModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.MainInfoModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.MainInfoModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlaceModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlaceModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlacesModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.PlacesModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ScenarioModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.ScenarioModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.SummaryModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.SummaryModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.TitleModelMapper
-import com.fvanaldewereld.rpgcompanion.data.scenario.mappers.modelMappers.TitleModelMapperImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.repositories.GoogleDocsRepositoryImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.repositories.LocalDbScenarioRepositoryImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.GoogleDocsDataSource
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.GoogleDocsDataSourceImpl
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.googleDocs.service.GoogleDocsService
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.ScenarioDatabase
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.ChapterDao
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.CharacterDao
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.PlaceDao
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.ScenarioBaseDao
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.ScenarioDao
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.dao.ScenarioDaoImpl
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.dto.ScenarioDtoMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.ChapterMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.CharacterMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.InformationMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.PlaceMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.localDb.ScenarioMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.AuthorModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.ChapterListModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.ChapterModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.CharacterListModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.CharacterModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.DescriptionModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.InformationModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.MainInfoModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.PlaceListModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.PlaceModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.ScenarioModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.SummaryModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.mapper.model.TitleModelMapper
+import com.fvanaldewereld.rpgcompanion.data.scenario.repository.GoogleDocsRepositoryImpl
+import com.fvanaldewereld.rpgcompanion.data.scenario.repository.LocalDbScenarioRepository
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.googleDocs.GoogleDocsDataSource
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.googleDocs.GoogleDocsDataSourceImpl
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.googleDocs.service.GoogleDocsService
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.ScenarioDatabase
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.dao.ScenarioDao
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.dao.ScenarioDaoImpl
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val SCENARIO_DATA_MODULE = module {
 
-    // Model Mappers
-    single<AuthorModelMapper> { AuthorModelMapperImpl() }
-    single<ChapterModelMapper> { ChapterModelMapperImpl() }
-    single<ChaptersModelMapper> { ChaptersModelMapperImpl() }
-    single<CharacterModelMapper> { CharacterModelMapperImpl() }
-    single<CharactersModelMapper> { CharactersModelMapperImpl() }
-    single<DescriptionModelMapper> { DescriptionModelMapperImpl() }
-    single<InformationModelMapper> { InformationModelMapperImpl() }
-    single<MainInfoModelMapper> { MainInfoModelMapperImpl() }
-    single<PlaceModelMapper> { PlaceModelMapperImpl() }
-    single<PlacesModelMapper> { PlacesModelMapperImpl() }
-    single<ScenarioModelMapper> { ScenarioModelMapperImpl() }
-    single<SummaryModelMapper> { SummaryModelMapperImpl() }
-    single<TitleModelMapper> { TitleModelMapperImpl() }
+    // Model Mapper
+    singleOf(::AuthorModelMapper)
+    singleOf(::ChapterModelMapper)
+    singleOf(::ChapterListModelMapper)
+    singleOf(::CharacterModelMapper)
+    singleOf(::CharacterListModelMapper)
+    singleOf(::DescriptionModelMapper)
+    singleOf(::InformationModelMapper)
+    singleOf(::MainInfoModelMapper)
+    singleOf(::PlaceModelMapper)
+    singleOf(::PlaceListModelMapper)
+    singleOf(::ScenarioModelMapper)
+    singleOf(::SummaryModelMapper)
+    singleOf(::TitleModelMapper)
 
-    // DtoMapper
-    factory<ScenarioDtoMapper> { ScenarioDtoMapperImpl() }
+    // Dto Mapper
+    factoryOf(::ScenarioDtoMapper)
 
-    // DbObjectMapper
-    single<ScenarioMapper> { ScenarioMapperImpl() }
-    single<ChapterMapper> { ChapterMapperImpl() }
-    single<CharacterMapper> { CharacterMapperImpl() }
-    single<InformationMapper> { InformationMapperImpl() }
-    single<PlaceMapper> { PlaceMapperImpl() }
+    // LocalDb Mapper
+    singleOf(::ScenarioMapper)
+    singleOf(::ChapterMapper)
+    singleOf(::CharacterMapper)
+    singleOf(::InformationMapper)
+    singleOf(::PlaceMapper)
 
-    // Sources
-    factory<GoogleDocsService> {
-        GoogleDocsService(
-            androidContext(),
-        )
-    }
-    factory<GoogleDocsDataSource> { GoogleDocsDataSourceImpl() }
-    single<ScenarioDatabase> {
+    // Source
+    factoryOf(::GoogleDocsService)
+    factoryOf(::GoogleDocsDataSourceImpl) bind GoogleDocsDataSource::class
+    single {
         Room.databaseBuilder(
             androidContext(),
             ScenarioDatabase::class.java,
             ScenarioDatabase.DATABASE_NAME,
         ).build()
     }
-    single<ScenarioBaseDao> { get<ScenarioDatabase>().scenarioBaseDao() }
-    single<ScenarioDao> { ScenarioDaoImpl() }
-    single<ChapterDao> { get<ScenarioDatabase>().chapterDao() }
-    single<CharacterDao> { get<ScenarioDatabase>().characterDao() }
-    single<PlaceDao> { get<ScenarioDatabase>().placeDao() }
+    singleOf(ScenarioDatabase::scenarioBaseDao)
+    singleOf(ScenarioDatabase::chapterDao)
+    singleOf(ScenarioDatabase::characterDao)
+    singleOf(ScenarioDatabase::placeDao)
+    singleOf(::ScenarioDaoImpl) bind ScenarioDao::class
 
-    // Repositories
-    factory<GoogleDocsRepository> { GoogleDocsRepositoryImpl() }
-    single<DbScenarioRepository> { LocalDbScenarioRepositoryImpl() }
+    // Repository
+    factoryOf(::GoogleDocsRepositoryImpl) bind GoogleDocsRepository::class
+    singleOf(::LocalDbScenarioRepository) bind DbScenarioRepository::class
 }

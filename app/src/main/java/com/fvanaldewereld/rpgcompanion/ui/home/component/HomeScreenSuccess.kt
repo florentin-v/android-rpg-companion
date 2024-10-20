@@ -44,9 +44,9 @@ internal fun HomeScreenSuccess(
 private fun HomeScreenSuccessPreview() {
     HomeScreenSuccess(
         HomeUIState.Success(
-            lastCharacterModels = TmpMock.lastCharacterModels,
-            lastGameModels = TmpMock.lastGameModels,
-            lastSessionModels = TmpMock.lastSessionModels,
+            lastCharacterModels = TmpMock.lastCharacterModelList,
+            lastGameModels = TmpMock.lastGameModelList,
+            lastSessionModels = TmpMock.lastSessionModelList,
             lastScenarioUIs = listOf(
                 LastScenarioUI(
                     id = 1L,

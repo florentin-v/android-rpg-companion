@@ -2,12 +2,12 @@
 
 package com.fvanaldewereld.rpgcompanion.mockFactory
 
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.embedded.Information
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entities.Chapter
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entities.Character
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entities.Place
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.entities.ScenarioBase
-import com.fvanaldewereld.rpgcompanion.data.scenario.sources.localDatabase.relations.Scenario
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.embedded.InformationLocalDb
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.entity.ChapterLocalDb
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.entity.CharacterLocalDb
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.entity.PlaceLocalDb
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.entity.ScenarioBaseLocalDb
+import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.relation.ScenarioLocalDb
 
 object ScenarioDbObjectMockFactory {
 
@@ -15,7 +15,7 @@ object ScenarioDbObjectMockFactory {
 
     const val SCENARIO_ID: Long = 0
 
-    private const val SCENARIO_TITLE = "Scenario - Example"
+    private const val SCENARIO_TITLE = "Scenario"
 
     private const val SCENARIO_AUTHOR = "Author"
 
@@ -114,57 +114,57 @@ object ScenarioDbObjectMockFactory {
             "Vestibulum ac pulvinar ante. " +
             "Morbi eget nisi erat."
 
-    val information = Information(
+    val informationLocalDb = InformationLocalDb(
         nbPlayers = NUMBER_OF_PLAYERS_VALUE,
-        genres = listOf(GENRES_HORROR, GENRES_DRAMA),
-        themes = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
+        genreList = listOf(GENRES_HORROR, GENRES_DRAMA),
+        themeList = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
     )
 
-    val chapter = Chapter(
+    val chapterLocalDb = ChapterLocalDb(
         name = SCENARIO_CHAPTERS_INTRODUCTION,
         description = listOf(SCENARIO_CHAPTERS_INTRODUCTION_TEXT),
     )
-    private val chapters = listOf(chapter)
+    private val chapters = listOf(chapterLocalDb)
 
-    val character1 = Character(
+    val characterLocalDb1 = CharacterLocalDb(
         name = SCENARIO_CHARACTERS_NAME_1,
         description = listOf(SCENARIO_CHARACTERS_DESCRIPTION_1),
     )
 
-    val character2 = Character(
+    val characterLocalDb2 = CharacterLocalDb(
         name = SCENARIO_CHARACTERS_NAME_2,
         description = listOf(SCENARIO_CHARACTERS_DESCRIPTION_2),
     )
-    private val characters = listOf(character1, character2)
+    private val characters = listOf(characterLocalDb1, characterLocalDb2)
 
-    val place1 = Place(
+    val placeLocalDb1 = PlaceLocalDb(
         name = SCENARIO_PLACES_NAME_1,
         description = listOf(SCENARIO_PLACES_DESCRIPTION_1),
     )
 
-    val place2 = Place(
+    val placeLocalDb2 = PlaceLocalDb(
         name = SCENARIO_PLACES_NAME_2,
         description = listOf(SCENARIO_PLACES_DESCRIPTION_2),
     )
 
-    private val places = listOf(place1, place2)
+    private val places = listOf(placeLocalDb1, placeLocalDb2)
 
-    val scenario = Scenario(
-        scenarioBase = ScenarioBase(
+    val scenarioLocalDb = ScenarioLocalDb(
+        scenarioBaseLocalDb = ScenarioBaseLocalDb(
             id = SCENARIO_ID,
             documentName = SCENARIO_DOCUMENT_NAME,
             title = SCENARIO_TITLE,
             author = SCENARIO_AUTHOR,
-            information = information,
+            informationLocalDb = informationLocalDb,
             summary = listOf(SCENARIO_SUMMARY_TEXT),
         ),
-        chapters = chapters,
-        characters = characters,
-        places = places,
+        chapterLocalDbList = chapters,
+        characterLocalDbList = characters,
+        placeLocalDbList = places,
     )
 
-    val emptyScenario = Scenario(
-        scenarioBase = ScenarioBase(
+    val emptyScenarioLocalDb = ScenarioLocalDb(
+        scenarioBaseLocalDb = ScenarioBaseLocalDb(
             id = SCENARIO_ID,
             documentName = SCENARIO_DOCUMENT_NAME,
         ),

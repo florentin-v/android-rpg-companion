@@ -12,6 +12,6 @@ class ViewModelsTest {
             .scopeFromProject()
             .classes()
             .withAllParentsOf(ViewModel::class)
-            .assertTrue { it.hasNameEndingWith("ViewModhel") }
+            .assertTrue { it.hasNameEndingWith("ViewModel") }
     }
 }

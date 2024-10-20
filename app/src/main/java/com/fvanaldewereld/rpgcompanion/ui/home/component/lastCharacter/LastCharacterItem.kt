@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.fvanaldewereld.rpgcompanion.api.domain.character.models.CharacterModel
+import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.RpgCompanionTheme
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
@@ -51,7 +51,7 @@ internal fun LastCharacterItem(
 private fun LastCharactersItemPreview() {
     RpgCompanionTheme {
         LastCharacterItem(
-            characterModel = TmpMock.lastCharacterModels.first(),
+            characterModel = TmpMock.lastCharacterModelList.first(),
             onHomeScreenAction = {},
         )
     }

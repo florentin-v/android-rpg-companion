@@ -7,4 +7,4 @@ import kotlinx.parcelize.Parcelize
 data class ChapterDto(
     val name: String,
     val description: DescriptionDto,
-) : Parcelable, Dto
+) : Parcelable

@@ -2,7 +2,7 @@ package com.fvanaldewereld.rpgcompanion.lib.domain.scenario
 
 import BasicKoinTest
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.repositories.GoogleDocsRepository
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetScenarioByUrlUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.GetScenarioByUrlUseCase
 import com.fvanaldewereld.rpgcompanion.mockFactory.GoogleDocsMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
 import kotlinx.coroutines.runBlocking
@@ -30,8 +30,9 @@ class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
 
     @BeforeEach
     fun setUp() {
-        getScenarioByUrlUseCase =
-            GetScenarioByUrlUseCase()
+        getScenarioByUrlUseCase = GetScenarioByUrlUseCase(
+            googleDocsRepository = mockGoogleDocsRepository
+        )
     }
 
     @Test

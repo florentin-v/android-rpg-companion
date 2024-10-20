@@ -10,9 +10,9 @@ class HomeScreenPreviewParameterProvider : PreviewParameterProvider<HomeUIState>
         get() = sequenceOf(
             HomeUIState.Loading,
             HomeUIState.Success(
-                lastCharacterModels = HomeViewModel.Companion.TmpMock.lastCharacterModels,
-                lastGameModels = HomeViewModel.Companion.TmpMock.lastGameModels,
-                lastSessionModels = HomeViewModel.Companion.TmpMock.lastSessionModels,
+                lastCharacterModels = HomeViewModel.Companion.TmpMock.lastCharacterModelList,
+                lastGameModels = HomeViewModel.Companion.TmpMock.lastGameModelList,
+                lastSessionModels = HomeViewModel.Companion.TmpMock.lastSessionModelList,
                 lastScenarioUIs = listOf(
                     LastScenarioUI(
                         id = 1L,

@@ -3,15 +3,17 @@ package com.fvanaldewereld.rpgcompanion.ui.home.viewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fvanaldewereld.rpgcompanion.api.domain.character.models.CharacterModel
+import com.fvanaldewereld.rpgcompanion.api.domain.character.model.CharacterModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
+import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionModel
+import com.fvanaldewereld.rpgcompanion.api.domain.session.model.SessionStatus
 import com.fvanaldewereld.rpgcompanion.common.dispatchers.KDispatchers
-import com.fvanaldewereld.rpgcompanion.lib.domain.character.usecases.AddCharacterUseCase
-import com.fvanaldewereld.rpgcompanion.lib.domain.character.usecases.GetLastCharacterListUseCase
-import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.usecases.GetLastScenarioListUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.character.useCase.AddCharacterUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.character.useCase.GetLastCharacterListUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.scenario.useCase.GetLastScenarioListUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.session.useCase.AddSessionUseCase
+import com.fvanaldewereld.rpgcompanion.lib.domain.session.useCase.GetLastSessionListUseCase
 import com.fvanaldewereld.rpgcompanion.ui.home.component.GameModel
-import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionModel
-import com.fvanaldewereld.rpgcompanion.ui.home.component.SessionStatus
 import com.fvanaldewereld.rpgcompanion.ui.home.mapper.LastScenarioUIMapper
 import com.fvanaldewereld.rpgcompanion.ui.home.state.HomeUIState
 import kotlinx.coroutines.delay
@@ -20,10 +22,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.context.GlobalContext
 
 class HomeViewModel(
     private val savedStateHandle: SavedStateHandle,
+    private val addCharacterUseCase: AddCharacterUseCase,
+    private val addSessionUseCase: AddSessionUseCase,
+    private val getLastCharacterListUseCase: GetLastCharacterListUseCase,
+    private val getLastScenarioListUseCase: GetLastScenarioListUseCase,
+    private val getLastSessionListUseCase: GetLastSessionListUseCase,
+    private val dispatchers: KDispatchers,
+    private val lastScenarioUIMapper: LastScenarioUIMapper,
 ) : ViewModel() {
 
     companion object {
@@ -31,64 +39,64 @@ class HomeViewModel(
 
         // region TMP mock
         object TmpMock {
-            val lastGameModels = listOf(GameModel(0, "Starfinder"), GameModel(1, "Imperium 5"))
-            val lastSessionModels = listOf(
+            val lastGameModelList = listOf(
+                GameModel(0, "Starfinder"),
+                GameModel(1, "Imperium 5"),
+            )
+            val lastSessionModelList = listOf(
                 SessionModel(
-                    id = 0,
                     title = "Game session 0",
                     status = SessionStatus.NOT_STARTED,
-                    game = lastGameModels[0],
+                    gameId = lastGameModelList[0].id,
                 ),
                 SessionModel(
-                    id = 1,
                     title = "Game session 1",
                     status = SessionStatus.PENDING,
-                    game = lastGameModels[0],
+                    gameId = lastGameModelList[0].id,
                 ),
                 SessionModel(
-                    id = 2,
                     title = "Game session 2",
                     status = SessionStatus.FINISHED,
-                    game = lastGameModels[1],
+                    gameId = lastGameModelList[1].id,
                 ),
             )
 
-            val lastCharacterModels = listOf(
+            val lastCharacterModelList = listOf(
                 CharacterModel(
-                    id = 0,
                     level = 1,
                     name = "David Jackson",
-                    gameId = lastGameModels[0].id,
+                    gameId = lastGameModelList[0].id,
+                ),
+                CharacterModel(
+                    gameId = lastGameModelList[0].id,
+                    level = 1,
+                    name = "Poulpi 1.0",
+                ),
+                CharacterModel(
+                    gameId = lastGameModelList[1].id,
+                    level = 1,
+                    name = "Alaxa",
                 ),
             )
-
         }
         // endregion
     }
-
-    private val getLastScenarioListUseCase: GetLastScenarioListUseCase by GlobalContext.get().inject()
-    private val getLastCharacterListUseCase: GetLastCharacterListUseCase by GlobalContext.get().inject()
-
-    private val addCharacterUseCase: AddCharacterUseCase by GlobalContext.get().inject()
-
-    private val dispatchers: KDispatchers by GlobalContext.get().inject()
-    private val lastScenarioUIMapper: LastScenarioUIMapper by GlobalContext.get().inject()
 
     var homeUIStateFlow: StateFlow<HomeUIState> = savedStateHandle.getStateFlow<HomeUIState>(
         HOME_UI_STATE_KEY,
         HomeUIState.Loading,
     )
 
-    private val lastCharacterModelsFlow = MutableStateFlow<List<CharacterModel>>(emptyList())
-    private val lastGameModelsFlow = MutableStateFlow<List<GameModel>>(emptyList())
-    private val lastSessionModelsFlow = MutableStateFlow<List<SessionModel>>(emptyList())
-    private val lastScenarioModelsFlow = MutableStateFlow<List<ScenarioModel>>(emptyList())
+    private val lastCharacterModelListFlow = MutableStateFlow<List<CharacterModel>>(emptyList())
+    private val lastGameModelListFlow = MutableStateFlow<List<GameModel>>(emptyList())
+    private val lastSessionModelListFlow = MutableStateFlow<List<SessionModel>>(emptyList())
+    private val lastScenarioModelListFlow = MutableStateFlow<List<ScenarioModel>>(emptyList())
 
     private val combinedFlow = combine(
-        lastCharacterModelsFlow,
-        lastGameModelsFlow,
-        lastSessionModelsFlow,
-        lastScenarioModelsFlow,
+        lastCharacterModelListFlow,
+        lastGameModelListFlow,
+        lastSessionModelListFlow,
+        lastScenarioModelListFlow,
     ) { lastCharacterModels, lastGameModels, lastGameSessionModels, lastScenarioModels ->
         HomeUIState.Success(
             lastCharacterModels = lastCharacterModels,
@@ -115,7 +123,7 @@ class HomeViewModel(
             withContext(dispatchers.default()) {
                 getLastCharacterModels()
                 getLastGameModels()
-                getLastGameSessionModels()
+                getLastSessionModels()
                 getLastScenarioModels()
             }
         }
@@ -125,46 +133,35 @@ class HomeViewModel(
         // TODO Catch SQLiteException
         delay(2000)
         kotlin.runCatching { getLastScenarioListUseCase(number = 3) }
-            .onSuccess { lastScenarioModelList -> lastScenarioModelsFlow.value = lastScenarioModelList }
+            .onSuccess { lastScenarioModelList -> lastScenarioModelListFlow.value = lastScenarioModelList }
     }
 
-    private suspend fun getLastGameSessionModels() {
+    private suspend fun getLastSessionModels() {
+        // TODO FVA Remove this after implementing the character creation flow
+        addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[0])
+        addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[1])
+        addSessionUseCase(sessionModel = TmpMock.lastSessionModelList[2])
+
+        // TODO Catch SQLiteException
         delay(2000)
-        lastSessionModelsFlow.value = TmpMock.lastSessionModels
+        kotlin.runCatching { getLastSessionListUseCase(number = 2) }
+            .onSuccess { lastSessionModelList -> lastSessionModelListFlow.value = lastSessionModelList }
     }
 
     private suspend fun getLastGameModels() {
         delay(2000)
-        lastGameModelsFlow.value = TmpMock.lastGameModels
+        lastGameModelListFlow.value = TmpMock.lastGameModelList
     }
 
     private suspend fun getLastCharacterModels() {
         // TODO FVA Remove this after implementing the character creation flow
-        addCharacterUseCase(
-            characterModel = CharacterModel(
-                gameId = TmpMock.lastGameModels[0].id,
-                level = 1,
-                name = "David Jackson",
-            ),
-        )
-        addCharacterUseCase(
-            characterModel = CharacterModel(
-                gameId = TmpMock.lastGameModels[0].id,
-                level = 1,
-                name = "Poulpi 1.0",
-            ),
-        )
-        addCharacterUseCase(
-            characterModel = CharacterModel(
-                gameId = TmpMock.lastGameModels[1].id,
-                level = 1,
-                name = "Alaxa",
-            ),
-        )
+        addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[0])
+        addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[1])
+        addCharacterUseCase(characterModel = TmpMock.lastCharacterModelList[2])
 
         // TODO Catch SQLiteException
         delay(2000)
         kotlin.runCatching { getLastCharacterListUseCase(number = 2) }
-            .onSuccess { lastCharacterModelList -> lastCharacterModelsFlow.value = lastCharacterModelList }
+            .onSuccess { lastCharacterModelList -> lastCharacterModelListFlow.value = lastCharacterModelList }
     }
 }
