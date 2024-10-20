@@ -14,21 +14,22 @@ import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.model.LastScenarioUI
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun LastScenarioList(
-    lastScenarioUIs: ImmutableList<LastScenarioUI>,
+    lastScenarioUIList: ImmutableList<LastScenarioUI>,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
     Column {
         Text("My last scenarios", style = Typography.titleLarge)
-        lastScenarioUIs.ifEmpty { null }?.let {
+        lastScenarioUIList.takeIf { it.isNotEmpty() }?.let {
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 contentPadding = PaddingValues(vertical = 10.dp),
             ) {
                 items(it) { lastScenarioUI ->
-                    LastScenariosItem(
+                    LastScenarioItem(
                         lastScenarioUI = lastScenarioUI,
                         onHomeScreenAction = onHomeScreenAction,
                     )
@@ -43,7 +44,7 @@ internal fun LastScenarioList(
 private fun LastScenarioListPreview() {
     RpgCompanionTheme {
         LastScenarioList(
-            lastScenarioUIs = listOf(
+            lastScenarioUIList = persistentListOf(
                 LastScenarioUI(
                     title = "title",
                     author = "author",

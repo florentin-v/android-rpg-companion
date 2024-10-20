@@ -9,12 +9,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.fvanaldewereld.rpgcompanion.ui.home.component.lastCharacter.LastCharacterList
-import com.fvanaldewereld.rpgcompanion.ui.home.component.lastGameSession.LastGameSessionList
+import com.fvanaldewereld.rpgcompanion.ui.home.component.lastGame.LastGameList
 import com.fvanaldewereld.rpgcompanion.ui.home.component.lastScenario.LastScenarioList
+import com.fvanaldewereld.rpgcompanion.ui.home.component.lastSession.LastSessionList
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.model.LastScenarioUI
 import com.fvanaldewereld.rpgcompanion.ui.home.state.HomeUIState
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun HomeScreenSuccess(
@@ -28,13 +31,28 @@ internal fun HomeScreenSuccess(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         item {
-            LastGameSessionList(state.lastSessionModelList, onHomeScreenAction)
+            LastGameList(
+                lastGameModelList = state.lastGameModelList.toPersistentList(),
+                onHomeScreenAction = onHomeScreenAction,
+            )
         }
         item {
-            LastCharacterList(state.lastCharacterUIList, onHomeScreenAction)
+            LastSessionList(
+                lastSessionModelList = state.lastSessionModelList.toPersistentList(),
+                onHomeScreenAction = onHomeScreenAction,
+            )
         }
         item {
-            LastScenarioList(state.lastScenarioUIList, onHomeScreenAction)
+            LastCharacterList(
+                lastCharacterUIList = state.lastCharacterUIList.toPersistentList(),
+                onHomeScreenAction = onHomeScreenAction,
+            )
+        }
+        item {
+            LastScenarioList(
+                lastScenarioUIList = state.lastScenarioUIList.toPersistentList(),
+                onHomeScreenAction = onHomeScreenAction,
+            )
         }
     }
 }
@@ -47,7 +65,7 @@ private fun HomeScreenSuccessPreview() {
             lastCharacterUIList = TmpMock.lastCharacterUIList,
             lastGameModelList = TmpMock.lastGameModelList,
             lastSessionModelList = TmpMock.lastSessionModelList,
-            lastScenarioUIList = listOf(
+            lastScenarioUIList = persistentListOf(
                 LastScenarioUI(
                     id = 1L,
                     title = "title",

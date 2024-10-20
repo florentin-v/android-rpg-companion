@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.home.component.lastGameSession
+package com.fvanaldewereld.rpgcompanion.ui.home.component.lastSession
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -19,7 +19,7 @@ import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel.Companion.TmpMock
 
 @Composable
-internal fun LastGameSessionItem(
+internal fun LastSessionItem(
     sessionModel: SessionModel,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
@@ -54,9 +54,9 @@ internal fun LastGameSessionItem(
 
 @Preview
 @Composable
-private fun LastGameSessionsItemPreview() {
+private fun LastSessionsItemPreview() {
     RpgCompanionTheme {
-        LastGameSessionItem(
+        LastSessionItem(
             sessionModel = TmpMock.lastSessionModelList.first(),
             onHomeScreenAction = {},
         )

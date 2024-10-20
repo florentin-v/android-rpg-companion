@@ -17,7 +17,7 @@ import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction
 import com.fvanaldewereld.rpgcompanion.ui.home.model.LastScenarioUI
 
 @Composable
-internal fun LastScenariosItem(
+internal fun LastScenarioItem(
     lastScenarioUI: LastScenarioUI,
     onHomeScreenAction: (HomeScreenAction) -> Unit,
 ) {
@@ -47,9 +47,9 @@ internal fun LastScenariosItem(
 
 @Preview
 @Composable
-private fun LastScenariosItemPreview() {
+private fun LastScenarioItemPreview() {
     RpgCompanionTheme {
-        LastScenariosItem(
+        LastScenarioItem(
             lastScenarioUI = LastScenarioUI(
                 title = "title",
                 author = "author",
