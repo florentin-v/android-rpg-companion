@@ -31,5 +31,4 @@ val HOME_UI_MODULE = module {
     factoryOf(::GetLastGameListSliceImpl) bind GetLastGameListSlice::class
     factoryOf(::GetLastScenarioListSliceImpl) bind GetLastScenarioListSlice::class
     factoryOf(::GetLastSessionListSliceImpl) bind GetLastSessionListSlice::class
-
 }

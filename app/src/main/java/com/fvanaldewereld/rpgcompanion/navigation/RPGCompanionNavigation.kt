@@ -21,6 +21,7 @@ import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
+@Suppress("CyclomaticComplexMethod") // TODO FVA Rework to reduce complexity
 internal fun RPGCompanionNavigation() {
     val navHostController = rememberNavController()
 

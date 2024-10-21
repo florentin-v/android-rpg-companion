@@ -1,6 +1,5 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mapper
 
-import com.fvanaldewereld.rpgcompanion.test.common.BasicKoinTest
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.AuthorModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.InformationModel
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.MainInfoModel
@@ -9,6 +8,7 @@ import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.TitleModel
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.InformationDto
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDtoMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
+import com.fvanaldewereld.rpgcompanion.test.common.BasicKoinTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication

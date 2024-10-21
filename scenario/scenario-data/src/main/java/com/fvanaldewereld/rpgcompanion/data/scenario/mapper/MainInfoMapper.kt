@@ -33,5 +33,4 @@ internal class MainInfoMapper(
         title = from.title.let(titleMapper::toDomain),
         information = from.information.let(informationMapper::toDomain),
     )
-
 }

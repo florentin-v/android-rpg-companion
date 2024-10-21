@@ -1,9 +1,9 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mapper
 
-import com.fvanaldewereld.rpgcompanion.test.common.BasicKoinTest
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDbObjectMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioDtoMockFactory
 import com.fvanaldewereld.rpgcompanion.mockFactory.ScenarioModelMockFactory
+import com.fvanaldewereld.rpgcompanion.test.common.BasicKoinTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.KoinApplication

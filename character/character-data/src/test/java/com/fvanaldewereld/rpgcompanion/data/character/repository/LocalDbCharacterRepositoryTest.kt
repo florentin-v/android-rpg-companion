@@ -95,7 +95,6 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
             }
         }
 
-
     @Test
     fun `GIVEN toDomain WHEN execute getLastCharacterList THEN call getLastCharacterList from characterDao`() =
         runBlocking {
@@ -151,5 +150,4 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
                 delete(characterLocalDb = any<CharacterLocalDb>())
             }
         }
-
 }

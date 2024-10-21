@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class GetLastCharacterListSliceImpl(
-    private val addCharacterUseCase: AddCharacterUseCase, // TODO FVA remove after implementing the character creation flow
+    // TODO FVA remove after implementing the character creation flow
+    private val addCharacterUseCase: AddCharacterUseCase,
     private val getLastCharacterListUseCase: GetLastCharacterListUseCase,
     private val getGameByIdUseCase: GetGameByIdUseCase,
     private val characterUIMapper: CharacterUIMapper,

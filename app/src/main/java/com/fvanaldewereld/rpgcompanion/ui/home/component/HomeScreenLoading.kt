@@ -74,7 +74,6 @@ internal fun HomeScreenLoading() {
     }
 }
 
-
 @Composable
 private fun shimmerBrush(showShimmer: Boolean = true, targetValue: Float = 1000f): Brush {
     return if (showShimmer) {
@@ -89,7 +88,8 @@ private fun shimmerBrush(showShimmer: Boolean = true, targetValue: Float = 1000f
             initialValue = 0f,
             targetValue = targetValue,
             animationSpec = infiniteRepeatable(
-                animation = tween(1600), repeatMode = RepeatMode.Restart,
+                animation = tween(1600),
+                repeatMode = RepeatMode.Restart,
             ),
         )
         Brush.linearGradient(

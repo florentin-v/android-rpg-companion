@@ -1,7 +1,28 @@
 package com.fvanaldewereld.rpgcompanion.data.scenario.mapper
 
-import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.*
-import com.fvanaldewereld.rpgcompanion.data.scenario.dto.*
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.AuthorModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ChapterListModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.CharacterListModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.DescriptionModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.MainInfoModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceListModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.ScenarioModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.SummaryModel
+import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.TitleModel
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.AuthorDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ChapterDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ChapterListDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.CharacterDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.CharacterListDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.DescriptionDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.InformationDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.PlaceDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.PlaceListDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ScenarioDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ScenarioElementDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.SummaryDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TextType
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TitleDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.extension.getText
 import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.entity.ScenarioBaseLocalDb
 import com.fvanaldewereld.rpgcompanion.data.scenario.source.localDb.relation.ScenarioLocalDb
@@ -30,6 +51,9 @@ private const val THEME_LIST = "THEMES"
  * @param placeListMapper Mapper for place list related data models.
  * @param placeMapper Mapper for place related data models.
  */
+@Suppress("TooManyFunctions", "LongParameterList")
+// TODO Rework to reduce the number of functions
+// TODO Maybe fix LongParameterList with TooManyFunctions or ... find a solution
 internal class ScenarioMapper(
     private val chapterListMapper: ChapterListMapper,
     private val chapterMapper: ChapterMapper,

@@ -3,7 +3,6 @@ package com.fvanaldewereld.rpgcompanion.data.scenario.mapper
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.AuthorModel
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.AuthorDto
 
-
 /**
  * Mapper for converting between different data models related to Author.
  */

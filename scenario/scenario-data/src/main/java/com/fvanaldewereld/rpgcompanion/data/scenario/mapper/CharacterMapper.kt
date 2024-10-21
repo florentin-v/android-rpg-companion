@@ -17,7 +17,8 @@ internal class CharacterMapper(
     /**
      * Converts a [CharacterLocalDb] to a [CharacterModel].
      *
-     * The domain model [CharacterModel] is created by mapping the name and description fields of the [CharacterLocalDb].
+     * The domain model [CharacterModel] is created by mapping the name
+     * and description fields of the [CharacterLocalDb].
      *
      * @param from The [CharacterLocalDb] to convert.
      * @return The converted [CharacterModel].
