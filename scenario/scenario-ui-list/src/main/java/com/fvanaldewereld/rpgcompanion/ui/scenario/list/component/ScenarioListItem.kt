@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.scenario.list.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.list.component
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable

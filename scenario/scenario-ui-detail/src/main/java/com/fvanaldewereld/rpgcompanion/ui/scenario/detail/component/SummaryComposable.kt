@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

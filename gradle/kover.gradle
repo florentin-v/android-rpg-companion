@@ -1,13 +1,33 @@
 apply plugin: libs.plugins.kover.get().pluginId
 
 dependencies {
+    // Common
     kover(project(":common"))
     kover(project(":common-test"))
+    // Character
+    kover(project(":character:character-data"))
+    kover(project(":character:character-domain-api"))
+    kover(project(":character:character-domain-lib"))
+    kover(project(":character:character-ui-detail"))
+    kover(project(":character:character-ui-list"))
+    // Scenario
     kover(project(":scenario:scenario-data"))
     kover(project(":scenario:scenario-domain-api"))
     kover(project(":scenario:scenario-domain-lib"))
     kover(project(":scenario:scenario-ui-detail"))
     kover(project(":scenario:scenario-ui-list"))
+    // Session
+    kover(project(":session:session-data"))
+    kover(project(":session:session-domain-api"))
+    kover(project(":session:session-domain-lib"))
+    kover(project(":session:session-ui-detail"))
+    kover(project(":session:session-ui-list"))
+    // Game
+    kover(project(":game:game-data"))
+    kover(project(":game:game-domain-api"))
+    kover(project(":game:game-domain-lib"))
+    kover(project(":game:game-ui-detail"))
+    kover(project(":game:game-ui-list"))
 }
 
 koverReport {
@@ -24,8 +44,10 @@ koverReport {
                     "*.di.*",
                     "*.ui.*.theme.*",
                     "*.ui.theme.*",
-                    "*.ui.*.components.*",
-                    "*.ui.components.*",
+                    "*.ui.*.component.*",
+                    "*.ui.component.*",
+                    "*.api.domain.*",
+                    "*.data.*.source.*Database",
             )
         }
     }

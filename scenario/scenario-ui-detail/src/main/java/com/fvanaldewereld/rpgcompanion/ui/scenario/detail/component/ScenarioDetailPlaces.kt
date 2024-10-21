@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.component
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.fvanaldewereld.rpgcompanion.api.domain.scenario.models.PlaceListModel
 import com.fvanaldewereld.rpgcompanion.common.ui.theme.Typography
@@ -36,7 +37,7 @@ fun ScenarioDetailPlaces(placeListModel: PlaceListModel, modifier: Modifier = Mo
                         place.description.paragraphs.forEach { paragraph ->
                             Text(
                                 paragraph,
-                                textAlign = androidx.compose.ui.text.style.TextAlign.Justify,
+                                textAlign = TextAlign.Justify,
                                 modifier = Modifier.padding(horizontal = 15.dp, vertical = 5.dp),
                             )
                         }
@@ -45,7 +46,7 @@ fun ScenarioDetailPlaces(placeListModel: PlaceListModel, modifier: Modifier = Mo
                     Text(
                         stringResource(id = R.string.scenarioDetail_page_noPlaces),
                         style = Typography.bodyLarge,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
                     )
                 }

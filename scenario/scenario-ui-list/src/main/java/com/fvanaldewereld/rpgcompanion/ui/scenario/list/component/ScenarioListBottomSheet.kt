@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.fvanaldewereld.rpgcompanion.ui.scenario.list.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.list.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement

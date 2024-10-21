@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.scenario.list.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.list.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning

@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components
+package com.fvanaldewereld.rpgcompanion.ui.scenario.detail.component
 
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.vector.ImageVector

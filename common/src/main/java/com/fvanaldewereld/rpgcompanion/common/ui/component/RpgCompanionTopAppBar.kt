@@ -1,4 +1,4 @@
-package com.fvanaldewereld.rpgcompanion.common.ui.components
+package com.fvanaldewereld.rpgcompanion.common.ui.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
