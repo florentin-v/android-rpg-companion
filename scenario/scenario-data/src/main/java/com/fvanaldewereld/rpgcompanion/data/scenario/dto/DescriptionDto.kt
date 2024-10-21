@@ -6,4 +6,4 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class DescriptionDto(
     val paragraphs: List<String>,
-) : Parcelable, Dto
+) : Parcelable

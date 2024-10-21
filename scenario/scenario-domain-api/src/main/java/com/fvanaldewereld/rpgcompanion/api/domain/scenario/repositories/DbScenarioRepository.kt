@@ -6,7 +6,9 @@ interface DbScenarioRepository {
 
     suspend fun addScenario(scenarioModel: ScenarioModel): Long
 
-    suspend fun getAllScenarios(): List<ScenarioModel>
+    suspend fun getAllScenarioList(): List<ScenarioModel>
+
+    suspend fun getLastScenarioList(number: Int): List<ScenarioModel>
 
     suspend fun getScenarioByDocumentName(documentName: String): ScenarioModel
 

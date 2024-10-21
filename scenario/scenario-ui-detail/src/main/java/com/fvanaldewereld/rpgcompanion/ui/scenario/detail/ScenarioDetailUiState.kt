@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 sealed interface ScenarioDetailUiState : Parcelable {
     @Parcelize
-    object Loading : ScenarioDetailUiState
+    data object Loading : ScenarioDetailUiState
 
     @Parcelize
     data class Success(val scenario: ScenarioModel) : ScenarioDetailUiState

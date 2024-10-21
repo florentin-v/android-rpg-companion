@@ -1,18 +1,29 @@
 package com.fvanaldewereld.rpgcompanion.common.navigation
 
-const val SCENARIO_ID_KEY = "scenarioId"
+import kotlinx.serialization.Serializable
 
-sealed class NavigationRoute(val route: String) {
-    data object Home : NavigationRoute("home")
-    data object ScenarioList : NavigationRoute("scenario_list")
-    data object ScenarioDetail : NavigationRoute("scenario_detail/{$SCENARIO_ID_KEY}") {
-        fun createRoute(scenarioId: Long): String {
-            return "scenario_detail/$scenarioId"
-        }
+interface NavigationRoute {
+    @Serializable
+    data object Home : NavigationRoute
 
-        data object Basics : NavigationRoute("basics")
-        data object Chapters : NavigationRoute("chapters")
-        data object Characters : NavigationRoute("characters")
-        data object Places : NavigationRoute("places")
+    @Serializable
+    data object ScenarioList : NavigationRoute
+
+    @Serializable
+    data class ScenarioDetail(val scenarioId: Long) : NavigationRoute
+
+    interface SubScenarioDetail {
+
+        @Serializable
+        data object Basics : NavigationRoute
+
+        @Serializable
+        data object Chapters : NavigationRoute
+
+        @Serializable
+        data object Characters : NavigationRoute
+
+        @Serializable
+        data object Places : NavigationRoute
     }
 }

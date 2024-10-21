@@ -7,8 +7,8 @@ import kotlinx.parcelize.Parcelize
 data class ScenarioModel(
     val id: Long? = null,
     val documentName: String,
-    val chapters: ChaptersModel = ChaptersModel(),
-    val characters: CharactersModel = CharactersModel(),
+    val chapterList: ChapterListModel = ChapterListModel(),
+    val characterList: CharacterListModel = CharacterListModel(),
     val mainInfo: MainInfoModel = MainInfoModel(),
-    val places: PlacesModel = PlacesModel(),
+    val placeList: PlaceListModel = PlaceListModel(),
 ) : Parcelable, Model

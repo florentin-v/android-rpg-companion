@@ -4,13 +4,13 @@ package com.fvanaldewereld.rpgcompanion.mockFactory
 
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.AuthorDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ChapterDto
-import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ChaptersDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ChapterListDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.CharacterDto
-import com.fvanaldewereld.rpgcompanion.data.scenario.dto.CharactersDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.CharacterListDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.DescriptionDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.InformationDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.PlaceDto
-import com.fvanaldewereld.rpgcompanion.data.scenario.dto.PlacesDto
+import com.fvanaldewereld.rpgcompanion.data.scenario.dto.PlaceListDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.ScenarioDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.SummaryDto
 import com.fvanaldewereld.rpgcompanion.data.scenario.dto.TitleDto
@@ -118,8 +118,8 @@ object ScenarioDtoMockFactory {
     val authorDto = AuthorDto(SCENARIO_AUTHOR)
     val informationDto = InformationDto(
         nbPlayers = NUMBER_OF_PLAYERS_VALUE,
-        genres = listOf(GENRES_HORROR, GENRES_DRAMA),
-        themes = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
+        genreList = listOf(GENRES_HORROR, GENRES_DRAMA),
+        themeList = listOf(THEMES_ALIEN, THEMES_POSSESSION, THEMES_PSYCOLOGICAL),
     )
     val summaryDescriptionDto = DescriptionDto(
         paragraphs = listOf(SCENARIO_SUMMARY_TEXT),
@@ -141,8 +141,8 @@ object ScenarioDtoMockFactory {
         name = SCENARIO_CHARACTERS_NAME_2,
         description = characterDescriptionDto2,
     )
-    val charactersDto = CharactersDto(
-        characters = listOf(
+    val characterListDto = CharacterListDto(
+        list = listOf(
             characterDto1,
             characterDto2,
         ),
@@ -161,8 +161,8 @@ object ScenarioDtoMockFactory {
         name = SCENARIO_PLACES_NAME_2,
         description = placeDescriptionDto2,
     )
-    val placesDto = PlacesDto(
-        places = listOf(
+    val placeListDto = PlaceListDto(
+        list = listOf(
             placeDto1,
             placeDto2,
         ),
@@ -174,7 +174,7 @@ object ScenarioDtoMockFactory {
         name = SCENARIO_CHAPTERS_INTRODUCTION,
         description = chapterDescriptionDto,
     )
-    val chaptersDto = ChaptersDto(
+    val chapterListDto = ChapterListDto(
         listOf(
             chapterDto,
         ),
@@ -185,9 +185,9 @@ object ScenarioDtoMockFactory {
         author = authorDto,
         information = informationDto,
         summary = summaryDto,
-        chapters = chaptersDto,
-        characters = charactersDto,
-        places = placesDto,
+        chapterList = chapterListDto,
+        characterList = characterListDto,
+        placeList = placeListDto,
     )
 
     val emptyScenarioDto = ScenarioDto(

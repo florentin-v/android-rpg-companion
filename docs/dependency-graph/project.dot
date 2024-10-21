@@ -6,30 +6,95 @@ digraph {
   # Projects
 
   ":app" [fillcolor="#baffc9"];
+  ":character:character-data" [fillcolor="#d3c4ff"];
+  ":character:character-domain-api" [fillcolor="#fdb1ff"];
+  ":character:character-domain-lib" [fillcolor="#fdb1ff"];
+  ":character:character-ui-detail" [fillcolor="#badeff"];
+  ":character:character-ui-list" [fillcolor="#badeff"];
   ":common" [fillcolor="#badeff"];
   ":common-test" [fillcolor="#f0ffc4"];
+  ":game:game-data" [fillcolor="#d3c4ff"];
+  ":game:game-domain-api" [fillcolor="#fdb1ff"];
+  ":game:game-domain-lib" [fillcolor="#fdb1ff"];
+  ":game:game-ui-detail" [fillcolor="#badeff"];
+  ":game:game-ui-list" [fillcolor="#badeff"];
+  ":konsist-test" [fillcolor="#f0ffc4"];
   ":mock-factory" [fillcolor="#f0ffc4"];
   ":scenario:scenario-data" [fillcolor="#d3c4ff"];
   ":scenario:scenario-domain-api" [fillcolor="#fdb1ff"];
   ":scenario:scenario-domain-lib" [fillcolor="#fdb1ff"];
   ":scenario:scenario-ui-detail" [fillcolor="#badeff"];
   ":scenario:scenario-ui-list" [fillcolor="#badeff"];
+  ":session:session-data" [fillcolor="#d3c4ff"];
+  ":session:session-domain-api" [fillcolor="#fdb1ff"];
+  ":session:session-domain-lib" [fillcolor="#fdb1ff"];
+  ":session:session-ui-detail" [fillcolor="#badeff"];
+  ":session:session-ui-list" [fillcolor="#badeff"];
 
   {rank = same;}
 
   # Dependencies
 
   ":app" -> ":common" [style=filled, style=filled]
+  ":app" -> ":mock-factory" [style=filled, style=dotted]
+  ":app" -> ":character:character-data" [style=filled, style=filled]
+  ":app" -> ":character:character-domain-lib" [style=filled, style=filled]
+  ":app" -> ":character:character-ui-detail" [style=filled, style=filled]
+  ":app" -> ":character:character-ui-list" [style=filled, style=filled]
+  ":app" -> ":game:game-data" [style=filled, style=filled]
+  ":app" -> ":game:game-domain-lib" [style=filled, style=filled]
+  ":app" -> ":game:game-ui-detail" [style=filled, style=filled]
+  ":app" -> ":game:game-ui-list" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-data" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-domain-lib" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-ui-detail" [style=filled, style=filled]
   ":app" -> ":scenario:scenario-ui-list" [style=filled, style=filled]
+  ":app" -> ":session:session-data" [style=filled, style=filled]
+  ":app" -> ":session:session-domain-lib" [style=filled, style=filled]
+  ":app" -> ":session:session-ui-detail" [style=filled, style=filled]
+  ":app" -> ":session:session-ui-list" [style=filled, style=filled]
   ":app" -> ":common-test" [style=filled]
+  ":app" -> ":character:character-domain-api" [style=filled]
   ":app" -> ":scenario:scenario-domain-api" [style=filled]
-  ":app" -> ":mock-factory" [style=dotted]
+  ":app" -> ":session:session-domain-api" [style=filled]
+  ":app" -> ":game:game-domain-api" [style=filled]
+  ":common-test" -> ":app" [style=filled]
   ":mock-factory" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":mock-factory" -> ":common" [style=filled]
   ":mock-factory" -> ":scenario:scenario-data" [style=filled]
+  ":konsist-test" -> ":mock-factory" [style=dotted]
+  ":character:character-domain-lib" -> ":character:character-domain-api" [color=red,style=dotted]
+  ":character:character-domain-lib" -> ":mock-factory" [style=dotted]
+  ":character:character-domain-lib" -> ":common-test" [style=dotted]
+  ":character:character-domain-api" -> ":mock-factory" [style=dotted]
+  ":character:character-ui-detail" -> ":character:character-domain-api" [color=red,style=dotted]
+  ":character:character-ui-detail" -> ":common" [style=filled]
+  ":character:character-ui-detail" -> ":mock-factory" [style=filled]
+  ":character:character-ui-detail" -> ":character:character-domain-lib" [style=filled]
+  ":character:character-ui-list" -> ":character:character-domain-api" [color=red,style=dotted]
+  ":character:character-ui-list" -> ":common" [style=filled]
+  ":character:character-ui-list" -> ":mock-factory" [style=filled]
+  ":character:character-ui-list" -> ":character:character-domain-lib" [style=filled]
+  ":character:character-data" -> ":character:character-domain-api" [color=red,style=dotted]
+  ":character:character-data" -> ":common" [style=filled]
+  ":character:character-data" -> ":mock-factory" [style=dotted]
+  ":character:character-data" -> ":common-test" [style=dotted]
+  ":game:game-data" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-data" -> ":common" [style=filled]
+  ":game:game-data" -> ":mock-factory" [style=dotted]
+  ":game:game-data" -> ":common-test" [style=dotted]
+  ":game:game-ui-list" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-ui-list" -> ":common" [style=filled]
+  ":game:game-ui-list" -> ":mock-factory" [style=filled]
+  ":game:game-ui-list" -> ":game:game-domain-lib" [style=filled]
+  ":game:game-domain-api" -> ":mock-factory" [style=dotted]
+  ":game:game-ui-detail" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-ui-detail" -> ":common" [style=filled]
+  ":game:game-ui-detail" -> ":mock-factory" [style=filled]
+  ":game:game-ui-detail" -> ":game:game-domain-lib" [style=filled]
+  ":game:game-domain-lib" -> ":game:game-domain-api" [color=red,style=dotted]
+  ":game:game-domain-lib" -> ":mock-factory" [style=dotted]
+  ":game:game-domain-lib" -> ":common-test" [style=dotted]
   ":scenario:scenario-domain-api" -> ":mock-factory" [style=dotted]
   ":scenario:scenario-ui-list" -> ":scenario:scenario-domain-api" [color=red,style=dotted]
   ":scenario:scenario-ui-list" -> ":common" [style=filled]
@@ -46,4 +111,20 @@ digraph {
   ":scenario:scenario-ui-detail" -> ":common" [style=filled]
   ":scenario:scenario-ui-detail" -> ":mock-factory" [style=filled]
   ":scenario:scenario-ui-detail" -> ":scenario:scenario-domain-lib" [style=filled]
+  ":session:session-data" -> ":session:session-domain-api" [color=red,style=dotted]
+  ":session:session-data" -> ":common" [style=filled]
+  ":session:session-data" -> ":mock-factory" [style=dotted]
+  ":session:session-data" -> ":common-test" [style=dotted]
+  ":session:session-domain-api" -> ":mock-factory" [style=dotted]
+  ":session:session-ui-detail" -> ":session:session-domain-api" [color=red,style=dotted]
+  ":session:session-ui-detail" -> ":common" [style=filled]
+  ":session:session-ui-detail" -> ":mock-factory" [style=filled]
+  ":session:session-ui-detail" -> ":session:session-domain-lib" [style=filled]
+  ":session:session-domain-lib" -> ":session:session-domain-api" [color=red,style=dotted]
+  ":session:session-domain-lib" -> ":mock-factory" [style=dotted]
+  ":session:session-domain-lib" -> ":common-test" [style=dotted]
+  ":session:session-ui-list" -> ":session:session-domain-api" [color=red,style=dotted]
+  ":session:session-ui-list" -> ":common" [style=filled]
+  ":session:session-ui-list" -> ":mock-factory" [style=filled]
+  ":session:session-ui-list" -> ":session:session-domain-lib" [style=filled]
 }

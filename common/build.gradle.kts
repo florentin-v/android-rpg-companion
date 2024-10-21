@@ -5,6 +5,7 @@ apply(from = "${project.rootDir}/gradle/koin.gradle")
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin)
+    alias(libs.plugins.serialization)
 }
 
 android {
