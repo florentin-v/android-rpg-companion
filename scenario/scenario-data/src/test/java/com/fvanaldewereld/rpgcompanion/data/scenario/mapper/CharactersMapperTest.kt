@@ -35,7 +35,7 @@ class CharactersMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock CharacterMapper WHEN map CharactersDto THEN return CharactersModel`() {
+    fun `WHEN map CharactersDto THEN return CharactersModel`() {
         // GIVEN
         whenever(mockCharacterMapper.toDomain(ScenarioDtoMockFactory.characterDto1))
             .thenReturn(ScenarioModelMockFactory.characterModel1)

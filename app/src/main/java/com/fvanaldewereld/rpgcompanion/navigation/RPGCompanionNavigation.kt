@@ -14,9 +14,9 @@ import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.LastScenar
 import com.fvanaldewereld.rpgcompanion.ui.home.model.HomeScreenAction.TopAppBarAction
 import com.fvanaldewereld.rpgcompanion.ui.home.viewModel.HomeViewModel
 import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.ScenarioDetailViewModel
-import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.components.ScenarioDetailScreen
+import com.fvanaldewereld.rpgcompanion.ui.scenario.detail.component.ScenarioDetailScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.ScenarioListViewModel
-import com.fvanaldewereld.rpgcompanion.ui.scenario.list.components.ScenarioListScreen
+import com.fvanaldewereld.rpgcompanion.ui.scenario.list.component.ScenarioListScreen
 import com.fvanaldewereld.rpgcompanion.ui.scenario.list.model.ScenarioListScreenAction
 import org.koin.androidx.compose.koinViewModel
 

@@ -44,7 +44,7 @@ class CharacterMapperTest {
     }
 
     @Test
-    fun `WHEN execute toDataDbObject with characterModel THEN return characterLocalDb`() {
+    fun `WHEN execute toDataLocalDb with characterModel THEN return characterLocalDb`() {
         // GIVEN
 
         // WHEN
@@ -55,7 +55,7 @@ class CharacterMapperTest {
             gameId = 100
         )
 
-        val characterLocalDb = characterMapper.toDataDbObject(characterModel)
+        val characterLocalDb = characterMapper.toDataLocalDb(characterModel)
 
         // THEN
         val expectedCharacterLocalDb = CharacterLocalDb(

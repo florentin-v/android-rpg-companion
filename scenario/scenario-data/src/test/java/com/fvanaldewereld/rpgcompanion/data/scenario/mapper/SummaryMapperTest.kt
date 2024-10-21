@@ -33,7 +33,7 @@ class SummaryMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock DescriptionMapper WHEN map SummaryDto THEN return SummaryModel`() {
+    fun `WHEN map SummaryDto THEN return SummaryModel`() {
         // GIVEN
         whenever(mockDescriptionMapper.toDomain(ScenarioDtoMockFactory.summaryDescriptionDto))
             .thenReturn(ScenarioModelMockFactory.summaryDescriptionModel)

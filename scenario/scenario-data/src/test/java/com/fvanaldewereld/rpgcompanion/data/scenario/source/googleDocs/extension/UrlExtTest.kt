@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 class UrlExtTest {
 
     @Test
-    fun `GIVEN URL WHEN extractDocumentId THEN return the documentId`() {
+    fun `WHEN extractDocumentId THEN return the documentId`() {
         // GIVEN
 
         // WHEN

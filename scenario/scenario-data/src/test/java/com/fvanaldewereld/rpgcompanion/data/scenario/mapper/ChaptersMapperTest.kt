@@ -35,7 +35,7 @@ class ChaptersMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ChapterMapper WHEN map ChaptersDto THEN return ChaptersModel`() {
+    fun `WHEN map ChaptersDto THEN return ChaptersModel`() {
         // GIVEN
         whenever(mockChapterMapper.toDomain(ScenarioDtoMockFactory.chapterDto))
             .thenReturn(ScenarioModelMockFactory.chapterModel)

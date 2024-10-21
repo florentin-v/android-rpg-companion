@@ -12,7 +12,7 @@ internal class CharacterMapper {
         gameId = from.gameId,
     )
 
-    fun toDataDbObject(from: CharacterModel) = CharacterLocalDb(
+    fun toDataLocalDb(from: CharacterModel) = CharacterLocalDb(
         id = from.id,
         name = from.name,
         level = from.level,

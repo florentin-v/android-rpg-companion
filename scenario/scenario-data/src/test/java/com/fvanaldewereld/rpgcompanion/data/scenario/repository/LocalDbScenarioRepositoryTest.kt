@@ -43,7 +43,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ScenarioMapper and insertScenario WHEN executing addScenario of LocalDbScenarioRepository THEN return Long`() =
+    fun `WHEN executing addScenario of LocalDbScenarioRepository THEN return Long`() =
         runBlocking {
             // GIVEN
             whenever(mockScenarioMapper.toDataLocalDb(ScenarioModelMockFactory.scenarioModelWithoutId))
@@ -64,7 +64,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN mock ScenarioMapper and getAllScenarios WHEN executing getAllScenarios of LocalDbScenarioRepository THEN return list of Scenario`() =
+    fun `WHEN executing getAllScenarios of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
             whenever(mockScenarioMapper.toDomain(ScenarioDbObjectMockFactory.scenarioLocalDb))
@@ -85,7 +85,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN mock ScenarioMapper and getScenarioByDocumentName WHEN executing getScenarioByDocumentName of LocalDbScenarioRepository THEN return list of Scenario`() =
+    fun `WHEN executing getScenarioByDocumentName of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
             whenever(mockScenarioMapper.toDomain(ScenarioDbObjectMockFactory.scenarioLocalDb))
@@ -108,7 +108,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN mock ScenarioMapper and getScenarioById WHEN executing getScenarioById of LocalDbScenarioRepository THEN return list of Scenario`() =
+    fun `WHEN executing getScenarioById of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
             whenever(mockScenarioMapper.toDomain(ScenarioDbObjectMockFactory.scenarioLocalDb))
@@ -130,7 +130,7 @@ class LocalDbScenarioRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN mock ScenarioMapper and deleteById WHEN executing deleteById of LocalDbScenarioRepository THEN return list of Scenario`() =
+    fun `WHEN executing deleteById of LocalDbScenarioRepository THEN return list of Scenario`() =
         runBlocking {
             // GIVEN
             whenever(mockScenarioDao.getScenarioById(ScenarioDbObjectMockFactory.SCENARIO_ID))

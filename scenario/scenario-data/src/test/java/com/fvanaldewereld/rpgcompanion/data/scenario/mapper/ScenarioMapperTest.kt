@@ -69,7 +69,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map Scenario THEN return ScenarioModel`() {
+    fun `WHEN map Scenario THEN return ScenarioModel`() {
         // GIVEN
         whenever(mockChapterMapper.toDomain(ScenarioDbObjectMockFactory.chapterLocalDb))
             .thenReturn(ScenarioModelMockFactory.chapterModel)
@@ -95,7 +95,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map ScenarioModel THEN return Scenario`() {
+    fun `WHEN map ScenarioModel THEN return Scenario`() {
         // GIVEN
         whenever(mockChapterMapper.toDataLocalDb(ScenarioModelMockFactory.chapterModel))
             .thenReturn(ScenarioDbObjectMockFactory.chapterLocalDb)
@@ -121,7 +121,7 @@ class ScenarioMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock ChapterMapper, CharacterMapper, PlaceMapper and InformationMapper WHEN map ScenarioModel without Id THEN return Scenario`() {
+    fun `WHEN map ScenarioModel without Id THEN return Scenario`() {
         // GIVEN
         whenever(mockChapterMapper.toDataLocalDb(ScenarioModelMockFactory.chapterModel))
             .thenReturn(ScenarioDbObjectMockFactory.chapterLocalDb)

@@ -19,10 +19,12 @@ afterEvaluate {
                     "**/*Fragment*" +
                             ",**/*Activity*" +
                             ",**/di/**/*" +
-                            ",**/ui/components/**/*" +
-                            ",**/ui/**/components/**/*" +
+                            ",**/api/domain/**/*" +
+                            ",**/ui/component/**/*" +
+                            ",**/ui/**/component/**/*" +
                             ",**/ui/theme/**/*" +
-                            ",**/ui/**/theme/**/*"
+                            ",**/ui/**/theme/**/*" +
+                            ",**/data/**/source/**/*Database.kt"
             property "sonar.cpd.exclusions", "**/mock-factory/**/*"
         }
     }

@@ -41,7 +41,7 @@ class GoogleDocsRepositoryTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock getGoogleDocsById and ScenarioModelMapper WHEN executing getScenarioByGdocsUrl of GoogleDocsRepository THEN return Document`() =
+    fun `WHEN executing getScenarioByGdocsUrl of GoogleDocsRepository THEN return Document`() =
         runBlocking {
             // GIVEN
             whenever(mockGoogleDocsDataSource.getGoogleDocsById(GoogleDocsMockFactory.GOOGLE_DOCS_DOCUMENT_ID))

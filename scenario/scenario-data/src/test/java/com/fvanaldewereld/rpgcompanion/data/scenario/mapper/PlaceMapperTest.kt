@@ -35,7 +35,7 @@ class PlaceMapperTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock DescriptionMapper WHEN map PlaceDto THEN return PlaceModel`() {
+    fun `WHEN map PlaceDto THEN return PlaceModel`() {
         // GIVEN
         whenever(mockDescriptionMapper.toDomain(ScenarioDtoMockFactory.placeDescriptionDto1))
             .thenReturn(ScenarioModelMockFactory.placeDescriptionModel1)

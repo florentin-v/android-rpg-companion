@@ -12,7 +12,7 @@ internal class LocalDbGameRepository(
 
     override suspend fun addGame(gameModel: GameModel) = gameDao
         .insert(
-            gameLocalDb = gameMapper.toDataDbObject(from = gameModel),
+            gameLocalDb = gameMapper.toDataLocalDb(from = gameModel),
         )
 
     override suspend fun getAllGameList(): List<GameModel> = gameDao

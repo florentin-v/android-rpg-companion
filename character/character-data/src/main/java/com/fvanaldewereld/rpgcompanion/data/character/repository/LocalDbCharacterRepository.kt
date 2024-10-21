@@ -12,7 +12,7 @@ internal class LocalDbCharacterRepository(
 
     override suspend fun addCharacter(characterModel: CharacterModel) = characterDao
         .insert(
-            characterLocalDb = characterMapper.toDataDbObject(from = characterModel),
+            characterLocalDb = characterMapper.toDataLocalDb(from = characterModel),
         )
 
     override suspend fun getAllCharacterList(): List<CharacterModel> = characterDao

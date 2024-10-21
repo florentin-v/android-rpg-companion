@@ -11,7 +11,7 @@ internal class GameMapper {
             name = from.name,
         )
 
-    fun toDataDbObject(from: GameModel) = GameLocalDb(
+    fun toDataLocalDb(from: GameModel) = GameLocalDb(
         id = from.id,
         name = from.name,
     )

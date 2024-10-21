@@ -36,7 +36,7 @@ class GetScenarioByUrlUseCaseTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN mock getGoogleDocsByUrl WHEN executing GetGdocsByUrlUseCase THEN return ScenarioModel`() =
+    fun `WHEN executing GetGdocsByUrlUseCase THEN return ScenarioModel`() =
         runBlocking {
             // GIVEN
             whenever(mockGoogleDocsRepository.getScenarioByGdocsUrl(GoogleDocsMockFactory.googleDocsUrl))

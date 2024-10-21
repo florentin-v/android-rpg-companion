@@ -41,12 +41,12 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
     }
 
     @Test
-    fun `GIVEN toDataDbObject WHEN execute addCharacter THEN call insert from characterDao`() =
+    fun `WHEN execute addCharacter THEN call insert from characterDao`() =
         runBlocking {
             // GIVEN
             val characterModel = mock<CharacterModel>()
             val characterLocalDb = mock<CharacterLocalDb>()
-            whenever(mockCharacterMapper.toDataDbObject(characterModel))
+            whenever(mockCharacterMapper.toDataLocalDb(characterModel))
                 .thenReturn(characterLocalDb)
 
             // WHEN
@@ -59,7 +59,7 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN toDomain WHEN execute getAllCharacterList THEN call getAllCharacterList from characterDao`() =
+    fun `WHEN execute getAllCharacterList THEN call getAllCharacterList from characterDao`() =
         runBlocking {
             // GIVEN
             whenever(mockCharacterDao.getAllCharacterList())
@@ -77,7 +77,7 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN toDomain WHEN execute getAllCharacterListByGameId THEN call getAllCharacterListByGameId from characterDao`() =
+    fun `WHEN execute getAllCharacterListByGameId THEN call getAllCharacterListByGameId from characterDao`() =
         runBlocking {
             // GIVEN
             whenever(mockCharacterDao.getAllCharacterListByGameId(any<Long>()))
@@ -96,7 +96,7 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN toDomain WHEN execute getLastCharacterList THEN call getLastCharacterList from characterDao`() =
+    fun `WHEN execute getLastCharacterList THEN call getLastCharacterList from characterDao`() =
         runBlocking {
             // GIVEN
             whenever(mockCharacterDao.getLastCharacterList(any<Int>()))
@@ -115,7 +115,7 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN toDomain WHEN execute getCharacterById THEN call getCharacterById from characterDao`() =
+    fun `WHEN execute getCharacterById THEN call getCharacterById from characterDao`() =
         runBlocking {
             // GIVEN
             whenever(mockCharacterDao.getCharacterById(any<Long>()))
@@ -134,7 +134,7 @@ class LocalDbCharacterRepositoryTest : BasicKoinTest() {
         }
 
     @Test
-    fun `GIVEN getCharacterById WHEN execute deleteByCharacterId THEN call delete from characterDao`() =
+    fun `WHEN execute deleteByCharacterId THEN call delete from characterDao`() =
         runBlocking {
             // GIVEN
             val characterId = 1L
