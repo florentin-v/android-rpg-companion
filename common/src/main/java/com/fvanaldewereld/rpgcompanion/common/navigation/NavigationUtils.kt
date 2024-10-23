@@ -27,30 +27,44 @@ fun NavGraphBuilder.animatedComposable(
     )
 }
 
+inline fun <reified T : NavigationRoute> NavGraphBuilder.animatedComposable(
+    noinline content: @Composable AnimatedContentScope.(NavBackStackEntry) -> Unit,
+) {
+    composable<T>(
+        // Set the enter and exit transitions
+        enterTransition = enterTransition,
+        exitTransition = exitTransition,
+        // Set the pop enter and pop exit transitions
+        popEnterTransition = popEnterTransition,
+        popExitTransition = popExitTransition,
+        content = content,
+    )
+}
+
 private const val ANIMATION_DURATION = 700
 
-private val enterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
+val enterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
     slideIntoContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Left,
         animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
-private val exitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
+val exitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Left,
         animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
-private val popEnterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition? = {
+val popEnterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition? = {
     slideIntoContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Right,
         animationSpec = tween(ANIMATION_DURATION),
     )
 }
 
-private val popExitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
+val popExitTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition? = {
     slideOutOfContainer(
         towards = AnimatedContentTransitionScope.SlideDirection.Right,
         animationSpec = tween(ANIMATION_DURATION),

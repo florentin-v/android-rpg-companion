@@ -6,11 +6,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ScenarioDto(
     val author: AuthorDto? = null,
-    val characters: CharactersDto? = null,
-    val chapters: ChaptersDto? = null,
+    val characterList: CharacterListDto? = null,
+    val chapterList: ChapterListDto? = null,
     val documentName: String,
     val information: InformationDto? = InformationDto(),
-    val places: PlacesDto? = null,
+    val placeList: PlaceListDto? = null,
     val summary: SummaryDto? = null,
     val title: TitleDto? = null,
-) : Parcelable, Dto
+) : Parcelable

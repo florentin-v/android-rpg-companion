@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fvanaldewereld.rpgcompanion.common.test"
+    namespace = "com.fvanaldewereld.rpgcompanion.test.common"
 
     tasks.withType<Test> {
         useJUnitPlatform()
